@@ -1,0 +1,49 @@
+type Cafe {
+  id: ID!
+  stringId: String!
+  name: String!
+  street: String!
+  city: String!
+  province: Province!
+  postalCode: String!
+  phoneNumber: String
+  website: String
+  profilePhotoURL: String
+  busyness: filterOptions
+  noisiness: filterOptions
+  price: filterOptions
+  location: Location
+  distance: Int
+}
+
+type Location {
+  latitude: Float
+  longitude: Float
+}
+
+input locationInput {
+  latitude: Float
+  longitude: Float
+}
+
+enum Province {
+  AB
+  BC
+  MB
+  NB
+  NL
+  NT
+  NS
+  NU
+  ON
+  PE
+  QC
+  SK
+  YT
+}
+
+enum filterOptions {
+  LOW
+  MEDIUM
+  HIGH
+}

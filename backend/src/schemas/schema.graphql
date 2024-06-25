@@ -1,0 +1,33 @@
+#import './AuthPayload/authpayload.graphql'
+#import './User/user.graphql'
+#import './Cafe/cafe.graphql'
+
+type Query {
+  allUsers: [User]
+  signUp(
+    userName: String!
+    email: String!
+    firstName: String!
+    lastName: String!
+    password: String!
+  ): AuthPayload
+  login(userName: String!, password: String!): AuthPayload
+  returnAllCafes(
+    filterByName: String
+    busyFilter: filterOptions
+    noiseFilter: filterOptions
+    priceFilter: [filterOptions]
+    distanceFilter: Int
+    userLocation: locationInput
+  ): [Cafe]
+  getCafeCount: Int
+  getCafeInfo(stringId: String!): Cafe
+}
+
+type Mutation {
+  updateCafeInfo(
+    stringId: String!
+    busyness: filterOptions
+    noisiness: filterOptions
+  ): Cafe
+}
