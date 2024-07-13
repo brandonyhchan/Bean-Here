@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -19,19 +19,15 @@ model User {
 }
 
 model Cafe {
-  id              Int            @id @default(autoincrement())
-  stringId        String         @unique
+  id              Int       @id @default(autoincrement())
+  stringId        String    @unique
   name            String
   street          String
   city            String
-  province        Province
   postalCode      String
   phoneNumber     String?
   website         String?
   profilePhotoURL String?
-  busyness        filterOptions?
-  noisiness       filterOptions?
-  price           filterOptions?
   location        Location?
 }
 
@@ -39,28 +35,6 @@ model Location {
   id        Int   @id @default(autoincrement())
   latitude  Float @unique
   longitude Float @unique
-  Cafe      Cafe  @relation(fields: [cafeId], references: [id])
   cafeId    Int   @unique
-}
-
-enum Province {
-  AB
-  BC
-  MB
-  NB
-  NL
-  NT
-  NS
-  NU
-  ON
-  PE
-  QC
-  SK
-  YT
-}
-
-enum filterOptions {
-  LOW
-  MEDIUM
-  HIGH
+  Cafe      Cafe  @relation(fields: [cafeId], references: [id])
 }
