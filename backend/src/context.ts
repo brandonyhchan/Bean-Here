@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { getUserId } from "./utils.js";
+import { getUserId } from "./utils/jwt.js";
 import { Request } from "express";
 
 export const prisma = new PrismaClient();
