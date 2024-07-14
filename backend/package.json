@@ -1,6 +1,9 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -15,13 +18,14 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/node": "^18.14.0",
-    "prisma": "^4.11.0",
-    "ts-node": "^10.9.1",
+    "prisma": "^5.16.2",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.16.2",
     "typescript": "^4.9.5"
   },
   "dependencies": {
     "@apollo/server": "^4.4.0",
-    "@prisma/client": "^4.12.0",
+    "@prisma/client": "^5.16.2",
     "@types/jsonwebtoken": "^9.0.1",
     "apollo-server": "^3.11.1",
     "bcrypt": "^5.1.0",
@@ -32,5 +36,8 @@
     "graphql-playground-middleware-express": "^1.7.23",
     "jsonwebtoken": "^9.0.0",
     "nodemon": "^2.0.20"
+  },
+  "@snaplet/seed": {
+    "config": "prisma\\seed\\seed.config.ts"
   }
 }
