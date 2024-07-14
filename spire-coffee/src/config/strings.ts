@@ -5,8 +5,8 @@ const strings = new LocalizedStrings({
     global: {
       title: "SpireCoffee",
     },
-    login: {
-      helmet: "Login",
+    signin: {
+      helmet: "Sign In",
     },
   },
 });

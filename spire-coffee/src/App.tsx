@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Body from "./component/Body";
-import Login from "./pages/login";
+import SignIn from "./pages/signin";
 
 function App() {
   return (
     <div className="App">
       <Body>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<SignIn />} />
         </Routes>
       </Body>
     </div>
