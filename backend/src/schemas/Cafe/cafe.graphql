@@ -9,8 +9,8 @@ type Cafe {
   phoneNumber: String
   website: String
   profilePhotoURL: String
-  busyness: filterOptions
-  noisiness: filterOptions
+  busyness: String
+  noisiness: String
   price: filterOptions
   location: Location
   distance: Int
