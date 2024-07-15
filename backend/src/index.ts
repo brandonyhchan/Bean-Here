@@ -12,9 +12,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-console.log("Current working directory:", process.cwd());
-console.log("Database URL:", process.env.DATABASE_URL);
-
 const resolvers = {
   Query: {
     signUp,
