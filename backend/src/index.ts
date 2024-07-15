@@ -8,6 +8,9 @@ import {
 } from "./resolvers/Query.js";
 import { updateCafeInfo } from "./resolvers/Mutation.js";
 import { loadFile } from "graphql-import-files";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const resolvers = {
   Query: {

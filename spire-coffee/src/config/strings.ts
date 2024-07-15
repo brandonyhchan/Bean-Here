@@ -2,11 +2,16 @@ import LocalizedStrings from "react-localization";
 
 const strings = new LocalizedStrings({
   en: {
-    global: {
+    general: {
       title: "SpireCoffee",
+      email: "Email Address",
+      username: "Username",
+      password: "Password",
     },
-    signin: {
-      helmet: "Sign In",
+    login: {
+      signIn: "Sign In",
+      forgotPassword: "Forgot password?",
+      signUpMsg: "Don't have an account? Sign Up",
     },
   },
 });
