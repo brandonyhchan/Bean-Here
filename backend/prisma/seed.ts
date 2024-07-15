@@ -30,12 +30,43 @@ async function seedUsers() {
 }
 
 /**
+ * Seed initial cafe data.
+ * @async
+ * @returns {Object} seeded cafe
+ */
+async function seedCafes() {
+  const filterOptions = await prisma.filterOption.findMany();
+  try {
+    return await prisma.cafe.upsert({
+      where: { stringId: "1" },
+      update: {},
+      create: {
+        stringId: "1",
+        name: "Breka Bakery & Café (Main St)",
+        street: "4554 Main St",
+        city: "Vancouver",
+        postalCode: "V5V 3R5",
+        phoneNumber: "604-559-0900",
+        website: "http://breka.ca",
+        busyness: filterOptions[1].level,
+        noisiness: filterOptions[0].level,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+
+/**
  * Seed the database with initial data.
  * @async
  */
 async function seedDatabase() {
   try {
     await seedUsers();
+    await seedCafes();
   } catch (error) {
     console.error("There was an error seeding the database", error);
   } finally {

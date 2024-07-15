@@ -61,6 +61,12 @@ Should get the message "Server is running on http://localhost:4000/
 
 Prisma is an ORM that is being used by the backend to communicate with the database. For all instructions, please check that you are in the `backend` directory.
 
+If updates are made to the migration.sql file and the migration has already been applied to the database
+
+1. run `npx prisma migrate dev`
+
+This will create a new migration.
+
 ## Seeding the database
 
 1. Ensure that the `.env` file in the `backend` directory contains the `SEEDER_ACCOUNT_PASSWORD` variable.

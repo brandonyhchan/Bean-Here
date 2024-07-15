@@ -20,7 +20,11 @@ CREATE TABLE "Cafe" (
     "postalCode" TEXT NOT NULL,
     "phoneNumber" TEXT,
     "website" TEXT,
-    "profilePhotoURL" TEXT
+    "profilePhotoURL" TEXT,
+    "busyness" TEXT NOT NULL DEFAULT 'LOW' CHECK(busyness IN ('LOW', 'MEDIUM', 'HIGH')),
+    "noisiness" TEXT NOT NULL DEFAULT 'LOW' CHECK(noisiness IN ('LOW', 'MEDIUM', 'HIGH')),
+    FOREIGN KEY ("busyness") REFERENCES "FilterOption" ("level"),
+    FOREIGN KEY ("noisiness") REFERENCES "FilterOption" ("level")
 );
 
 -- CreateTable
@@ -31,6 +35,17 @@ CREATE TABLE "Location" (
     "cafeId" INTEGER NOT NULL,
     CONSTRAINT "Location_cafeId_fkey" FOREIGN KEY ("cafeId") REFERENCES "Cafe" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
+-- CreateTable
+CREATE TABLE "FilterOption" (
+    "level" TEXT NOT NULL PRIMARY KEY
+);
+
+-- Insert levels
+INSERT INTO "FilterOption" (level) VALUES
+('LOW'),
+('MEDIUM'),
+('HIGH');
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_userName_key" ON "User"("userName");
