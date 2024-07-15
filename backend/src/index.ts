@@ -8,6 +8,12 @@ import {
 } from "./resolvers/Query.js";
 import { updateCafeInfo } from "./resolvers/Mutation.js";
 import { loadFile } from "graphql-import-files";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+console.log("Current working directory:", process.cwd());
+console.log("Database URL:", process.env.DATABASE_URL);
 
 const resolvers = {
   Query: {

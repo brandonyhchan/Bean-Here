@@ -17,6 +17,22 @@ Prisma ORM v5.16.2
 
 # Setup Development Environment
 
+Recommended to use VS Code for editing.
+
+## Recommended VS Code Extensions
+
+- Auto rename tag
+- Better Comments
+- Code Spell Checker
+- Colorize
+- Dotenv
+- ESLint
+- Gitlens
+- GraphQL
+- HTML CSS Support
+- Prettier
+- Prisma
+
 ## Frontend
 
 1. Change directory to `spire-coffee`
