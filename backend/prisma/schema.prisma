@@ -30,8 +30,8 @@ model Cafe {
   website         String?
   profilePhotoURL String?
   location        Location?
-  busyness        String?
-  noisiness       String?
+  busyness        String?       @map("busynessOptionLevel")
+  noisiness       String?       @map("noisinessOptionLevel")
   busynessOption  FilterOption? @relation("BusynessOptions", fields: [busyness], references: [level])
   noisinessOption FilterOption? @relation("NoisinessOptions", fields: [noisiness], references: [level])
   provinceCode    ProvinceCode  @relation("CafeProvince", fields: [province], references: [code])

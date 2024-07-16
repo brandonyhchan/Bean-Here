@@ -1,0 +1,37 @@
+[
+  {
+    "stringId": "1",
+    "name": "Breka Bakery & Café (Main St)",
+    "street": "4554 Main St",
+    "city": "Vancouver",
+    "province": "BC",
+    "postalCode": "V5V 3R5",
+    "phoneNumber": "604-559-0900",
+    "website": "https://breka.ca",
+    "busyness": "MEDIUM",
+    "noisiness": "LOW"
+  },
+  {
+    "stringId": "2",
+    "name": "Breka Bakery & Café (Fraser)",
+    "street": "6533 Fraser St",
+    "city": "Vancouver",
+    "province": "BC",
+    "postalCode": "V5X 3T4",
+    "phoneNumber": "604-559-0900",
+    "website": "https://breka.ca",
+    "busyness": "MEDIUM",
+    "noisiness": "LOW"
+  },
+  {
+    "stringId": "3",
+    "name": "Nemesis Coffee (GNW)",
+    "street": "555 Great Northern Way",
+    "city": "Vancouver",
+    "province": "BC",
+    "postalCode": "V5T 1E1",
+    "website": "https://www.nemesis.coffee/",
+    "busyness": "HIGH",
+    "noisiness": "MEDIUM"
+  }
+]

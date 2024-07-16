@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { SEEDER_ACCOUNT_PASSWORD } from "../src/utils/config";
+import fs from 'fs/promises';
 
 const prisma = new PrismaClient();
 
@@ -37,23 +38,35 @@ async function seedUsers() {
 async function seedCafes() {
   const filterOptions = await prisma.filterOption.findMany();
   const provinceCodes = await prisma.provinceCode.findMany();
+
+  const cafesData = await fs.readFile('./prisma/data/cafes.json', 'utf-8');
+  const cafes = JSON.parse(cafesData);
+
+  cafes.forEach(cafe => {
+    const province = provinceCodes.find(p => p.code === cafe.province);
+    if (province) {
+      cafe.province = province.code;
+    }
+
+    const busyness = filterOptions.find(f => f.level === cafe.busyness);
+    if (busyness) {
+      cafe.busyness = busyness.level;
+    }
+
+    const noisiness = filterOptions.find(f => f.level === cafe.noisiness);
+    if (noisiness) {
+      cafe.noisiness = noisiness.level;
+    }
+  });
+
   try {
-    return await prisma.cafe.upsert({
-      where: { stringId: "1" },
-      update: {},
-      create: {
-        stringId: "1",
-        name: "Breka Bakery & Café (Main St)",
-        street: "4554 Main St",
-        city: "Vancouver",
-        province: provinceCodes[1].code,
-        postalCode: "V5V 3R5",
-        phoneNumber: "604-559-0900",
-        website: "http://breka.ca",
-        busyness: filterOptions[1].level,
-        noisiness: filterOptions[0].level,
-      },
-    });
+    for (const cafe of cafes) {
+      await prisma.cafe.upsert({
+        where: { stringId: cafe.stringId },
+        update: {},
+        create: cafe,
+      });
+    }
   } catch (error) {
     console.error(error);
     throw error;
