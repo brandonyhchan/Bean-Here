@@ -11,7 +11,7 @@ type Cafe {
   profilePhotoURL: String
   busyness: String
   noisiness: String
-  price: filterOptions
+  price: String
   location: Location
   distance: Int
 }
@@ -24,26 +24,4 @@ type Location {
 input locationInput {
   latitude: Float
   longitude: Float
-}
-
-enum Province {
-  AB
-  BC
-  MB
-  NB
-  NL
-  NT
-  NS
-  NU
-  ON
-  PE
-  QC
-  SK
-  YT
-}
-
-enum filterOptions {
-  LOW
-  MEDIUM
-  HIGH
 }

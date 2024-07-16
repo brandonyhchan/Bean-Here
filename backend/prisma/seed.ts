@@ -36,6 +36,7 @@ async function seedUsers() {
  */
 async function seedCafes() {
   const filterOptions = await prisma.filterOption.findMany();
+  const provinceCodes = await prisma.provinceCode.findMany();
   try {
     return await prisma.cafe.upsert({
       where: { stringId: "1" },
@@ -45,6 +46,7 @@ async function seedCafes() {
         name: "Breka Bakery & Café (Main St)",
         street: "4554 Main St",
         city: "Vancouver",
+        province: provinceCodes[1].code,
         postalCode: "V5V 3R5",
         phoneNumber: "604-559-0900",
         website: "http://breka.ca",

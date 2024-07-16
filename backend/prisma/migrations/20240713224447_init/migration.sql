@@ -17,6 +17,7 @@ CREATE TABLE "Cafe" (
     "name" TEXT NOT NULL,
     "street" TEXT NOT NULL,
     "city" TEXT NOT NULL,
+    "province" TEXT NOT NULL CHECK (province IN ('AB', 'BC', 'MB', 'NB', 'NL', 'NT', 'NS', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT')),
     "postalCode" TEXT NOT NULL,
     "phoneNumber" TEXT,
     "website" TEXT,
@@ -24,7 +25,8 @@ CREATE TABLE "Cafe" (
     "busyness" TEXT NOT NULL DEFAULT 'LOW' CHECK(busyness IN ('LOW', 'MEDIUM', 'HIGH')),
     "noisiness" TEXT NOT NULL DEFAULT 'LOW' CHECK(noisiness IN ('LOW', 'MEDIUM', 'HIGH')),
     FOREIGN KEY ("busyness") REFERENCES "FilterOption" ("level"),
-    FOREIGN KEY ("noisiness") REFERENCES "FilterOption" ("level")
+    FOREIGN KEY ("noisiness") REFERENCES "FilterOption" ("level"),
+    FOREIGN KEY ("province") REFERENCES "ProvinceCode" ("code")
 );
 
 -- CreateTable
@@ -46,6 +48,27 @@ INSERT INTO "FilterOption" (level) VALUES
 ('LOW'),
 ('MEDIUM'),
 ('HIGH');
+
+-- CreateTable
+CREATE TABLE "ProvinceCode" (
+    "code" TEXT NOT NULL PRIMARY KEY
+);
+
+-- Insert province codes
+INSERT INTO "ProvinceCode" (code) VALUES
+('AB'),
+('BC'),
+('MB'),
+('NB'),
+('NL'),
+('NT'),
+('NS'),
+('NU'),
+('ON'),
+('PE'),
+('QC'),
+('SK'),
+('YT');
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_userName_key" ON "User"("userName");
