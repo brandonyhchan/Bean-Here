@@ -17,16 +17,16 @@ CREATE TABLE "Cafe" (
     "name" TEXT NOT NULL,
     "street" TEXT NOT NULL,
     "city" TEXT NOT NULL,
-    "province" TEXT NOT NULL CHECK (province IN ('AB', 'BC', 'MB', 'NB', 'NL', 'NT', 'NS', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT')),
+    "province" TEXT NOT NULL,
     "postalCode" TEXT NOT NULL,
     "phoneNumber" TEXT,
     "website" TEXT,
     "profilePhotoURL" TEXT,
-    "busyness" TEXT NOT NULL DEFAULT 'LOW' CHECK(busyness IN ('LOW', 'MEDIUM', 'HIGH')),
-    "noisiness" TEXT NOT NULL DEFAULT 'LOW' CHECK(noisiness IN ('LOW', 'MEDIUM', 'HIGH')),
-    FOREIGN KEY ("busyness") REFERENCES "FilterOption" ("level"),
-    FOREIGN KEY ("noisiness") REFERENCES "FilterOption" ("level"),
-    FOREIGN KEY ("province") REFERENCES "ProvinceCode" ("code")
+    "busyness" TEXT,
+    "noisiness" TEXT,
+    FOREIGN KEY ("province") REFERENCES "ProvinceCode" ("code"),
+    FOREIGN KEY ("busyness") REFERENCES "BusynessOption" ("level"),
+    FOREIGN KEY ("noisiness") REFERENCES "NoisinessOption" ("level")
 );
 
 -- CreateTable
@@ -43,32 +43,10 @@ CREATE TABLE "FilterOption" (
     "level" TEXT NOT NULL PRIMARY KEY
 );
 
--- Insert levels
-INSERT INTO "FilterOption" (level) VALUES
-('LOW'),
-('MEDIUM'),
-('HIGH');
-
 -- CreateTable
 CREATE TABLE "ProvinceCode" (
     "code" TEXT NOT NULL PRIMARY KEY
 );
-
--- Insert province codes
-INSERT INTO "ProvinceCode" (code) VALUES
-('AB'),
-('BC'),
-('MB'),
-('NB'),
-('NL'),
-('NT'),
-('NS'),
-('NU'),
-('ON'),
-('PE'),
-('QC'),
-('SK'),
-('YT');
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_userName_key" ON "User"("userName");

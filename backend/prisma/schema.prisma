@@ -46,10 +46,10 @@ model Location {
 }
 
 model ProvinceCode {
-  code  String @id
-  cafes Cafe[] @relation("CafesProvince")
+  code    String @id
+  country String
+  cafes   Cafe[] @relation("CafesProvince")
 }
-
 
 model BusynessOption {
   level String @id
