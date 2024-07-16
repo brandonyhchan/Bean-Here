@@ -19,8 +19,8 @@ model User {
 }
 
 model Cafe {
-  id              Int           @id @default(autoincrement())
-  stringId        String        @unique
+  id              Int              @id @default(autoincrement())
+  stringId        String           @unique
   name            String
   street          String
   city            String
@@ -30,11 +30,11 @@ model Cafe {
   website         String?
   profilePhotoURL String?
   location        Location?
-  busyness        String?       @map("busynessOptionLevel")
-  noisiness       String?       @map("noisinessOptionLevel")
-  busynessOption  FilterOption? @relation("BusynessOptions", fields: [busyness], references: [level])
-  noisinessOption FilterOption? @relation("NoisinessOptions", fields: [noisiness], references: [level])
-  provinceCode    ProvinceCode  @relation("CafeProvince", fields: [province], references: [code])
+  busyness        String?
+  noisiness       String?
+  provinceCode    ProvinceCode     @relation("CafesProvince", fields: [province], references: [code])
+  busynessLevel   BusynessOption?  @relation("CafesBusyness", fields: [busyness], references: [level])
+  noisinessLevel  NoisinessOption? @relation("CafesNoisiness", fields: [noisiness], references: [level])
 }
 
 model Location {
@@ -45,13 +45,18 @@ model Location {
   Cafe      Cafe  @relation(fields: [cafeId], references: [id])
 }
 
-model FilterOption {
-  level          String @id
-  cafesBusyness  Cafe[] @relation("BusynessOptions")
-  cafesNoisiness Cafe[] @relation("NoisinessOptions")
+model ProvinceCode {
+  code  String @id
+  cafes Cafe[] @relation("CafesProvince")
 }
 
-model ProvinceCode {
-  code           String @id
-  cafesProvinces Cafe[] @relation("CafeProvince")
+
+model BusynessOption {
+  level String @id
+  cafes Cafe[] @relation("CafesBusyness")
+}
+
+model NoisinessOption {
+  level String @id
+  cafes Cafe[] @relation("CafesNoisiness")
 }

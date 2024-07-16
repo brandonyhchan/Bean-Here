@@ -33,5 +33,14 @@
     "website": "https://www.nemesis.coffee/",
     "busyness": "HIGH",
     "noisiness": "MEDIUM"
+  },
+  {
+    "stringId": "4",
+    "name": "Nemesis Coffee (Polygon)",
+    "street": "101 Carrie Cates Ct #110",
+    "city": "North Vancouver",
+    "province": "BC",
+    "postalCode": "V7M 3J4",
+    "website": "https://www.nemesis.coffee/"
   }
 ]
