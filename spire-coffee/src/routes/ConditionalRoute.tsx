@@ -5,6 +5,7 @@ import Login from "@/pages/Login";
 
 const ConditionalRoute: React.FC = () => {
   const { isAuthenticated } = useAuth();
+  console.log(isAuthenticated);
   return isAuthenticated ? <Home /> : <Login />;
 };
 
