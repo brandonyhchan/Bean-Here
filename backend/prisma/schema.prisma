@@ -19,16 +19,22 @@ model User {
 }
 
 model Cafe {
-  id              Int       @id @default(autoincrement())
-  stringId        String    @unique
+  id              Int              @id @default(autoincrement())
+  stringId        String           @unique
   name            String
   street          String
   city            String
+  province        String
   postalCode      String
   phoneNumber     String?
   website         String?
   profilePhotoURL String?
   location        Location?
+  busyness        String?
+  noisiness       String?
+  provinceCode    ProvinceCode     @relation("CafesProvince", fields: [province], references: [code])
+  busynessLevel   BusynessOption?  @relation("CafesBusyness", fields: [busyness], references: [level])
+  noisinessLevel  NoisinessOption? @relation("CafesNoisiness", fields: [noisiness], references: [level])
 }
 
 model Location {
@@ -37,4 +43,20 @@ model Location {
   longitude Float @unique
   cafeId    Int   @unique
   Cafe      Cafe  @relation(fields: [cafeId], references: [id])
+}
+
+model ProvinceCode {
+  code    String @id
+  country String
+  cafes   Cafe[] @relation("CafesProvince")
+}
+
+model BusynessOption {
+  level String @id
+  cafes Cafe[] @relation("CafesBusyness")
+}
+
+model NoisinessOption {
+  level String @id
+  cafes Cafe[] @relation("CafesNoisiness")
 }

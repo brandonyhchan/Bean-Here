@@ -14,9 +14,9 @@ type Query {
   login(userName: String!, password: String!): AuthPayload
   returnAllCafes(
     filterByName: String
-    busyFilter: filterOptions
-    noiseFilter: filterOptions
-    priceFilter: [filterOptions]
+    busyFilter: String
+    noiseFilter: String
+    priceFilter: [String]
     distanceFilter: Int
     userLocation: locationInput
   ): [Cafe]
@@ -27,7 +27,7 @@ type Query {
 type Mutation {
   updateCafeInfo(
     stringId: String!
-    busyness: filterOptions
-    noisiness: filterOptions
+    busyness: String
+    noisiness: String
   ): Cafe
 }

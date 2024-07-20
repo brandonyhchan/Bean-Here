@@ -47,12 +47,12 @@ Recommended to use VS Code for editing.
 
 ## Launch Frontend Server
 
-1. change directory to `spire-coffee`
+1. Change directory to `spire-coffee`
 2. Execute command `npm run dev`
 
 ## Launch Backend Server
 
-1. change directory to `backend`
+1. Change directory to `backend`
 2. Execute the command `npm start`
 
 Should get the message "Server is running on http://localhost:4000/
@@ -60,6 +60,16 @@ Should get the message "Server is running on http://localhost:4000/
 # Prisma
 
 Prisma is an ORM that is being used by the backend to communicate with the database. For all instructions, please check that you are in the `backend` directory.
+
+For changes made to prisma.schema
+
+1. Run `npx prisma generate`
+
+If updates are made to the migration.sql file and the migration has already been applied to the database
+
+1. Run `npx prisma migrate dev`
+
+This will create a new migration.
 
 ## Seeding the database
 
