@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Body from "./component/Body";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
+import { AuthProvider } from "./context/AuthContext";
+import ConditionalRoute from "./routes/ConditionalRoute";
 
 // as we decide on colors, font sizes and other design choices they can go here
 const theme = createTheme();
@@ -13,10 +13,11 @@ function App() {
     <div className="App">
       <Body>
         <ThemeProvider theme={theme}>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/home" element={<Home />} />
-          </Routes>
+          <AuthProvider>
+            <Routes>
+              <Route path="/" element={<ConditionalRoute />} />
+            </Routes>
+          </AuthProvider>
         </ThemeProvider>
       </Body>
     </div>

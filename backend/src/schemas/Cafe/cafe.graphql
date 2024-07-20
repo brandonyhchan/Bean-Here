@@ -4,7 +4,7 @@ type Cafe {
   name: String!
   street: String!
   city: String!
-  province: Province!
+  province: String!
   postalCode: String!
   phoneNumber: String
   website: String
