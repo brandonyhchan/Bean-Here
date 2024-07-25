@@ -1,0 +1,4 @@
+.menuButton:focus {
+  border: none;
+  outline: none;
+}

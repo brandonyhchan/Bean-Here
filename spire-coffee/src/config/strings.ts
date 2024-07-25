@@ -3,7 +3,7 @@ import LocalizedStrings from "react-localization";
 const strings = new LocalizedStrings({
   en: {
     general: {
-      title: "SpireCoffee",
+      title: "Spire Coffee",
       email: "Email Address",
       username: "Username",
       password: "Password",
