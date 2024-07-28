@@ -23,6 +23,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const [signUp] = useLazyQuery(signUpMutation, {
     onError: (error) => {
@@ -62,6 +63,26 @@ const SignUp = () => {
         password,
       },
     });
+  };
+
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+    if (event.target.value !== confirmPassword) {
+      setPasswordError("Passwords do not match.");
+    } else {
+      setPasswordError("");
+    }
+  };
+
+  const handleConfirmPasswordChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setConfirmPassword(event.target.value);
+    if (event.target.value !== password) {
+      setPasswordError("Passwords do not match.");
+    } else {
+      setPasswordError("");
+    }
   };
 
   return (
@@ -141,9 +162,9 @@ const SignUp = () => {
               name="password"
               label={strings.general.password}
               value={password}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setPassword(event.target.value);
-              }}
+              onChange={handlePasswordChange}
+              error={!!passwordError}
+              helperText={passwordError}
             />
             <TextField
               required
@@ -154,15 +175,16 @@ const SignUp = () => {
               name="confirmPassword"
               label={strings.login.confirmPassword}
               value={confirmPassword}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setConfirmPassword(event.target.value);
-              }}
+              onChange={handleConfirmPasswordChange}
+              error={!!passwordError}
+              helperText={passwordError}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={!!passwordError}
             >
               {strings.login.signUp}
             </Button>
