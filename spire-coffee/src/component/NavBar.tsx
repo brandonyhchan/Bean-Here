@@ -16,8 +16,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocalCafeIcon from "@mui/icons-material/LocalCafe";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
+import Button from '@mui/material/Button';
 import strings from "@/config/strings";
-import "./navbar.css";
+import "../index.css";
 
 const NavBar = () => {
   const [open, setOpen] = React.useState(false);
@@ -70,16 +71,29 @@ const NavBar = () => {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-            className="menuButton"
+            onClick={toggleDrawer(true)}
           >
-            <MenuIcon onClick={toggleDrawer(true)} />
-            <Drawer open={open} onClose={toggleDrawer(false)}>
-              {DrawerList}
-            </Drawer>
+            <MenuIcon />
           </IconButton>
+          <Drawer open={open} onClose={toggleDrawer(false)}>
+            {DrawerList}
+          </Drawer>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {strings.general.title}
           </Typography>
+          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {items.map((page) => (
+              <Button
+                key={page}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>
