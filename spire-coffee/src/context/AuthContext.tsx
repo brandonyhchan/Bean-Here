@@ -11,6 +11,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   login: (token: string) => void;
   logout: () => void;
+  setAuthStatus: (status: boolean) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -24,28 +25,33 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Check authentication status when the component mounts
     const token = localStorage.getItem("authToken");
-    if (token) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-    }
+    setIsAuthenticated(!!token);
   }, []);
 
   const login = (token: string) => {
     localStorage.setItem("authToken", token);
     setIsAuthenticated(true);
+    // Redirect to the homepage or the originally intended route
     navigate("/");
   };
 
   const logout = () => {
     localStorage.removeItem("authToken");
     setIsAuthenticated(false);
-    navigate("/");
+    // Redirect to the login page or another public route
+    navigate("/login");
+  };
+
+  const setAuthStatus = (status: boolean) => {
+    setIsAuthenticated(status);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, login, logout, setAuthStatus }}
+    >
       {children}
     </AuthContext.Provider>
   );

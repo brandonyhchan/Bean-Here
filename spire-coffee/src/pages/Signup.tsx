@@ -4,6 +4,7 @@ import strings from "@/config/strings";
 import { useLazyQuery } from "@apollo/client";
 import { signUpMutation } from "@/support/graphqlServerApi";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
 import {
   Alert,
   Typography,
@@ -15,6 +16,8 @@ import {
 } from "@mui/material";
 
 const SignUp = () => {
+  const { setAuthStatus } = useAuth();
+
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -36,6 +39,7 @@ const SignUp = () => {
         if (token) {
           localStorage.setItem("authToken", token);
           console.log("New user successfully created");
+          setAuthStatus(true);
           navigate("/");
         } else {
           throw new Error("Token not received");
