@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { loginQuery } from "@/support/graphqlServerApi";
 import { useLazyQuery } from "@apollo/client";
 import strings from "@/config/strings";
@@ -11,7 +11,6 @@ import {
   TextField,
   FormControlLabel,
   Checkbox,
-  Link,
   Grid,
   Box,
   Typography,
@@ -29,7 +28,7 @@ function Copyright(props: any) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" to="https://mui.com/">
         Your Website
       </Link>{" "}
       {new Date().getFullYear()}
@@ -52,7 +51,7 @@ const Login = () => {
     onCompleted: (data) => {
       localStorage.setItem("authToken", data.login.token);
       console.log("User authenticated, logging in");
-      navigate("/home");
+      navigate("/");
     },
   });
 
@@ -131,14 +130,10 @@ const Login = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  {strings.login.forgotPassword}
-                </Link>
+                <Link to="#">{strings.login.forgotPassword}</Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {strings.login.signUpMsg}
-                </Link>
+                <Link to="/signUp">{strings.login.signUpMsg}</Link>
               </Grid>
             </Grid>
           </Box>
