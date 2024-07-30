@@ -120,6 +120,7 @@ const Login = () => {
               label="Remember me"
             />
             <Button
+              color="secondary"
               type="submit"
               fullWidth
               variant="contained"
