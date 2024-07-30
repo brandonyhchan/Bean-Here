@@ -27,7 +27,7 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "Figtree-Regular",
-    fontSize: 16,
+    fontSize: 14,
     h1: {
       fontSize: "3.2rem",
       lineHeight: "1.1",
@@ -36,7 +36,7 @@ const theme = createTheme({
       fontSize: "3.75rem",
     },
     h3: {
-      fontSize: "3rem",
+      fontSize: "2.3rem",
     },
     h4: {
       fontSize: "2.125rem",
