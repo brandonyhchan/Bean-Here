@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   AppBar,
   Box,
@@ -20,17 +20,10 @@ import strings from "@/config/strings";
 import "../index.css";
 
 const NavBar = () => {
-
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
-  };
-
-  const [open, setOpen] = React.useState(false);
-
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen);
   };
 
   const navigate = useNavigate();
@@ -68,19 +61,27 @@ const NavBar = () => {
           >
             <MenuIcon />
           </IconButton>
-          {/* <Drawer open={open} onClose={toggleDrawer(false)}>
-            {DrawerList}
-          </Drawer> */}
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {strings.general.title}
-          </Typography>
+
+          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              {strings.general.title}
+            </Typography>
+          </Link>
+
           <Box sx={{ flexGrow: 1 }} />
+
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {NavBarItems.map(({ label, path }) => (
                 <Button
                   key={label}
-                  sx={{ my: 2, color: 'white', display: 'block', textTransform: 'none', fontSize: '1.2rem' }}
+                  sx={{
+                    my: 2,
+                    color: 'white',
+                    display: 'block',
+                    textTransform: 'none',
+                    fontSize: '1.2rem' // needs to be updated once we have a theme
+                  }}
                   onClick={() => handleNavigation(path)}
                 >
                   {label}
@@ -90,17 +91,18 @@ const NavBar = () => {
           </Box>
         </Toolbar>
       </AppBar>
+      
       <nav>
         <Drawer
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, // for better open performance on mobile
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box'},
+            '& .MuiDrawer-paper': { boxSizing: 'border-box' },
           }}
         >
           {drawer}

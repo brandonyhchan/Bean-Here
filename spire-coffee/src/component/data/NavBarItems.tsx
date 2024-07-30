@@ -3,41 +3,42 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocalCafeIcon from "@mui/icons-material/LocalCafe";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
+import strings from "@/config/strings";
 
 export const NavBarItems = [
   {
-    label: "Explore",
-    path: "/explore"
+    label: strings.navbar.explore,
+    path: strings.path.explore
   },
   { 
-    label: "Favourites", 
-    path: "/favourites" 
+    label: strings.navbar.favourites, 
+    path: strings.path.favourites
   },
   { 
-    label: "Add a Cafe", 
-    path: "/addCafe" 
+    label: strings.navbar.addCafe, 
+    path: strings.path.addCafe
   },
   { 
-    label: "Account", 
-    path: "/account" 
+    label: strings.navbar.account, 
+    path: strings.path.account
   },
   { 
-    label: "Sign Out", 
-    path: "/signOut" 
+    label: strings.navbar.signOut, 
+    path: strings.path.signOut
   }
 ];
 
 export const getNavBarIcons = (text: string) => {
   switch (text) {
-    case "Explore":
+    case strings.navbar.explore:
       return <ExploreIcon />;
-    case "Favourites":
+    case strings.navbar.favourites:
       return <FavoriteIcon />;
-    case "Add a Cafe":
+    case strings.navbar.addCafe:
       return <LocalCafeIcon />;
-    case "Account":
+    case strings.navbar.account:
       return <PersonIcon />;
-    case "Sign Out":
+    case strings.navbar.signOut:
       return <LogoutIcon />;
     default:
       return null;
