@@ -7,6 +7,7 @@ import SignUp from "./pages/Signup";
 import Login from "./pages/Login";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Home from "./pages/Home";
+import Favourites from "./pages/Favourites";
 
 // as we decide on colors, font sizes and other design choices they can go here
 const theme = createTheme();
@@ -32,10 +33,10 @@ function App() {
                 path="/home"
                 element={<ProtectedRoute element={<Home />} />}
               />
-              {/* <Route
+              <Route
                 path="/favourites"
                 element={<ProtectedRoute element={<Favourites />} />}
-              /> */}
+              />
 
               {/* Redirect unknown paths to the login page */}
               <Route path="*" element={<Navigate to="/login" />} />

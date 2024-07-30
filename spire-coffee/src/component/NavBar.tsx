@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from 'react-router-dom';
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -27,7 +28,13 @@ const NavBar = () => {
     setOpen(newOpen);
   };
 
-  const items = ["Explore", "Favourites", "Add a Cafe", "Account", "Sign out"];
+  const items = [
+    { label: "Explore", path: "/explore" },
+    { label: "Favourites", path: "/favourites" },
+    { label: "Add a Cafe", path: "/add-cafe" },
+    { label: "Account", path: "/account" },
+    { label: "Sign out", path: "/signout" }
+  ];
 
   const getIcon = (text: string) => {
     switch (text) {
@@ -46,14 +53,20 @@ const NavBar = () => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+  };
+
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {items.map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>{getIcon(text)}</ListItemIcon>
-              <ListItemText primary={text} />
+        {items.map(({ label, path }) => (
+          <ListItem key={label} disablePadding>
+            <ListItemButton onClick={() => handleNavigation(path)}>
+              <ListItemIcon>{getIcon(label)}</ListItemIcon>
+              <ListItemText primary={label} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -83,16 +96,17 @@ const NavBar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {items.map((page) => (
-              <Button
-                key={page}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {items.map(({ label, path }) => (
+                <Button
+                  key={label}
+                  sx={{ my: 2, color: 'white', display: 'block', textTransform: 'none', fontSize: '1.2rem' }}
+                  onClick={() => handleNavigation(path)}
+                >
+                  {label}
+                </Button>
+              ))}
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>
