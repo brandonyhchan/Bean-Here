@@ -41,12 +41,13 @@ const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [errors, setErrors] = useState({ username: "", password: "" });
 
   const [login] = useLazyQuery(loginQuery, {
     onError: (error) => {
       console.error("Login error:", error);
-      setError("Failed to login. Please check your credentials and try again.");
+      setLoginError("Failed to login. Please check your credentials and try again.");
     },
     onCompleted: (data) => {
       localStorage.setItem("authToken", data.login.token);
@@ -57,7 +58,29 @@ const Login = () => {
 
   const handleLogin = (event: React.MouseEvent<Element, MouseEvent>) => {
     event.preventDefault();
-    setError(""); // Clear previous errors
+   
+    setLoginError(""); // Clear previous errors
+    setErrors({ username: "", password: "" });
+
+    let valid = true;
+    const newErrors = { username: "", password: "" };
+
+    if (!username) {
+      newErrors.username = "Username is required.";
+      valid = false;
+    }
+
+    if (!password) {
+      newErrors.password = "Password is required.";
+      valid = false;
+    }
+
+    if (!valid) {
+      setErrors(newErrors);
+      return;
+    }
+
+
     login({
       variables: {
         userName: username,
@@ -85,7 +108,7 @@ const Login = () => {
           <Typography component="h1" variant="h5">
             {strings.login.signIn}
           </Typography>
-          {error && <Alert severity="error">{error}</Alert>}
+          {loginError && <Alert severity="error">{loginError}</Alert>}
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -100,6 +123,8 @@ const Login = () => {
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setUsername(event.target.value);
               }}
+              error={!!errors.username}
+              helperText={errors.username}
             />
             <TextField
               margin="normal"
@@ -114,6 +139,8 @@ const Login = () => {
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setPassword(event.target.value);
               }}
+              error={!!errors.password}
+              helperText={errors.password}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
