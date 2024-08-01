@@ -14,6 +14,7 @@ import {
   CssBaseline,
   Button,
 } from "@mui/material";
+import EmailValidator from "email-validator";
 
 const SignUp = () => {
   const { setAuthStatus } = useAuth();
@@ -25,13 +26,13 @@ const SignUp = () => {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [signUpError, setSignUpError] = useState("");
+  const [errors, setErrors] = useState({ password: "", email: "" });
 
   const [signUp] = useLazyQuery(signUpMutation, {
     onError: (error) => {
       console.error("Signup error: ", error);
-      setError("Failed to signup. Please try again.");
+      setSignUpError("Failed to signup. Please try again.");
     },
     onCompleted: async (data) => {
       try {
@@ -46,18 +47,26 @@ const SignUp = () => {
         }
       } catch (err) {
         console.error("Error handling sign-up completion: ", err);
-        setError("An error occurred during sign-up. Please try again.");
+        setSignUpError("An error occurred during sign-up. Please try again.");
       }
     },
   });
 
   const handleSignUp = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+      setErrors(prevErrors => ({ ...prevErrors, password: "Passwords do not match" }));
       return;
     }
-    setError("");
+
+    if (!EmailValidator.validate(email)) {
+      setErrors(prevErrors => ({ ...prevErrors, email: "Invalid email address" }));
+      return;
+    }
+
+    setErrors({ password: "", email: "" });
+
     signUp({
       variables: {
         userName: username,
@@ -72,9 +81,9 @@ const SignUp = () => {
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
     if (event.target.value !== confirmPassword) {
-      setPasswordError("Passwords do not match.");
+      setErrors(prevErrors => ({ ...prevErrors, password: "Passwords do not match" }));
     } else {
-      setPasswordError("");
+      setErrors(prevErrors => ({ ...prevErrors, password: "" }));
     }
   };
 
@@ -83,9 +92,9 @@ const SignUp = () => {
   ) => {
     setConfirmPassword(event.target.value);
     if (event.target.value !== password) {
-      setPasswordError("Passwords do not match.");
+      setErrors(prevErrors => ({ ...prevErrors, password: "Passwords do not match" }));
     } else {
-      setPasswordError("");
+      setErrors(prevErrors => ({ ...prevErrors, password: "" }));
     }
   };
 
@@ -104,7 +113,7 @@ const SignUp = () => {
           <Typography component="h1" variant="h3">
             {strings.login.signUp}
           </Typography>
-          {error && <Alert severity="error">{error}</Alert>}
+          {signUpError && <Alert severity="error">{signUpError}</Alert>}
           <Box component="form" sx={{ mt: 2 }} onSubmit={handleSignUp}>
             <TextField
               required
@@ -130,6 +139,8 @@ const SignUp = () => {
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setEmail(event.target.value);
               }}
+              error={!!errors.email}
+              helperText={errors.email}
             />
             <TextField
               required
@@ -167,8 +178,8 @@ const SignUp = () => {
               label={strings.general.password}
               value={password}
               onChange={handlePasswordChange}
-              error={!!passwordError}
-              helperText={passwordError}
+              error={!!errors.password}
+              helperText={errors.password}
             />
             <TextField
               required
@@ -180,15 +191,15 @@ const SignUp = () => {
               label={strings.login.confirmPassword}
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
-              error={!!passwordError}
-              helperText={passwordError}
+              error={!!errors.password}
+              helperText={errors.password}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              disabled={!!passwordError}
+              disabled={!!errors.password}
             >
               {strings.login.signUp}
             </Button>
