@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
+import mainTheme from './styles/mainTheme';
 import Body from "./component/Body";
 import { AuthProvider } from "./context/AuthContext";
 import SignUp from "./pages/Signup";
@@ -12,14 +13,11 @@ import Favourites from "./pages/Favourites";
 import AddCafe from "./pages/AddCafe";
 import Account from "./pages/Account";
 
-// as we decide on colors, font sizes and other design choices they can go here
-const theme = createTheme();
-
 function App() {
   return (
     <div className="App">
       <Body>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={mainTheme}>
           <AuthProvider>
             <Routes>
               <Route path="/signup" element={<SignUp />} />

@@ -123,6 +123,7 @@ const Login = () => {
               helperText={errors.password}
             />
             <Button
+              color="secondary"
               type="submit"
               fullWidth
               variant="contained"
