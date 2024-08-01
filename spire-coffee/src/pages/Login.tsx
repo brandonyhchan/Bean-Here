@@ -9,8 +9,6 @@ import {
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Grid,
   Box,
   Typography,
@@ -18,24 +16,6 @@ import {
   Alert,
 } from "@mui/material";
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" to="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const Login = () => {
   const navigate = useNavigate();
@@ -66,12 +46,12 @@ const Login = () => {
     const newErrors = { username: "", password: "" };
 
     if (!username) {
-      newErrors.username = "Username is required.";
+      newErrors.username = strings.login.errorMsg.username;
       valid = false;
     }
 
     if (!password) {
-      newErrors.password = "Password is required.";
+      newErrors.password = strings.login.errorMsg.password;
       valid = false;
     }
 
@@ -92,7 +72,7 @@ const Login = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.login.signIn} />
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
         <CssBaseline />
         <Box
           sx={{
@@ -142,10 +122,6 @@ const Login = () => {
               error={!!errors.password}
               helperText={errors.password}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -160,12 +136,11 @@ const Login = () => {
                 <Link to="#">{strings.login.forgotPassword}</Link>
               </Grid>
               <Grid item>
-                <Link to="/signUp">{strings.login.signUpMsg}</Link>
+                <Link to={strings.path.signUp}>{strings.login.signUpMsg}</Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </React.Fragment>
   );
