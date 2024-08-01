@@ -184,6 +184,7 @@ const SignUp = () => {
               helperText={passwordError}
             />
             <Button
+              color="secondary"
               type="submit"
               fullWidth
               variant="contained"
