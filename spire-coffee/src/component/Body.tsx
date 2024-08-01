@@ -9,7 +9,7 @@ type BodyPropsType = {
 const Body = ({ children = null }: BodyPropsType) => (
   <main
     className={classNames(
-      styles.body
+      styles.main
     )}
   >
     {children}

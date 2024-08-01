@@ -9,8 +9,6 @@ import {
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Grid,
   Box,
   Typography,
@@ -19,34 +17,17 @@ import {
 } from "@mui/material";
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
 
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" to="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [errors, setErrors] = useState({ username: "", password: "" });
 
   const [login] = useLazyQuery(loginQuery, {
     onError: (error) => {
       console.error("Login error:", error);
-      setError("Failed to login. Please check your credentials and try again.");
+      setLoginError("Failed to login. Please check your credentials and try again.");
     },
     onCompleted: (data) => {
       localStorage.setItem("authToken", data.login.token);
@@ -57,7 +38,29 @@ const Login = () => {
 
   const handleLogin = (event: React.MouseEvent<Element, MouseEvent>) => {
     event.preventDefault();
-    setError(""); // Clear previous errors
+   
+    setLoginError(""); // Clear previous errors
+    setErrors({ username: "", password: "" });
+
+    let valid = true;
+    const newErrors = { username: "", password: "" };
+
+    if (!username) {
+      newErrors.username = strings.login.errorMsg.username;
+      valid = false;
+    }
+
+    if (!password) {
+      newErrors.password = strings.login.errorMsg.password;
+      valid = false;
+    }
+
+    if (!valid) {
+      setErrors(newErrors);
+      return;
+    }
+
+
     login({
       variables: {
         userName: username,
@@ -69,7 +72,7 @@ const Login = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.login.signIn} />
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
         <CssBaseline />
         <Box
           sx={{
@@ -85,7 +88,7 @@ const Login = () => {
           <Typography component="h1" variant="h5">
             {strings.login.signIn}
           </Typography>
-          {error && <Alert severity="error">{error}</Alert>}
+          {loginError && <Alert severity="error">{loginError}</Alert>}
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -100,6 +103,8 @@ const Login = () => {
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setUsername(event.target.value);
               }}
+              error={!!errors.username}
+              helperText={errors.username}
             />
             <TextField
               margin="normal"
@@ -114,10 +119,8 @@ const Login = () => {
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setPassword(event.target.value);
               }}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              error={!!errors.password}
+              helperText={errors.password}
             />
             <Button
               type="submit"
@@ -133,12 +136,11 @@ const Login = () => {
                 <Link to="#">{strings.login.forgotPassword}</Link>
               </Grid>
               <Grid item>
-                <Link to="/signUp">{strings.login.signUpMsg}</Link>
+                <Link to={strings.path.signUp}>{strings.login.signUpMsg}</Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </React.Fragment>
   );
