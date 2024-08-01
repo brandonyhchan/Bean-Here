@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-import styles from "./Body.module.css";
+import styles from "./Body.module.scss";
 
 type BodyPropsType = {
   children: JSX.Element | null;

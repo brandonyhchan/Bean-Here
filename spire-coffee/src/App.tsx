@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Body from "./component/Body";
 import { AuthProvider } from "./context/AuthContext";
@@ -36,7 +36,7 @@ function App() {
                 path="/home"
                 element={<ProtectedRoute element={<Home />} />}
               />
-               <Route
+              <Route
                 path="/explore"
                 element={<ProtectedRoute element={<Explore />} />}
               />
@@ -44,11 +44,11 @@ function App() {
                 path="/favourites"
                 element={<ProtectedRoute element={<Favourites />} />}
               />
-               <Route
+              <Route
                 path="/addCafe"
                 element={<ProtectedRoute element={<AddCafe />} />}
               />
-               <Route
+              <Route
                 path="/account"
                 element={<ProtectedRoute element={<Account />} />}
               />

@@ -37,7 +37,23 @@ const strings = new LocalizedStrings({
       account: "/account",
       signOut: "/signOut",
       signUp: "/signUp"
-    }
+    },
+    footer: {
+      copyright: "Copyright © 2023 SpireTech, Inc",
+      email: "spiretechconsulting@gmail.com",
+      about: "About",
+      like: "Like us?",
+      help: "Help us out",
+      connect: "Let's Connect",
+    },
+    faq: {
+      title: "FAQ Page",
+      helmet: "FAQ",
+    },
+    aboutUs: {
+      title: "About us page",
+      helmet: "Who we are",
+    },
   },
 });
 
