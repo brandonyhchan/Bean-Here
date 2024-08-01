@@ -16,13 +16,15 @@ import {
   Alert,
 } from "@mui/material";
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
+import useFormErrors from "@/component/helpers/useFormErrors";
 
 const Login = () => {
   const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
-  const [errors, setErrors] = useState({ username: "", password: "" });
+  const [errors, setErrors, resetErrors] = useFormErrors();
 
   const [login] = useLazyQuery(loginQuery, {
     onError: (error) => {
@@ -38,28 +40,25 @@ const Login = () => {
 
   const handleLogin = (event: React.MouseEvent<Element, MouseEvent>) => {
     event.preventDefault();
-   
+
     setLoginError(""); // Clear previous errors
-    setErrors({ username: "", password: "" });
+    resetErrors();
 
     let valid = true;
-    const newErrors = { username: "", password: "" };
 
     if (!username) {
-      newErrors.username = strings.login.errorMsg.username;
+      setErrors(prevErrors => ({ ...prevErrors, username: strings.errorMsg.requiredField }));
       valid = false;
     }
 
     if (!password) {
-      newErrors.password = strings.login.errorMsg.password;
+      setErrors(prevErrors => ({ ...prevErrors, password: strings.errorMsg.requiredField }));
       valid = false;
     }
 
     if (!valid) {
-      setErrors(newErrors);
       return;
     }
-
 
     login({
       variables: {
@@ -72,11 +71,10 @@ const Login = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.login.signIn} />
-      <Container component="main" maxWidth="xs" sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+      <Container component="main" maxWidth="xs" sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
