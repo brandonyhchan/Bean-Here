@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet-async";
 import { useNavigate, Link } from "react-router-dom";
 import { loginQuery } from "@/support/graphqlServerApi";
 import { useLazyQuery } from "@apollo/client";
-import strings from "@/config/strings";
 import {
   Avatar,
   Button,
@@ -16,6 +15,8 @@ import {
   Alert,
 } from "@mui/material";
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
+import { ROUTES } from "@/config/routes";
+import strings from "@/config/strings";
 import useFormErrors from "@/component/helpers/useFormErrors";
 
 const Login = () => {
@@ -34,7 +35,7 @@ const Login = () => {
     onCompleted: (data) => {
       localStorage.setItem("authToken", data.login.token);
       console.log("User authenticated, logging in");
-      navigate("/");
+      navigate(ROUTES.ROOT);
     },
   });
 
@@ -134,7 +135,7 @@ const Login = () => {
                 <Link to="#">{strings.login.forgotPassword}</Link>
               </Grid>
               <Grid item>
-                <Link to={strings.path.signUp}>{strings.login.signUpMsg}</Link>
+                <Link to={ROUTES.SIGN_UP}>{strings.login.signUpMsg}</Link>
               </Grid>
             </Grid>
           </Box>

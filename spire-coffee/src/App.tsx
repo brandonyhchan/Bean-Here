@@ -3,6 +3,7 @@ import "./App.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Body from "./component/Body";
 import { AuthProvider } from "./context/AuthContext";
+import { ROUTES } from "./config/routes";
 import SignUp from "./pages/Signup";
 import Login from "./pages/Login";
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -22,39 +23,39 @@ function App() {
         <ThemeProvider theme={theme}>
           <AuthProvider>
             <Routes>
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/login" element={<Login />} />
+              <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+              <Route path={ROUTES.LOGIN} element={<Login />} />
 
               {/* Default redirection based on authentication status */}
               <Route
-                path="/"
-                element={<ProtectedRoute element={<Navigate to="/home" />} />}
+                path={ROUTES.ROOT}
+                element={<ProtectedRoute element={<Navigate to={ROUTES.HOME} />} />}
               />
 
               {/* Protected routes */}
               <Route
-                path="/home"
+                path={ROUTES.HOME}
                 element={<ProtectedRoute element={<Home />} />}
               />
                <Route
-                path="/explore"
+                path={ROUTES.EXPLORE}
                 element={<ProtectedRoute element={<Explore />} />}
               />
               <Route
-                path="/favourites"
+                path={ROUTES.FAVOURITES}
                 element={<ProtectedRoute element={<Favourites />} />}
               />
                <Route
-                path="/addCafe"
+                path={ROUTES.ADD_CAFE}
                 element={<ProtectedRoute element={<AddCafe />} />}
               />
                <Route
-                path="/account"
+                path={ROUTES.ACCOUNT}
                 element={<ProtectedRoute element={<Account />} />}
               />
 
               {/* Redirect unknown paths to the login page */}
-              <Route path="*" element={<Navigate to="/login" />} />
+              <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
             </Routes>
           </AuthProvider>
         </ThemeProvider>
