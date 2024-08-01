@@ -1,8 +1,10 @@
+import * as React from 'react';
+
 const Home = () => {
   return (
-    <div>
+    <React.Fragment>
       <h1>Hello world this is the homepage</h1>
-    </div>
+    </React.Fragment>
   );
 };
 
