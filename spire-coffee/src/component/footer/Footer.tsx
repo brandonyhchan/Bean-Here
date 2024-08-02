@@ -8,8 +8,9 @@ import {
   IconButton,
   Link as MuiLink,
 } from "@mui/material";
-import { useTheme } from '@mui/material/styles';
-import { Facebook, Twitter, Instagram } from '@mui/icons-material';
+import { useTheme } from "@mui/material/styles";
+import { Facebook, X, Instagram } from "@mui/icons-material";
+import { ROUTES } from "../../config/routes";
 
 const Footer = () => {
   const theme = useTheme();
@@ -17,7 +18,7 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        backgroundColor: '#f5f5f7',
+        backgroundColor: "#f5f5f7",
         padding: 4,
         borderTop: `1px solid ${theme.palette.divider}`,
       }}
@@ -29,9 +30,7 @@ const Footer = () => {
             <Typography variant="h5" gutterBottom>
               {strings.general.title}
             </Typography>
-            <Typography variant="body2">
-              {strings.footer.copyright}
-            </Typography>
+            <Typography variant="body2">{strings.footer.copyright}</Typography>
           </Grid>
 
           {/* Column 2 */}
@@ -41,13 +40,21 @@ const Footer = () => {
             </Typography>
 
             <Typography variant="body2" gutterBottom>
-              <MuiLink component={Link} to="https://example.com" variant="body2">
+              <MuiLink
+                component={Link}
+                to="https://example.com"
+                variant="body2"
+              >
                 {strings.aboutUs.helmet}
               </MuiLink>
             </Typography>
 
             <Typography variant="body2" gutterBottom>
-              <MuiLink component={Link} to="https://example.com" variant="body2">
+              <MuiLink
+                component={Link}
+                to="https://example.com"
+                variant="body2"
+              >
                 {strings.faq.helmet}
               </MuiLink>
             </Typography>
@@ -59,7 +66,11 @@ const Footer = () => {
               {strings.footer.like}
             </Typography>
             <Typography variant="body2" gutterBottom>
-              <MuiLink component={Link} to="https://example.com" variant="body2">
+              <MuiLink
+                component={Link}
+                to="https://example.com"
+                variant="body2"
+              >
                 {strings.footer.help}
               </MuiLink>
             </Typography>
@@ -75,14 +86,29 @@ const Footer = () => {
                 {strings.footer.email}
               </Typography>
 
-              <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
-                <IconButton color="secondary" component={Link} to="https://facebook.com" aria-label="Facebook">
+              <Box sx={{ display: "flex", justifyContent: "center", gap: 1 }}>
+                <IconButton
+                  color="secondary"
+                  component={Link}
+                  to={ROUTES.FACEBOOK}
+                  aria-label="Facebook"
+                >
                   <Facebook />
                 </IconButton>
-                <IconButton color="secondary" component={Link} to="https://twitter.com" aria-label="Twitter">
-                  <Twitter />
+                <IconButton
+                  color="secondary"
+                  component={Link}
+                  to={ROUTES.X}
+                  aria-label="Twitter"
+                >
+                  <X />
                 </IconButton>
-                <IconButton color="secondary" component={Link} to="https://instagram.com" aria-label="Instagram">
+                <IconButton
+                  color="secondary"
+                  component={Link}
+                  to={ROUTES.INSTAGRAM}
+                  aria-label="Instagram"
+                >
                   <Instagram />
                 </IconButton>
               </Box>
