@@ -56,8 +56,15 @@ const NavBar = () => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2, display: { sm: 'none' } }}
             onClick={handleDrawerToggle}
+            sx={{ 
+              mr: 2, 
+              display: { sm: 'none' }, 
+              color: 'white',
+              '&:hover': {
+                color: 'white',
+              }
+            }}
           >
             <MenuIcon />
           </IconButton>

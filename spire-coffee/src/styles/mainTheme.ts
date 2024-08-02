@@ -11,7 +11,7 @@ const mainTheme = createTheme({
       main: "#3f51b5",
       light: "#bec8ff",
       dark: "#344397",
-      contrastText: "#4c698b",
+      contrastText: "#ffffff",
     },
     warning: {
       main: "rgb(255, 0, 0)",
