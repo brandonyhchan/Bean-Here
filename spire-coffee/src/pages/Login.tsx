@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet-async";
 import { useNavigate, Link } from "react-router-dom";
 import { loginQuery } from "@/support/graphqlServerApi";
 import { useLazyQuery } from "@apollo/client";
-import strings from "@/config/strings";
 import {
   Avatar,
   Button,
@@ -16,13 +15,17 @@ import {
   Alert,
 } from "@mui/material";
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
+import { ROUTES } from "@/config/routes";
+import strings from "@/config/strings";
+import useFormErrors from "@/component/helpers/useFormErrors";
 
 const Login = () => {
   const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
-  const [errors, setErrors] = useState({ username: "", password: "" });
+  const [errors, setErrors, resetErrors] = useFormErrors();
 
   const [login] = useLazyQuery(loginQuery, {
     onError: (error) => {
@@ -32,34 +35,31 @@ const Login = () => {
     onCompleted: (data) => {
       localStorage.setItem("authToken", data.login.token);
       console.log("User authenticated, logging in");
-      navigate("/");
+      navigate(ROUTES.ROOT);
     },
   });
 
   const handleLogin = (event: React.MouseEvent<Element, MouseEvent>) => {
     event.preventDefault();
-   
+
     setLoginError(""); // Clear previous errors
-    setErrors({ username: "", password: "" });
+    resetErrors();
 
     let valid = true;
-    const newErrors = { username: "", password: "" };
 
     if (!username) {
-      newErrors.username = strings.login.errorMsg.username;
+      setErrors(prevErrors => ({ ...prevErrors, username: strings.errorMsg.requiredField }));
       valid = false;
     }
 
     if (!password) {
-      newErrors.password = strings.login.errorMsg.password;
+      setErrors(prevErrors => ({ ...prevErrors, password: strings.errorMsg.requiredField }));
       valid = false;
     }
 
     if (!valid) {
-      setErrors(newErrors);
       return;
     }
-
 
     login({
       variables: {
@@ -72,11 +72,10 @@ const Login = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.login.signIn} />
-      <Container component="main" maxWidth="xs" sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+      <Container component="main" maxWidth="xs" sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -137,7 +136,7 @@ const Login = () => {
                 <Link to="#">{strings.login.forgotPassword}</Link>
               </Grid>
               <Grid item>
-                <Link to={strings.path.signUp}>{strings.login.signUpMsg}</Link>
+                <Link to={ROUTES.SIGN_UP}>{strings.login.signUpMsg}</Link>
               </Grid>
             </Grid>
           </Box>

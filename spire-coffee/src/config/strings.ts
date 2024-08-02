@@ -16,10 +16,6 @@ const strings = new LocalizedStrings({
       signUpMsg: "Don't have an account? Sign Up",
       signUp: "Sign Up",
       confirmPassword: "Confirm Password",
-      errorMsg: {
-        username: "Username is required",
-        password: "Password is required"
-      }
     },
     navbar: {
       home: "Home",
@@ -29,14 +25,10 @@ const strings = new LocalizedStrings({
       account: "Account",
       signOut: "Sign Out"
     },
-    path: {
-      home: "/home",
-      explore: "/explore",
-      favourites: "/favourites",
-      addCafe: "/addCafe",
-      account: "/account",
-      signOut: "/signOut",
-      signUp: "/signUp"
+    errorMsg: {
+      requiredField: "This field is required",
+      passwordMatch: "Passwords do not match",
+      emailInvalid: "Invalid email address",
     }
   },
 });

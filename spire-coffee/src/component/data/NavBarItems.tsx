@@ -3,28 +3,29 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocalCafeIcon from "@mui/icons-material/LocalCafe";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { ROUTES } from "@/config/routes";
 import strings from "@/config/strings";
 
 export const NavBarItems = [
   {
     label: strings.navbar.explore,
-    path: strings.path.explore
+    path: ROUTES.EXPLORE,
   },
   { 
     label: strings.navbar.favourites, 
-    path: strings.path.favourites
+    path: ROUTES.FAVOURITES
   },
   { 
     label: strings.navbar.addCafe, 
-    path: strings.path.addCafe
+    path: ROUTES.ADD_CAFE
   },
   { 
     label: strings.navbar.account, 
-    path: strings.path.account
+    path: ROUTES.ACCOUNT
   },
   { 
     label: strings.navbar.signOut, 
-    path: strings.path.signOut
+    path: ROUTES.SIGN_OUT 
   }
 ];
 
