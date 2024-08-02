@@ -1,67 +1,96 @@
-import React from "react";
 import strings from "@/config/strings";
-import classNames from "classnames";
 import { Link } from "react-router-dom";
-import styles from "./Footer.module.scss";
+import {
+  Box,
+  Typography,
+  Container,
+  Grid,
+  IconButton,
+  Link as MuiLink,
+} from "@mui/material";
+import { useTheme } from '@mui/material/styles';
+import { Facebook, Twitter, Instagram } from '@mui/icons-material';
 
 const Footer = () => {
+  const theme = useTheme();
+
   return (
-    <div className={classNames(styles.webFooter)}>
-      <div className={classNames(styles.branding)}>
-        <h2 className={classNames(styles.branding__logo)}>
-          {strings.general.title}
-        </h2>
-        <p className={classNames(styles.branding__copyright)}>
-          {strings.footer.copyright}
-        </p>
-      </div>
+    <Box
+      sx={{
+        backgroundColor: '#f5f5f7',
+        padding: 4,
+        borderTop: `1px solid ${theme.palette.divider}`,
+      }}
+    >
+      <Container>
+        <Grid container spacing={4}>
+          {/* Column 1 */}
+          <Grid item xs={12} sm={4} md={3}>
+            <Typography variant="h5" gutterBottom>
+              {strings.general.title}
+            </Typography>
+            <Typography variant="body2">
+              {strings.footer.copyright}
+            </Typography>
+          </Grid>
 
-      <div className={classNames(styles.secondRow)}>
-        <div className={classNames(styles.aboutUs)}>
-          <h5 className={classNames(styles.aboutUs__about)}>
-            {strings.footer.about}
-          </h5>
-          <p className={classNames(styles.aboutUs__whoAreWe)}>
-            <Link to="/aboutUs">{strings.aboutUs.helmet}</Link>
-          </p>
-          <p className={classNames(styles.aboutUs__faq)}>
-            <Link to="/faq">{strings.faq.helmet}</Link>
-          </p>
-        </div>
+          {/* Column 2 */}
+          <Grid item xs={12} sm={4} md={3}>
+            <Typography variant="h5" gutterBottom>
+              {strings.footer.about}
+            </Typography>
 
-        <div className={classNames(styles.supportUs)}>
-          <h5 className={classNames(styles.supportUs__likeUs)}>
-            {strings.footer.like}
-          </h5>
-          <p className={classNames(styles.supportUs__helpUs)}>
-            <Link to="/helpUs">{strings.footer.help}</Link>
-          </p>
-        </div>
+            <Typography variant="body2" gutterBottom>
+              <MuiLink component={Link} to="https://example.com" variant="body2">
+                {strings.aboutUs.helmet}
+              </MuiLink>
+            </Typography>
 
-        <div className={classNames(styles.socials)}>
-          <h5 className={classNames(styles.socials__letsConnect)}>
-            {strings.footer.connect}
-          </h5>
-          <p className={classNames(styles.socials__email)}>
-            {strings.footer.email}
-          </p>
+            <Typography variant="body2" gutterBottom>
+              <MuiLink component={Link} to="https://example.com" variant="body2">
+                {strings.faq.helmet}
+              </MuiLink>
+            </Typography>
+          </Grid>
 
-          <div className={classNames(styles.socials__socialsIcons)}>
-            <h4 className={classNames(styles.socials__socialsIcons_facebook)}>
-              <i className="bi bi-facebook"></i>
-            </h4>
-            <h4 className={classNames(styles.socials__socialsIcons_twitter)}>
-              <i className="bi bi-twitter"></i>
-            </h4>
-            <h4 className={classNames(styles.socials__socialsIcons_instagram)}>
-              <i className="bi bi-instagram"></i>
-            </h4>
-          </div>
-        </div>
-      </div>
+          {/* Column 3 */}
+          <Grid item xs={12} sm={4} md={3}>
+            <Typography variant="h5" gutterBottom>
+              {strings.footer.like}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              <MuiLink component={Link} to="https://example.com" variant="body2">
+                {strings.footer.help}
+              </MuiLink>
+            </Typography>
+          </Grid>
 
-      <p className={classNames(styles.copyright)}>{strings.footer.copyright}</p>
-    </div>
+          {/* Column 4 */}
+          <Grid item xs={12} sm={4} md={3}>
+            <Box textAlign="center">
+              <Typography variant="h5" gutterBottom>
+                {strings.footer.connect}
+              </Typography>
+              <Typography variant="body2" gutterBottom>
+                {strings.footer.email}
+              </Typography>
+
+              <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
+                <IconButton color="secondary" component={Link} to="https://facebook.com" aria-label="Facebook">
+                  <Facebook />
+                </IconButton>
+                <IconButton color="secondary" component={Link} to="https://twitter.com" aria-label="Twitter">
+                  <Twitter />
+                </IconButton>
+                <IconButton color="secondary" component={Link} to="https://instagram.com" aria-label="Instagram">
+                  <Instagram />
+                </IconButton>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 
