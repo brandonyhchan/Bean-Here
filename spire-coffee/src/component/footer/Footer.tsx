@@ -22,7 +22,7 @@ const Footer = () => {
         borderTop: `1px solid ${theme.palette.divider}`,
       }}
     >
-      <Container>
+      <Container maxWidth={false}>
         <Grid container spacing={4}>
           {/* Column 1 */}
           <Grid item xs={12} sm={4} md={3}>
