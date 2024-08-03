@@ -31,7 +31,7 @@ const strings = new LocalizedStrings({
       emailInvalid: "Invalid email address",
     },
     footer: {
-      copyright: "Copyright © 2023 SpireTech, Inc",
+      copyright: "Copyright © 2024 SpireTech, Inc",
       email: "spiretechconsulting@gmail.com",
       about: "About",
       like: "Like us?",

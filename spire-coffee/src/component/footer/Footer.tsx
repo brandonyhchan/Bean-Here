@@ -42,7 +42,7 @@ const Footer = () => {
             <Typography variant="body2" gutterBottom>
               <MuiLink
                 component={Link}
-                to="https://example.com"
+                to={ROUTES.ABOUT_US}
                 variant="body2"
               >
                 {strings.aboutUs.helmet}
@@ -52,7 +52,7 @@ const Footer = () => {
             <Typography variant="body2" gutterBottom>
               <MuiLink
                 component={Link}
-                to="https://example.com"
+                to={ROUTES.FAQ}
                 variant="body2"
               >
                 {strings.faq.helmet}
@@ -68,7 +68,7 @@ const Footer = () => {
             <Typography variant="body2" gutterBottom>
               <MuiLink
                 component={Link}
-                to="https://example.com"
+                to={ROUTES.HELP}
                 variant="body2"
               >
                 {strings.footer.help}
@@ -98,18 +98,18 @@ const Footer = () => {
                 <IconButton
                   color="secondary"
                   component={Link}
-                  to={ROUTES.X}
-                  aria-label="Twitter"
-                >
-                  <X />
-                </IconButton>
-                <IconButton
-                  color="secondary"
-                  component={Link}
                   to={ROUTES.INSTAGRAM}
                   aria-label="Instagram"
                 >
                   <Instagram />
+                </IconButton>
+                <IconButton
+                  color="secondary"
+                  component={Link}
+                  to={ROUTES.X}
+                  aria-label="Twitter"
+                >
+                  <X />
                 </IconButton>
               </Box>
             </Box>

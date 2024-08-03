@@ -8,6 +8,9 @@ export const ROUTES = {
   LOGIN: "/login",
   SIGN_OUT: "/signOut",
   SIGN_UP: "/signUp",
+  ABOUT_US: "/aboutUs",
+  FAQ: "/faq",
+  HELP: "/help",
   FACEBOOK: "https://facebook.com",
   X: "https://x.com",
   INSTAGRAM: "https://instagram.com"
