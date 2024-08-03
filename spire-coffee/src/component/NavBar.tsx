@@ -17,7 +17,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { getNavBarIcons, NavBarItems } from "./data/NavBarItems";
 import strings from "@/config/strings";
-import "../index.css";
+import "../index.scss";
 
 const NavBar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -56,8 +56,15 @@ const NavBar = () => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2, display: { sm: 'none' } }}
             onClick={handleDrawerToggle}
+            sx={{ 
+              mr: 2, 
+              display: { sm: 'none' }, 
+              color: 'white',
+              '&:hover': {
+                color: 'white',
+              }
+            }}
           >
             <MenuIcon />
           </IconButton>

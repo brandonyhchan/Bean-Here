@@ -29,7 +29,23 @@ const strings = new LocalizedStrings({
       requiredField: "This field is required",
       passwordMatch: "Passwords do not match",
       emailInvalid: "Invalid email address",
-    }
+    },
+    footer: {
+      copyright: "Copyright © 2024 SpireTech, Inc",
+      email: "spiretechconsulting@gmail.com",
+      about: "About",
+      like: "Like us?",
+      help: "Help us out",
+      connect: "Let's Connect",
+    },
+    faq: {
+      title: "FAQ Page",
+      helmet: "FAQ",
+    },
+    aboutUs: {
+      title: "About us page",
+      helmet: "Who we are",
+    },
   },
 });
 

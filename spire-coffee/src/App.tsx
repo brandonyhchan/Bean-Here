@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import { ThemeProvider } from "@mui/material/styles";
-import mainTheme from './styles/mainTheme';
+import mainTheme from "./styles/mainTheme";
 import Body from "./component/Body";
 import { AuthProvider } from "./context/AuthContext";
 import { ROUTES } from "./config/routes";
@@ -27,7 +27,9 @@ function App() {
               {/* Default redirection based on authentication status */}
               <Route
                 path={ROUTES.ROOT}
-                element={<ProtectedRoute element={<Navigate to={ROUTES.HOME} />} />}
+                element={
+                  <ProtectedRoute element={<Navigate to={ROUTES.HOME} />} />
+                }
               />
 
               {/* Protected routes */}
@@ -35,7 +37,7 @@ function App() {
                 path={ROUTES.HOME}
                 element={<ProtectedRoute element={<Home />} />}
               />
-               <Route
+              <Route
                 path={ROUTES.EXPLORE}
                 element={<ProtectedRoute element={<Explore />} />}
               />
@@ -43,11 +45,11 @@ function App() {
                 path={ROUTES.FAVOURITES}
                 element={<ProtectedRoute element={<Favourites />} />}
               />
-               <Route
+              <Route
                 path={ROUTES.ADD_CAFE}
                 element={<ProtectedRoute element={<AddCafe />} />}
               />
-               <Route
+              <Route
                 path={ROUTES.ACCOUNT}
                 element={<ProtectedRoute element={<Account />} />}
               />

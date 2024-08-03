@@ -10,11 +10,12 @@ const mainTheme = createTheme({
     secondary: { // blue colours
       main: "#3f51b5",
       light: "#bec8ff",
-      dark: "#344397"
+      dark: "#344397",
+      contrastText: "#ffffff",
     },
     warning: {
-      main: "rgb(255, 32, 32)",
-    },
+      main: "rgb(255, 0, 0)",
+    }
   },
   typography: {
     fontFamily: "Figtree-Regular",
@@ -34,14 +35,44 @@ const mainTheme = createTheme({
     },
     h5: {
       fontSize: "20px", // This is the "large font" from old spire coffee
+      color: "#4e576e",
+      fontFamily: "Figtree-SemiBold"
     },
     h6: {
       fontSize: "18px", // This is the "medium font" from old spire coffee
+    },
+    body2: {
+      color: "#4c698b",
     },
     button: {
       fontSize: "1em",
       fontWeight: 500,
       fontFamily: "Figtree-Regular",
+    },
+  },
+  components: {
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: "#4c698b",
+          textDecoration: "none",
+          '&:hover': {
+            textDecoration: "none",
+            color: "#8b7972",
+          },
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          color: "#4c698b",
+          fontSize: "2rem",
+          '&:hover': {
+            color: "#8b7972",
+          },
+        },
+      },
     },
   },
 });

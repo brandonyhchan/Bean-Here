@@ -1,11 +1,11 @@
 import * as React from "react";
 
-const Home = () => {
+const FAQ = () => {
   return (
     <React.Fragment>
-      <h1>Hello world this is the homepage</h1>
+      <h1>Hello world this is the FAQ</h1>
     </React.Fragment>
   );
 };
 
-export default Home;
+export default FAQ;
