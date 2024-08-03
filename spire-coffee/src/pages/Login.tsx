@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { loginQuery } from "@/support/graphqlServerApi";
 import { useLazyQuery } from "@apollo/client";
-import strings from "@/config/strings";
 import {
   Avatar,
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
-  Checkbox,
-  Link,
   Grid,
   Box,
   Typography,
@@ -19,46 +15,52 @@ import {
   Alert,
 } from "@mui/material";
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { ROUTES } from "@/config/routes";
+import strings from "@/config/strings";
+import useFormErrors from "@/component/helpers/useFormErrors";
 
 const Login = () => {
   const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [errors, setErrors, resetErrors] = useFormErrors();
 
   const [login] = useLazyQuery(loginQuery, {
     onError: (error) => {
       console.error("Login error:", error);
-      setError("Failed to login. Please check your credentials and try again.");
+      setLoginError("Failed to login. Please check your credentials and try again.");
     },
     onCompleted: (data) => {
       localStorage.setItem("authToken", data.login.token);
       console.log("User authenticated, logging in");
-      navigate("/home");
+      navigate(ROUTES.ROOT);
     },
   });
 
   const handleLogin = (event: React.MouseEvent<Element, MouseEvent>) => {
     event.preventDefault();
-    setError(""); // Clear previous errors
+
+    setLoginError(""); // Clear previous errors
+    resetErrors();
+
+    let valid = true;
+
+    if (!username) {
+      setErrors(prevErrors => ({ ...prevErrors, username: strings.errorMsg.requiredField }));
+      valid = false;
+    }
+
+    if (!password) {
+      setErrors(prevErrors => ({ ...prevErrors, password: strings.errorMsg.requiredField }));
+      valid = false;
+    }
+
+    if (!valid) {
+      return;
+    }
+
     login({
       variables: {
         userName: username,
@@ -70,11 +72,10 @@ const Login = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.login.signIn} />
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -86,7 +87,7 @@ const Login = () => {
           <Typography component="h1" variant="h5">
             {strings.login.signIn}
           </Typography>
-          {error && <Alert severity="error">{error}</Alert>}
+          {loginError && <Alert severity="error">{loginError}</Alert>}
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -101,6 +102,8 @@ const Login = () => {
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setUsername(event.target.value);
               }}
+              error={!!errors.username}
+              helperText={errors.username}
             />
             <TextField
               margin="normal"
@@ -115,12 +118,11 @@ const Login = () => {
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setPassword(event.target.value);
               }}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              error={!!errors.password}
+              helperText={errors.password}
             />
             <Button
+              color="secondary"
               type="submit"
               fullWidth
               variant="contained"
@@ -131,19 +133,14 @@ const Login = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  {strings.login.forgotPassword}
-                </Link>
+                <Link to="#">{strings.login.forgotPassword}</Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {strings.login.signUpMsg}
-                </Link>
+                <Link to={ROUTES.SIGN_UP}>{strings.login.signUpMsg}</Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </React.Fragment>
   );

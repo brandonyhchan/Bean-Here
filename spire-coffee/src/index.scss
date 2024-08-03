@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'Figtree-Regular';
+  src: url('assets/fonts/Figtree-Regular.ttf');
+}
+
+@font-face { 
+  font-family: 'Figtree-SemiBold';
+  src: url('assets/fonts/Figtree-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'Figtree-Bold';
+  src: url('assets/fonts/Figtree-Bold.ttf') format('truetype');
+}
+
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+.main {
+  height: 100vh;
+}
