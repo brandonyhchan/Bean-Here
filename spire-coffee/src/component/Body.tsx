@@ -1,18 +1,17 @@
-import classNames from "classnames";
-import styles from "./Body.module.scss";
+import { Box } from "@mui/material";
+import Footer from "@/component/footer/Footer";
 
 type BodyPropsType = {
   children: JSX.Element | null;
 };
 
 const Body = ({ children = null }: BodyPropsType) => (
-  <main
-    className={classNames(
-      styles.main
-    )}
-  >
-    {children}
-  </main>
+  <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+    <Box sx={{ flex: 1 }} paddingBottom={3}>
+      {children}
+    </Box>
+    <Footer />
+  </Box>
 );
 
 export default Body;

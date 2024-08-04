@@ -63,7 +63,6 @@ function App() {
             </Routes>
           </AuthProvider>
         </Body>
-        <Footer />
       </ThemeProvider>
     </div >
   );

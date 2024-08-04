@@ -43,6 +43,10 @@ const mainTheme = createTheme({
       color: "#4e576e",
       fontFamily: "Figtree-SemiBold",
     },
+    body1: {
+      fontSize: "11px",
+      color: "#4c698b",
+    },
     body2: {
       color: "#4c698b",
     },

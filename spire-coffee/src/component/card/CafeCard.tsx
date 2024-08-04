@@ -41,7 +41,12 @@ const CafeCard = ({
     <Card sx={{ display: "flex", width: { xs: '100%', sm: 377 }, height: 110 }}>
       <CardMedia
         component="img"
-        sx={{ width: 100, height: "100%", objectFit: "contain", p: 0.5 }}
+        sx={{
+          width: {
+            xs: 75,
+            sm: 100
+          }, height: "100%", objectFit: "contain", p: 0.5
+        }}
         image={profilePhotoURL}
         alt={`${name} logo`}
       />
@@ -62,13 +67,13 @@ const CafeCard = ({
             {name}
           </Typography>
           <Typography
-            variant="body2"
+            variant={isSmallScreen ? "body1" : "body2"}
             sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
           >
             {street}
           </Typography>
           <Typography
-            variant="body2"
+            variant={isSmallScreen ? "body1" : "body2"}
             sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
           >
             {city}, {province}
@@ -79,13 +84,13 @@ const CafeCard = ({
             <NonClickableIconButton>
               {renderBusyIcon(busyness)}
             </NonClickableIconButton>
-            {(isSmallScreen || isLargeScreen) && (<Typography variant="body2">{strings.cafe.busynessLabel}</Typography>)}
+            <Typography variant={isSmallScreen ? "body1" : "body2"}>{strings.cafe.busynessLabel}</Typography>
           </Box>
-          <Box display="flex" alignItems="center" ml={2}>
+          <Box display="flex" alignItems="center">
             <NonClickableIconButton>
               {renderNoiseIcon(noisiness)}
             </NonClickableIconButton>
-            {(isSmallScreen || isLargeScreen) && (<Typography variant="body2">{strings.cafe.noisinessLabel}</Typography>)}
+            <Typography variant={isSmallScreen ? "body1" : "body2"}>{strings.cafe.noisinessLabel}</Typography>
           </Box>
         </CardActions>
       </Box>

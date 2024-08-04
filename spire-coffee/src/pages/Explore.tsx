@@ -7,6 +7,7 @@ import "../index.scss";
 const Explore = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <React.Fragment>
@@ -14,10 +15,11 @@ const Explore = () => {
         Hello world, this is the Explore page
       </h1>
       <Container
-        fixed
         sx={{
-          paddingLeft: isSmallScreen ? 10 : 0,
-          paddingRight: isSmallScreen ? 10 : 0,
+          maxWidth: isSmallScreen ? "320px" : "800px",
+          paddingLeft: 0,
+          paddingRight: 0,
+
         }}
       >
         <Grid
@@ -30,9 +32,9 @@ const Explore = () => {
             <Grid
               item
               key={cafe.stringId}
-              xs={12}
-              sm={6}
-              md={4}
+              xs={10}
+              sm={12}
+              md={6}
               lg={4}
               style={{ display: 'flex', justifyContent: 'center' }}
             >

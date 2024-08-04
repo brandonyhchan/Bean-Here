@@ -63,8 +63,8 @@ const strings = new LocalizedStrings({
       amenities3: "Has outdoor seating",
     },
     cafe: {
-      busynessLabel: "Busyness",
-      noisinessLabel: "Noisiness",
+      busynessLabel: "Capacity",
+      noisinessLabel: "Noise",
       priceLabel: "Price",
       cafeInformation: "Cafe Information",
       reportText:
