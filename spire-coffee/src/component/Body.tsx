@@ -1,5 +1,4 @@
 import classNames from "classnames";
-
 import styles from "./Body.module.scss";
 
 type BodyPropsType = {

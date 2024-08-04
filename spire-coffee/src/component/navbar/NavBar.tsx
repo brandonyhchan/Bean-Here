@@ -15,13 +15,12 @@ import {
   Button
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { getNavBarIcons, NavBarItems } from "./data/NavBarItems";
+import { getNavBarIcons, NavBarItems } from "../data/NavBarItems";
 import strings from "@/config/strings";
-import "../index.scss";
+import "../../index.scss";
 
 const NavBar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
