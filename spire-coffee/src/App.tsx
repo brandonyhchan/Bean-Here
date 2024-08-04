@@ -8,7 +8,6 @@ import { ROUTES } from "./config/routes";
 import SignUp from "./pages/Signup";
 import Login from "./pages/Login";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import Home from "./pages/Home";
 import Explore from "./pages/Explore";
 import Favourites from "./pages/Favourites";
 import AddCafe from "./pages/AddCafe";
@@ -28,15 +27,11 @@ function App() {
               <Route
                 path={ROUTES.ROOT}
                 element={
-                  <ProtectedRoute element={<Navigate to={ROUTES.HOME} />} />
+                  <ProtectedRoute element={<Navigate to={ROUTES.EXPLORE} />} />
                 }
               />
 
               {/* Protected routes */}
-              <Route
-                path={ROUTES.HOME}
-                element={<ProtectedRoute element={<Home />} />}
-              />
               <Route
                 path={ROUTES.EXPLORE}
                 element={<ProtectedRoute element={<Explore />} />}

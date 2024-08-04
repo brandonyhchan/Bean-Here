@@ -18,7 +18,6 @@ const strings = new LocalizedStrings({
       confirmPassword: "Confirm Password",
     },
     navbar: {
-      home: "Home",
       explore: "Explore",
       favourites: "Favourites",
       addCafe: "Add a Cafe",
