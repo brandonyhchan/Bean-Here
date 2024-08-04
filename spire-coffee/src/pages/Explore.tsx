@@ -6,19 +6,24 @@ import "../index.scss";
 
 const Explore = () => {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
-  const isMediumScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>
         Hello world, this is the Explore page
       </h1>
-      <Container fixed>
+      <Container
+        fixed
+        sx={{
+          paddingLeft: isSmallScreen ? 10 : 0,
+          paddingRight: isSmallScreen ? 10 : 0,
+        }}
+      >
         <Grid
           container
           spacing={2}
-          justifyContent={isSmallScreen || isMediumScreen ? "center" : "space-between"}
+          justifyContent={isSmallScreen ? "center" : "space-between"}
           flexWrap="wrap"
         >
           {cafeData.map((cafe) => (
@@ -27,7 +32,7 @@ const Explore = () => {
               key={cafe.stringId}
               xs={12}
               sm={6}
-              md={4} // Adjusted for better spacing
+              md={4}
               lg={4}
               style={{ display: 'flex', justifyContent: 'center' }}
             >

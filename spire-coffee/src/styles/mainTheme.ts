@@ -31,7 +31,7 @@ const mainTheme = createTheme({
       fontSize: "2.3rem",
     },
     h4: {
-      fontSize: "2.125rem",
+      fontSize: "20px",
     },
     h5: {
       fontSize: "20px",
@@ -47,7 +47,7 @@ const mainTheme = createTheme({
       color: "#4c698b",
     },
     button: {
-      fontSize: "1em",
+      fontSize: "18px",
       fontWeight: 500,
       fontFamily: "Figtree-Regular",
     },

@@ -70,7 +70,7 @@ const NavBar = () => {
           </ClickableIconButton>
 
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
               {strings.general.title}
             </Typography>
           </Link>
@@ -86,8 +86,7 @@ const NavBar = () => {
                     my: 2,
                     color: 'white',
                     display: 'block',
-                    textTransform: 'none',
-                    fontSize: '1.2rem' // needs to be updated once we have a theme
+                    textTransform: 'none'
                   }}
                   onClick={() => handleNavigation(path)}
                 >
