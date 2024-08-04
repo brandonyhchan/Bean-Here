@@ -73,5 +73,8 @@ This will create a new migration.
 
 ## Seeding the database
 
+Use these steps when updating the seed data for the database.
+
 1. Ensure that the `.env` file in the `backend` directory contains the `SEEDER_ACCOUNT_PASSWORD` variable.
-2. Run `npx tsx prisma/seed.ts`
+2. Run `npx prisma migrate dev` to create a new migration
+3. Run `npx tsx prisma/seed.ts`
