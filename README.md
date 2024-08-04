@@ -45,17 +45,25 @@ Recommended to use VS Code for editing.
 
 # Launch Development Server locally
 
-## Launch Frontend Server
+## Manual Option
+
+To launch both development servers in their own terminal:
+
+### Launch Frontend Server
 
 1. Change directory to `spire-coffee`
 2. Execute command `npm run dev`
 
-## Launch Backend Server
+### Launch Backend Server
 
 1. Change directory to `backend`
 2. Execute the command `npm start`
 
 Should get the message "Server is running on http://localhost:4000/
+
+## Script Option
+
+1. Execute command `./dev.sh`
 
 # Prisma
 
