@@ -31,52 +31,31 @@ const CafeCard = ({
   noisiness,
 }: CafeCardPropsType) => {
   return (
-    <Card sx={{ display: "flex", maxWidth: 550 }}>
+    <Card sx={{ display: "flex", width: 500, height: 200 }}>
       <CardMedia
         component="img"
-        sx={{ width: 165, p: 1 }}
+        sx={{ width: 165, p: 1, height: "100%", objectFit: "contain" }}
         image={profilePhotoURL}
         alt={`${name} logo`}
       />
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <CardContent sx={{ pl: 4 }}>
-          <Typography
-            variant="h5"
-            noWrap
-            sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-              maxWidth: "100%",
-            }}
-          >
-            {name}
-          </Typography>
-          <Typography
-            noWrap
-            sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-              maxWidth: "100%",
-            }}
-          >
-            {street}
-          </Typography>
-          <Typography
-            noWrap
-            sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-              maxWidth: "100%",
-            }}
-          >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          flexGrow: 1,
+          pt: 1,
+          pl: 1,
+        }}
+      >
+        <CardContent>
+          <Typography variant="h5">{name}</Typography>
+          <Typography>{street}</Typography>
+          <Typography>
             {city}, {province}
           </Typography>
         </CardContent>
         <CardActions disableSpacing sx={{ mt: 0 }}>
-          <Box display="flex" alignItems="center" ml={2}>
+          <Box display="flex" alignItems="center">
             <NonClickableIconButton>
               {renderBusyIcon(busyness)}
             </NonClickableIconButton>
