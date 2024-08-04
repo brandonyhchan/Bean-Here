@@ -31,28 +31,61 @@ const CafeCard = ({
   noisiness,
 }: CafeCardPropsType) => {
   return (
-    <Card sx={{ display: "flex", maxWidth: 600 }}>
+    <Card sx={{ display: "flex", maxWidth: 550 }}>
       <CardMedia
         component="img"
-        sx={{ width: 200 }}
+        sx={{ width: 165, p: 1 }}
         image={profilePhotoURL}
         alt={`${name} logo`}
       />
-      <Box sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
         <CardContent sx={{ pl: 4 }}>
-          <Typography variant="h5" noWrap>{name}</Typography>
-          <Typography>{street}</Typography>
-          <Typography>
+          <Typography
+            variant="h5"
+            noWrap
+            sx={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              maxWidth: "100%",
+            }}
+          >
+            {name}
+          </Typography>
+          <Typography
+            noWrap
+            sx={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              maxWidth: "100%",
+            }}
+          >
+            {street}
+          </Typography>
+          <Typography
+            noWrap
+            sx={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              maxWidth: "100%",
+            }}
+          >
             {city}, {province}
           </Typography>
         </CardContent>
         <CardActions disableSpacing sx={{ mt: 0 }}>
           <Box display="flex" alignItems="center" ml={2}>
-            <NonClickableIconButton>{renderBusyIcon(busyness)}</NonClickableIconButton>
+            <NonClickableIconButton>
+              {renderBusyIcon(busyness)}
+            </NonClickableIconButton>
             <Typography>{strings.cafe.busynessLabel}</Typography>
           </Box>
           <Box display="flex" alignItems="center" ml={2}>
-            <NonClickableIconButton>{renderNoiseIcon(noisiness)}</NonClickableIconButton>
+            <NonClickableIconButton>
+              {renderNoiseIcon(noisiness)}
+            </NonClickableIconButton>
             <Typography>{strings.cafe.noisinessLabel}</Typography>
           </Box>
         </CardActions>
