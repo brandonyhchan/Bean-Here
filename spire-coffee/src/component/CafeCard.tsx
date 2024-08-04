@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   Typography,
   Card,
@@ -9,7 +8,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { renderBusyIcon, renderNoiseIcon } from "./icons/Icons";
+import { renderBusyIcon, renderNoiseIcon, renderPrice } from "./icons/Icons";
 import { NonClickableIconButton } from "../styles/iconTheme";
 import strings from "@/config/strings";
 
@@ -22,6 +21,7 @@ type CafeCardPropsType = {
   profilePhotoURL: string;
   busyness: string;
   noisiness: string;
+  price: string;
 };
 
 const CafeCard = ({
@@ -32,10 +32,10 @@ const CafeCard = ({
   profilePhotoURL,
   busyness,
   noisiness,
+  price,
 }: CafeCardPropsType) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <Card sx={{ display: "flex", width: { xs: '100%', sm: 377 }, height: 110 }}>
@@ -43,7 +43,7 @@ const CafeCard = ({
         component="img"
         sx={{
           width: {
-            xs: 75,
+            xs: 65,
             sm: 100
           }, height: "100%", objectFit: "contain", p: 0.5
         }}
@@ -91,6 +91,11 @@ const CafeCard = ({
               {renderNoiseIcon(noisiness)}
             </NonClickableIconButton>
             <Typography variant={isSmallScreen ? "body1" : "body2"}>{strings.cafe.noisinessLabel}</Typography>
+          </Box>
+          <Box display="flex" alignItems="center">
+            <NonClickableIconButton>
+              {renderPrice(price)}
+            </NonClickableIconButton>
           </Box>
         </CardActions>
       </Box>

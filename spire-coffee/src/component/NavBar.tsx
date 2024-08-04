@@ -14,11 +14,11 @@ import {
   Button
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavBarItems } from "../data/NavBarItems";
-import { getNavBarIcons } from "../icons/NavBarIcons";
-import { ClickableIconButton } from "../../styles/iconTheme";
+import { NavBarItems } from "./data/NavBarItems";
+import { getNavBarIcons } from "./icons/NavBarIcons";
+import { ClickableIconButton } from "../styles/iconTheme";
 import strings from "@/config/strings";
-import "../../index.scss";
+import "../index.scss";
 
 const NavBar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);

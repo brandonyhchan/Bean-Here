@@ -10,6 +10,7 @@
     "website": "https://breka.ca",
     "busyness": "MEDIUM",
     "noisiness": "LOW",
+    "price": "LOW",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/breka.png"
   },
   {
@@ -23,6 +24,7 @@
     "website": "https://breka.ca",
     "busyness": "MEDIUM",
     "noisiness": "LOW",
+    "price": "LOW",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/breka.png"
   },
   {
@@ -35,6 +37,7 @@
     "website": "https://www.nemesis.coffee/",
     "busyness": "HIGH",
     "noisiness": "MEDIUM",
+    "price": "LOW",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/nemisis.png"
   },
   {
@@ -47,6 +50,7 @@
     "website": "https://www.nemesis.coffee/",
     "busyness": "HIGH",
     "noisiness": "HIGH",
+    "price": "LOW",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/nemisis.png"
   },
   {
@@ -59,6 +63,7 @@
     "website": "https://groundsforcoffee.ca/",
     "busyness": "MEDIUM",
     "noisiness": "MEDIUM",
+    "price": "LOW",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/groundsForCoffee.png"
   },
   {
@@ -70,6 +75,7 @@
     "postalCode": "V3M 5Z8",
     "busyness": "LOW",
     "noisiness": "LOW",
+    "price": "MEDIUM",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/flavorbalance.jpg"
   },
   {
@@ -81,6 +87,7 @@
     "postalCode": "V5C 2J5",
     "busyness": "MEDIUM",
     "noisiness": "LOW",
+    "price": "HIGH",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/fdlcafe.png"
   }
 ]

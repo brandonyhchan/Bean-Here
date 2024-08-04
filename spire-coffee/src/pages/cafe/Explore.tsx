@@ -2,12 +2,11 @@ import * as React from "react";
 import { Grid, Container, useMediaQuery, useTheme } from "@mui/material";
 import cafeData from "../../component/data/cafes.json";
 import CafeCard from "../../component/CafeCard";
-import "../index.scss";
+import "../../index.scss";
 
 const Explore = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <React.Fragment>
@@ -47,6 +46,7 @@ const Explore = () => {
                 profilePhotoURL={cafe.profilePhotoURL}
                 busyness={cafe.busyness}
                 noisiness={cafe.noisiness}
+                price={cafe.price}
               />
             </Grid>
           ))}

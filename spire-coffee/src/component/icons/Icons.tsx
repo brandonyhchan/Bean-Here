@@ -10,6 +10,13 @@ import LocalPhoneRoundedIcon from "@mui/icons-material/LocalPhoneRounded";
 import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
 import strings from "../../config/strings";
+import { SvgIconProps } from "@mui/material/SvgIcon";
+
+const iconFontSize: SvgIconProps['fontSize'] = 'small';
+
+const renderIcon = (IconComponent: React.ElementType, additionalProps: SvgIconProps = {}): JSX.Element => (
+  <IconComponent fontSize={iconFontSize} {...additionalProps} />
+);
 
 export const busyOptions = [
   strings.list.busyness1,
@@ -23,96 +30,76 @@ export const noiseOptions = [
   strings.list.noisiness3,
 ];
 
-export function renderBusyIcon(option?: string, className?: string) {
+export function renderBusyIcon(option?: string): JSX.Element | undefined {
   if (option === busyOptions[0] || option === "LOW") {
-    return <HourglassEmptyRoundedIcon className={className} />;
+    return renderIcon(HourglassEmptyRoundedIcon);
   } else if (option === busyOptions[1] || option === "MEDIUM") {
-    return <HourglassBottomRoundedIcon className={className} />;
+    return renderIcon(HourglassBottomRoundedIcon);
   } else if (option === busyOptions[2] || option === "HIGH") {
-    return <HourglassFullRoundedIcon className={className} />;
+    return renderIcon(HourglassFullRoundedIcon);
   } else {
     return undefined;
   }
 }
 
-export function renderNoiseIcon(option?: string) {
+export function renderNoiseIcon(option?: string): JSX.Element | undefined {
   if (option === noiseOptions[0] || option === "LOW") {
-    return (
-      <VolumeMuteRoundedIcon />
-    );
+    return renderIcon(VolumeMuteRoundedIcon);
   } else if (option === noiseOptions[1] || option === "MEDIUM") {
-    return (
-      <VolumeDownRoundedIcon />
-    );
+    return renderIcon(VolumeDownRoundedIcon);
   } else if (option === noiseOptions[2] || option === "HIGH") {
-    return <VolumeUpRoundedIcon />;
+    return renderIcon(VolumeUpRoundedIcon);
   } else {
     return undefined;
   }
 }
 
-export function renderPrice(option?: string) {
+export function renderPrice(option?: string): JSX.Element {
   if (option === "LOW") {
-    return (
-      <div>
-        <AttachMoneyRoundedIcon />
-      </div>
-    );
+    return renderIcon(AttachMoneyRoundedIcon);
   } else if (option === "MEDIUM") {
     return (
-      <div>
-        <AttachMoneyRoundedIcon />
-        <AttachMoneyRoundedIcon />
-      </div>
+      <>
+        {renderIcon(AttachMoneyRoundedIcon)}
+        {renderIcon(AttachMoneyRoundedIcon, { sx: { ml: -1.3 } })}
+      </>
     );
   } else if (option === "HIGH") {
     return (
-      <div>
-        <AttachMoneyRoundedIcon />
-        <AttachMoneyRoundedIcon />
-        <AttachMoneyRoundedIcon />
-      </div>
+      <>
+        {renderIcon(AttachMoneyRoundedIcon)}
+        {renderIcon(AttachMoneyRoundedIcon, { sx: { ml: -1.3 } })}
+        {renderIcon(AttachMoneyRoundedIcon, { sx: { ml: -1.3 } })}
+      </>
     );
   } else {
-    return <AttachMoneyRoundedIcon />;
+    return renderIcon(AttachMoneyRoundedIcon);
   }
 }
 
-// is there a way to make these less redundant?
-export function renderBusyText(option?: string) {
-  if (option === "LOW") {
-    return strings.list.busyness1;
-  } else if (option === "MEDIUM") {
-    return strings.list.busyness2;
-  } else if (option === "HIGH") {
-    return strings.list.busyness3;
-  } else {
-    return undefined;
+const renderText = (option: string | undefined, textOptions: string[]): string | undefined => {
+  switch (option) {
+    case "LOW":
+      return textOptions[0];
+    case "MEDIUM":
+      return textOptions[1];
+    case "HIGH":
+      return textOptions[2];
+    default:
+      return undefined;
   }
 }
 
-export function renderNoiseText(option?: string) {
-  if (option === "LOW") {
-    return strings.list.noisiness1;
-  } else if (option === "MEDIUM") {
-    return strings.list.noisiness2;
-  } else if (option === "HIGH") {
-    return strings.list.noisiness3;
-  } else {
-    return undefined;
-  }
+export function renderBusyText(option?: string): string | undefined {
+  return renderText(option, [strings.list.busyness1, strings.list.busyness2, strings.list.busyness3]);
 }
 
-export function renderPriceText(option?: string) {
-  if (option === "LOW") {
-    return strings.list.priceText1;
-  } else if (option === "MEDIUM") {
-    return strings.list.priceText2;
-  } else if (option === "HIGH") {
-    return strings.list.priceText3;
-  } else {
-    return undefined;
-  }
+export function renderNoiseText(option?: string): string | undefined {
+  return renderText(option, [strings.list.noisiness1, strings.list.noisiness2, strings.list.noisiness3]);
+}
+
+export function renderPriceText(option?: string): string | undefined {
+  return renderText(option, [strings.list.priceText1, strings.list.priceText2, strings.list.priceText3]);
 }
 
 export enum Icons {
@@ -122,17 +109,17 @@ export enum Icons {
   redirect = "redirect",
 }
 
-export function renderCafeIcon(icon?: string) {
+export function renderCafeIcon(icon?: string): JSX.Element | undefined {
   switch (icon) {
     case Icons.clock:
-      return <AccessTimeRoundedIcon />;
+      return renderIcon(AccessTimeRoundedIcon);
     case Icons.phone:
-      return <LocalPhoneRoundedIcon />;
+      return renderIcon(LocalPhoneRoundedIcon);
     case Icons.globe:
-      return <LanguageRoundedIcon />;
+      return renderIcon(LanguageRoundedIcon);
     case Icons.redirect:
-      return <LaunchRoundedIcon />;
+      return renderIcon(LaunchRoundedIcon);
     default:
-      break;
+      return undefined;
   }
 }

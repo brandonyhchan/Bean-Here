@@ -73,7 +73,7 @@ const mainTheme = createTheme({
       styleOverrides: {
         root: {
           color: "#4c698b",
-          fontSize: "2rem",
+          fontSize: "20px",
           '&:hover': {
             color: "#8b7972",
           },
