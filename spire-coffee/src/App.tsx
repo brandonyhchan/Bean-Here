@@ -14,7 +14,6 @@ import Account from "./pages/Account";
 import AboutUs from "./pages/AboutUs";
 import FAQ from "./pages/FAQ";
 import Help from "./pages/Help";
-import Footer from "@/component/footer/Footer";
 import mainTheme from "./styles/mainTheme";
 import "./App.scss";
 
