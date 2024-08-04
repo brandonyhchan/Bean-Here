@@ -9,6 +9,8 @@ import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 import LocalPhoneRoundedIcon from "@mui/icons-material/LocalPhoneRounded";
 import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import strings from "../../config/strings";
 import { SvgIconProps } from "@mui/material/SvgIcon";
 
@@ -122,4 +124,8 @@ export function renderCafeIcon(icon?: string): JSX.Element | undefined {
     default:
       return undefined;
   }
+}
+
+export function renderFavoriteIcon(isFavorite?: boolean): JSX.Element {
+  return renderIcon(isFavorite ? FavoriteRoundedIcon : FavoriteBorderRoundedIcon);
 }

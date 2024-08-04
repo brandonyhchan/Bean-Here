@@ -7,10 +7,12 @@ import {
   Box,
   useMediaQuery,
   useTheme,
+  IconButton,
 } from "@mui/material";
-import { renderBusyIcon, renderNoiseIcon, renderPrice } from "./icons/Icons";
-import { NonClickableIconButton } from "../styles/iconTheme";
+import { renderBusyIcon, renderNoiseIcon, renderPrice, renderFavoriteIcon } from "./icons/Icons";
+import { ClickableIconButton, NonClickableIconButton } from "../styles/iconTheme";
 import strings from "@/config/strings";
+import { useState } from "react";
 
 type CafeCardPropsType = {
   id: number;
@@ -36,9 +38,14 @@ const CafeCard = ({
 }: CafeCardPropsType) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleFavoriteClick = () => {
+    setIsFavorite(!isFavorite);
+  };
 
   return (
-    <Card sx={{ display: "flex", width: { xs: '100%', sm: 377 }, height: 110 }}>
+    <Card sx={{ display: "flex", width: { xs: '100%' }, height: 115, position: 'relative' }}>
       <CardMedia
         component="img"
         sx={{
@@ -58,7 +65,7 @@ const CafeCard = ({
           overflow: "hidden",
         }}
       >
-        <CardContent sx={{ p: 0, pl: 2, pr: 2, overflow: "hidden", textOverflow: "ellipsis" }}>
+        <CardContent sx={{ p: 0, ml: 2, mr: 2, pr: 2, pt: 1, overflow: "hidden", textOverflow: "ellipsis" }}>
           <Typography
             noWrap
             variant="h6"
@@ -99,6 +106,12 @@ const CafeCard = ({
           </Box>
         </CardActions>
       </Box>
+      <IconButton
+        sx={{ position: 'absolute', top: 0, right: 0 }}
+        onClick={handleFavoriteClick}
+      >
+        {renderFavoriteIcon(isFavorite)}
+      </IconButton>
     </Card>
   );
 };
