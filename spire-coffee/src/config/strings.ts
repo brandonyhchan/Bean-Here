@@ -45,6 +45,23 @@ const strings = new LocalizedStrings({
       title: "About us page",
       helmet: "Who we are",
     },
+    list: {
+      busyness1: "Not too busy",
+      busyness2: "Moderately busy",
+      busyness3: "Very Busy",
+      noisiness1: "Not too noisy",
+      noisiness2: "Moderately noisy",
+      noisiness3: "Very noisy",
+      price1: "$",
+      price2: "$$",
+      price3: "$$$",
+      priceText1: "Not too expensive",
+      priceText2: "Moderately expensive",
+      priceText3: "Very expensive",
+      amenities1: "Has outlets",
+      amenities2: "Has tables",
+      amenities3: "Has outdoor seating",
+    },
   },
 });
 

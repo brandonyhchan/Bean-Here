@@ -13,7 +13,7 @@ import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
 
 import classNames from "classnames";
-import strings from "config/strings";
+import strings from "../../config/strings";
 import styles from "./Icons.module.scss";
 
 export const busyOptions = [

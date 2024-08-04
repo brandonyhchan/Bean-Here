@@ -20,7 +20,6 @@ type CafeCardPropsType = {
   profilePhotoURL: string;
   busyness: string;
   noisiness: string;
-  price: string;
 };
 
 const CafeCard = ({
@@ -31,7 +30,6 @@ const CafeCard = ({
   profilePhotoURL,
   busyness,
   noisiness,
-  price,
 }: CafeCardPropsType) => {
   const mobileSize = useMediaQuery("(min-width) and (max-width:600px)");
   const xsMobileSize = useMediaQuery("(max-width:299px)");
@@ -86,9 +84,9 @@ const CafeCard = ({
               Noise
             </label>
           </div>
-          <div className={classNames(styles.priceIconGroup)}>
+          {/* <div className={classNames(styles.priceIconGroup)}>
             {renderPrice(price)}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
