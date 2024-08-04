@@ -1,15 +1,14 @@
-import React from "react";
-import { Grid, Typography } from "@mui/material";
 import {
-  renderBusyIcon,
-  renderNoiseIcon,
-  renderPrice,
-} from "../icon/Icons";
-import classNames from "classnames";
-import strings from "../../config/strings";
-import styles from "./cafeCard.module.scss";
-
-import useMediaQuery from "@mui/material/useMediaQuery";
+  Typography,
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Box,
+} from "@mui/material";
+import { renderBusyIcon, renderNoiseIcon } from "../icons/Icons";
+import { NonClickableIconButton } from "../../styles/iconTheme";
+import strings from "@/config/strings";
 
 type CafeCardPropsType = {
   id: number;
@@ -31,65 +30,34 @@ const CafeCard = ({
   busyness,
   noisiness,
 }: CafeCardPropsType) => {
-  const mobileSize = useMediaQuery("(min-width) and (max-width:600px)");
-  const xsMobileSize = useMediaQuery("(max-width:299px)");
-
-  function checkSize() {
-    if (xsMobileSize) {
-      return 14;
-    } else {
-      return 20;
-    }
-  }
-
   return (
-    <div className={classNames(styles.cafeCard)}>
-      <div className={classNames(styles.logo)}>
-        <img src={profilePhotoURL} />
-      </div>
-      <div className={classNames(styles.cafeCardInfo)}>
-        <Grid item zeroMinWidth>
-          <Typography
-            className={classNames(styles.mobilefont)}
-            noWrap
-            fontFamily={"Figtree-Regular"}
-            fontSize={mobileSize ? 15 : checkSize}
-            fontWeight={"600"}
-          >
-            {name}
-          </Typography>
-          <Typography
-            fontSize={mobileSize ? 15 : checkSize}
-            fontFamily={"Figtree-Regular"}
-          >
-            {street}
-          </Typography>
-          <Typography
-            fontSize={mobileSize ? 15 : checkSize}
-            fontFamily={"Figtree-Regular"}
-          >
+    <Card sx={{ display: "flex", maxWidth: 600 }}>
+      <CardMedia
+        component="img"
+        sx={{ width: 200 }}
+        image={profilePhotoURL}
+        alt={`${name} logo`}
+      />
+      <Box sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
+        <CardContent sx={{ pl: 4 }}>
+          <Typography variant="h5" noWrap>{name}</Typography>
+          <Typography>{street}</Typography>
+          <Typography>
             {city}, {province}
           </Typography>
-        </Grid>
-        <div className={classNames(styles.cafeCardIcons)}>
-          <div className={classNames(styles.iconLabel)}>
-            {renderBusyIcon(busyness)}
-            <div>
-              <label>Busy</label>
-            </div>
-          </div>
-          <div className={classNames(styles.iconLabel)}>
-            {renderNoiseIcon(noisiness)}
-            <label className={classNames(styles.noisinessLabel)}>
-              Noise
-            </label>
-          </div>
-          {/* <div className={classNames(styles.priceIconGroup)}>
-            {renderPrice(price)}
-          </div> */}
-        </div>
-      </div>
-    </div>
+        </CardContent>
+        <CardActions disableSpacing sx={{ mt: 0 }}>
+          <Box display="flex" alignItems="center" ml={2}>
+            <NonClickableIconButton>{renderBusyIcon(busyness)}</NonClickableIconButton>
+            <Typography>{strings.cafe.busynessLabel}</Typography>
+          </Box>
+          <Box display="flex" alignItems="center" ml={2}>
+            <NonClickableIconButton>{renderNoiseIcon(noisiness)}</NonClickableIconButton>
+            <Typography>{strings.cafe.noisinessLabel}</Typography>
+          </Box>
+        </CardActions>
+      </Box>
+    </Card>
   );
 };
 

@@ -1,5 +1,3 @@
-import React from "react";
-
 import HourglassEmptyRoundedIcon from "@mui/icons-material/HourglassEmptyRounded";
 import HourglassBottomRoundedIcon from "@mui/icons-material/HourglassBottomRounded";
 import HourglassFullRoundedIcon from "@mui/icons-material/HourglassFullRounded";
@@ -11,10 +9,7 @@ import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 import LocalPhoneRoundedIcon from "@mui/icons-material/LocalPhoneRounded";
 import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
-
-import classNames from "classnames";
 import strings from "../../config/strings";
-import styles from "./Icons.module.scss";
 
 export const busyOptions = [
   strings.list.busyness1,
@@ -43,14 +38,14 @@ export function renderBusyIcon(option?: string, className?: string) {
 export function renderNoiseIcon(option?: string) {
   if (option === noiseOptions[0] || option === "LOW") {
     return (
-      <VolumeMuteRoundedIcon className={classNames(styles.noisinessIcon)} />
+      <VolumeMuteRoundedIcon />
     );
   } else if (option === noiseOptions[1] || option === "MEDIUM") {
     return (
-      <VolumeDownRoundedIcon className={classNames(styles.noisinessIcon)} />
+      <VolumeDownRoundedIcon />
     );
   } else if (option === noiseOptions[2] || option === "HIGH") {
-    return <VolumeUpRoundedIcon className={classNames(styles.noisinessIcon)} />;
+    return <VolumeUpRoundedIcon />;
   } else {
     return undefined;
   }
@@ -59,23 +54,23 @@ export function renderNoiseIcon(option?: string) {
 export function renderPrice(option?: string) {
   if (option === "LOW") {
     return (
-      <div className={classNames(styles.priceIconGroup)}>
-        <AttachMoneyRoundedIcon className={classNames(styles.priceIcon)} />
+      <div>
+        <AttachMoneyRoundedIcon />
       </div>
     );
   } else if (option === "MEDIUM") {
     return (
-      <div className={classNames(styles.priceIconGroup)}>
-        <AttachMoneyRoundedIcon className={classNames(styles.priceIcon)} />
-        <AttachMoneyRoundedIcon className={classNames(styles.priceIcon)} />
+      <div>
+        <AttachMoneyRoundedIcon />
+        <AttachMoneyRoundedIcon />
       </div>
     );
   } else if (option === "HIGH") {
     return (
-      <div className={classNames(styles.priceIconGroup)}>
-        <AttachMoneyRoundedIcon className={classNames(styles.priceIcon)} />
-        <AttachMoneyRoundedIcon className={classNames(styles.priceIcon)} />
-        <AttachMoneyRoundedIcon className={classNames(styles.priceIcon)} />
+      <div>
+        <AttachMoneyRoundedIcon />
+        <AttachMoneyRoundedIcon />
+        <AttachMoneyRoundedIcon />
       </div>
     );
   } else {

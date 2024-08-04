@@ -62,6 +62,22 @@ const strings = new LocalizedStrings({
       amenities2: "Has tables",
       amenities3: "Has outdoor seating",
     },
+    cafe: {
+      busynessLabel: "Busyness",
+      noisinessLabel: "Noisiness",
+      priceLabel: "Price",
+      cafeInformation: "Cafe Information",
+      reportText:
+        "What is the current status of the cafe? Help us report it live!",
+      reportButton: "Report Status",
+      submitReportButton: "Submit",
+      cancelReportButton: "Cancel",
+      businessHours: "Business Hours",
+      noWebsite: "Website unavailable",
+      noPhoneNumber: "Phone number unavailable",
+      getDirections: "Get Directions",
+      reportSubmitMessage: "Thank you! Your report has been submitted",
+    },
   },
 });
 

@@ -2,12 +2,12 @@ import { createTheme } from '@mui/material/styles';
 
 const mainTheme = createTheme({
   palette: {
-    primary: { // tan colours
+    primary: {
       main: "#a1887f",
       light: "#a1887fa4",
-      dark: "#8b7972"
+      dark: "#8b7972",
     },
-    secondary: { // blue colours
+    secondary: {
       main: "#3f51b5",
       light: "#bec8ff",
       dark: "#344397",
@@ -15,7 +15,7 @@ const mainTheme = createTheme({
     },
     warning: {
       main: "rgb(255, 0, 0)",
-    }
+    },
   },
   typography: {
     fontFamily: "Figtree-Regular",
@@ -36,7 +36,7 @@ const mainTheme = createTheme({
     h5: {
       fontSize: "20px", // This is the "large font" from old spire coffee
       color: "#4e576e",
-      fontFamily: "Figtree-SemiBold"
+      fontFamily: "Figtree-SemiBold",
     },
     h6: {
       fontSize: "18px", // This is the "medium font" from old spire coffee

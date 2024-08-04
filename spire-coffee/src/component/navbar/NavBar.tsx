@@ -5,7 +5,6 @@ import {
   Box,
   Toolbar,
   Typography,
-  IconButton,
   Drawer,
   List,
   ListItem,
@@ -15,7 +14,9 @@ import {
   Button
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { getNavBarIcons, NavBarItems } from "../data/NavBarItems";
+import { NavBarItems } from "../data/NavBarItems";
+import { getNavBarIcons } from "../icons/NavBarIcons";
+import { ClickableIconButton } from "../../styles/iconTheme";
 import strings from "@/config/strings";
 import "../../index.scss";
 
@@ -50,7 +51,7 @@ const NavBar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" component="nav">
         <Toolbar>
-          <IconButton
+          <ClickableIconButton
             size="large"
             edge="start"
             color="inherit"
@@ -66,7 +67,7 @@ const NavBar = () => {
             }}
           >
             <MenuIcon />
-          </IconButton>
+          </ClickableIconButton>
 
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
