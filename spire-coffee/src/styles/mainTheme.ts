@@ -34,12 +34,14 @@ const mainTheme = createTheme({
       fontSize: "2.125rem",
     },
     h5: {
-      fontSize: "20px", // This is the "large font" from old spire coffee
+      fontSize: "20px",
       color: "#4e576e",
       fontFamily: "Figtree-SemiBold",
     },
     h6: {
-      fontSize: "18px", // This is the "medium font" from old spire coffee
+      fontSize: "16px",
+      color: "#4e576e",
+      fontFamily: "Figtree-SemiBold",
     },
     body2: {
       color: "#4c698b",

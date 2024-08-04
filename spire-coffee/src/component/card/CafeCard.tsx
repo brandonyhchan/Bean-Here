@@ -31,10 +31,10 @@ const CafeCard = ({
   noisiness,
 }: CafeCardPropsType) => {
   return (
-    <Card sx={{ display: "flex", width: 500, height: 140 }}>
+    <Card sx={{ display: "flex", width: 377, height: 110 }}>
       <CardMedia
         component="img"
-        sx={{ width: 125, height: "100%", objectFit: "contain", pl: 1 }}
+        sx={{ width: 100, height: "100%", objectFit: "contain", p: 0.5 }}
         image={profilePhotoURL}
         alt={`${name} logo`}
       />
@@ -45,25 +45,27 @@ const CafeCard = ({
           flexGrow: 1
         }}
       >
-        <CardContent>
-          <Typography variant="h5">{name}</Typography>
-          <Typography variant="body1">{street}</Typography>
-          <Typography>
+        <CardContent sx={{ p: 0, pl: 2 }}>
+          <div style={{ overflow: "hidden", textOverflow: "ellipsis", width: '95%' }}>
+            <Typography noWrap variant="h6">{name}</Typography>
+          </div>
+          <Typography variant="body2">{street}</Typography>
+          <Typography variant="body2">
             {city}, {province}
           </Typography>
         </CardContent>
-        <CardActions disableSpacing sx={{ mt: -3 }}>
-          <Box display="flex" alignItems="center" sx={{ ml: -1 }}>
+        <CardActions disableSpacing sx={{ p: 0 }}>
+          <Box display="flex" alignItems="center" sx={{ pl: 0.5 }}>
             <NonClickableIconButton>
               {renderBusyIcon(busyness)}
             </NonClickableIconButton>
-            <Typography>{strings.cafe.busynessLabel}</Typography>
+            <Typography variant="body2">{strings.cafe.busynessLabel}</Typography>
           </Box>
           <Box display="flex" alignItems="center" ml={2}>
             <NonClickableIconButton>
               {renderNoiseIcon(noisiness)}
             </NonClickableIconButton>
-            <Typography>{strings.cafe.noisinessLabel}</Typography>
+            <Typography variant="body2">{strings.cafe.noisinessLabel}</Typography>
           </Box>
         </CardActions>
       </Box>
