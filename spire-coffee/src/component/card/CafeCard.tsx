@@ -31,10 +31,10 @@ const CafeCard = ({
   noisiness,
 }: CafeCardPropsType) => {
   return (
-    <Card sx={{ display: "flex", width: 500, height: 200 }}>
+    <Card sx={{ display: "flex", width: 500, height: 140 }}>
       <CardMedia
         component="img"
-        sx={{ width: 165, p: 1, height: "100%", objectFit: "contain" }}
+        sx={{ width: 125, height: "100%", objectFit: "contain", pl: 1 }}
         image={profilePhotoURL}
         alt={`${name} logo`}
       />
@@ -42,20 +42,18 @@ const CafeCard = ({
         sx={{
           display: "flex",
           flexDirection: "column",
-          flexGrow: 1,
-          pt: 1,
-          pl: 1,
+          flexGrow: 1
         }}
       >
         <CardContent>
           <Typography variant="h5">{name}</Typography>
-          <Typography>{street}</Typography>
+          <Typography variant="body1">{street}</Typography>
           <Typography>
             {city}, {province}
           </Typography>
         </CardContent>
-        <CardActions disableSpacing sx={{ mt: 0 }}>
-          <Box display="flex" alignItems="center">
+        <CardActions disableSpacing sx={{ mt: -3 }}>
+          <Box display="flex" alignItems="center" sx={{ ml: -1 }}>
             <NonClickableIconButton>
               {renderBusyIcon(busyness)}
             </NonClickableIconButton>
