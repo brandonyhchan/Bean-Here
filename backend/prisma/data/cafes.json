@@ -1,6 +1,6 @@
 [
   {
-    "stringId": "1",
+    "stringId": "brekaMain",
     "name": "Breka Bakery & Café (Main St)",
     "street": "4554 Main St",
     "city": "Vancouver",
@@ -9,10 +9,11 @@
     "phoneNumber": "604-559-0900",
     "website": "https://breka.ca",
     "busyness": "MEDIUM",
-    "noisiness": "LOW"
+    "noisiness": "LOW",
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/breka.png"
   },
   {
-    "stringId": "2",
+    "stringId": "brekaFraser",
     "name": "Breka Bakery & Café (Fraser)",
     "street": "6533 Fraser St",
     "city": "Vancouver",
@@ -21,10 +22,11 @@
     "phoneNumber": "604-559-0900",
     "website": "https://breka.ca",
     "busyness": "MEDIUM",
-    "noisiness": "LOW"
+    "noisiness": "LOW",
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/breka.png"
   },
   {
-    "stringId": "3",
+    "stringId": "nemesisGNW",
     "name": "Nemesis Coffee (GNW)",
     "street": "555 Great Northern Way",
     "city": "Vancouver",
@@ -32,15 +34,53 @@
     "postalCode": "V5T 1E1",
     "website": "https://www.nemesis.coffee/",
     "busyness": "HIGH",
-    "noisiness": "MEDIUM"
+    "noisiness": "MEDIUM",
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/nemisis.png"
   },
   {
-    "stringId": "4",
+    "stringId": "nemesisPolygon",
     "name": "Nemesis Coffee (Polygon)",
     "street": "101 Carrie Cates Ct #110",
     "city": "North Vancouver",
     "province": "BC",
     "postalCode": "V7M 3J4",
-    "website": "https://www.nemesis.coffee/"
+    "website": "https://www.nemesis.coffee/",
+    "busyness": "HIGH",
+    "noisiness": "HIGH",
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/nemisis.png"
+  },
+  {
+    "stringId": "groundsForCoffee",
+    "name": "Grounds for Coffee (Commercial)",
+    "street": "2088 Commercial Dr",
+    "city": "Vancouver",
+    "province": "BC",
+    "postalCode": "V5N 4B2",
+    "website": "https://groundsforcoffee.ca/",
+    "busyness": "MEDIUM",
+    "noisiness": "MEDIUM",
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/groundsForCoffee.png"
+  },
+  {
+    "stringId": "flavorBalance",
+    "name": "Flavor Balance Espresso Bar",
+    "street": "619 Belmont St",
+    "city": "New Westminster",
+    "province": "BC",
+    "postalCode": "V3M 5Z8",
+    "busyness": "LOW",
+    "noisiness": "LOW",
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/flavorbalance.jpg"
+  },
+  {
+    "stringId": "fiorDeLatte",
+    "name": "Fior De Latte Cafe, Bakery & Gelato",
+    "street": "4233 Hastings St",
+    "city": "Burnaby",
+    "province": "BC",
+    "postalCode": "V5C 2J5",
+    "busyness": "MEDIUM",
+    "noisiness": "LOW",
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/fdlcafe.png"
   }
 ]
