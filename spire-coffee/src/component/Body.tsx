@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import Footer from "@/component/footer/Footer";
+import Footer from "@/component/Footer";
 
 type BodyPropsType = {
   children: JSX.Element | null;

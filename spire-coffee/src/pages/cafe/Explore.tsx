@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Grid, Container, useMediaQuery, useTheme } from "@mui/material";
-import cafeData from "../component/data/cafes.json";
-import CafeCard from "@/component/card/CafeCard";
+import cafeData from "../../component/data/cafes.json";
+import CafeCard from "../../component/CafeCard";
 import "../index.scss";
 
 const Explore = () => {

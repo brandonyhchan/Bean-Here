@@ -9,8 +9,8 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { renderBusyIcon, renderNoiseIcon } from "../icons/Icons";
-import { NonClickableIconButton } from "../../styles/iconTheme";
+import { renderBusyIcon, renderNoiseIcon } from "./icons/Icons";
+import { NonClickableIconButton } from "../styles/iconTheme";
 import strings from "@/config/strings";
 
 type CafeCardPropsType = {
