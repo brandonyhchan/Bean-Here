@@ -80,6 +80,15 @@ const mainTheme = createTheme({
         },
       },
     },
+    MuiTextField: { // input field text
+      styleOverrides: {
+        root: {
+          '& .MuiInputBase-input': {
+            fontSize: '14px',
+          },
+        },
+      },
+    },
   },
 });
 
