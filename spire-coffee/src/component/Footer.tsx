@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Facebook, X, Instagram } from "@mui/icons-material";
-import { ROUTES } from "../../config/routes";
+import { ROUTES } from "../config/routes";
 
 const Footer = () => {
   const theme = useTheme();

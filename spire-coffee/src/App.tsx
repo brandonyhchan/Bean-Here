@@ -4,18 +4,16 @@ import { AuthProvider } from "./context/AuthContext";
 import { ROUTES } from "./config/routes";
 import { CssBaseline } from "@mui/material";
 import Body from "./component/Body";
-import SignUp from "./pages/Signup";
-import Login from "./pages/Login";
+import SignUp from "./pages/user/Signup";
+import Login from "./pages/user/Login";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import Home from "./pages/Home";
-import Explore from "./pages/Explore";
-import Favourites from "./pages/Favourites";
-import AddCafe from "./pages/AddCafe";
-import Account from "./pages/Account";
-import AboutUs from "./pages/AboutUs";
-import FAQ from "./pages/FAQ";
-import Help from "./pages/Help";
-import Footer from "@/component/footer/Footer";
+import Explore from "./pages/cafe/Explore";
+import Favourites from "./pages/cafe/Favourites";
+import AddCafe from "./pages/cafe/AddCafe";
+import Account from "./pages/user/Account";
+import AboutUs from "./pages/info/AboutUs";
+import FAQ from "./pages/info/FAQ";
+import Help from "./pages/info/Help";
 import mainTheme from "./styles/mainTheme";
 import "./App.scss";
 
@@ -37,15 +35,11 @@ function App() {
               <Route
                 path={ROUTES.ROOT}
                 element={
-                  <ProtectedRoute element={<Navigate to={ROUTES.HOME} />} />
+                  <ProtectedRoute element={<Navigate to={ROUTES.EXPLORE} />} />
                 }
               />
 
               {/* Protected routes */}
-              <Route
-                path={ROUTES.HOME}
-                element={<ProtectedRoute element={<Home />} />}
-              />
               <Route
                 path={ROUTES.EXPLORE}
                 element={<ProtectedRoute element={<Explore />} />}
@@ -68,7 +62,6 @@ function App() {
             </Routes>
           </AuthProvider>
         </Body>
-        <Footer />
       </ThemeProvider>
     </div >
   );
