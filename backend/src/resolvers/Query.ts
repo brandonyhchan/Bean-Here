@@ -1,6 +1,5 @@
 import * as bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { Cafe, Location, distance } from "../types/cafe";
 
 /**
  * Creates a new user with the inputs, hashes the password, and stores the
@@ -96,7 +95,9 @@ export async function login(parent, args, context) {
  * @returns {Promise<object[]>} Resolves to a list of cafes matching the filters.
  */
 export async function returnAllCafes(parent, args, context) {
-  let output;
+  if (!context.userId) {
+    throw new Error("Not authenticated");
+  }
 
   // Query cafes from the database with the specified filters and selections
   const query = await context.prisma.cafe.findMany({
@@ -111,78 +112,12 @@ export async function returnAllCafes(parent, args, context) {
       location: true,
       busyness: true,
       noisiness: true,
-      price: true,
-    },
-    where: {
-      name: { contains: args.filterByName, mode: "insensitive" },
-      busyness: args.busyFilter,
-      noisiness: args.noiseFilter,
-      price: { in: args.priceFilter.length ? args.priceFilter : undefined },
     },
     orderBy: {
       id: "asc",
     },
   });
-
-  // If the distance filter is less than 25, calculate distances and filter cafes by distance
-  if (args.distanceFilter < 25) {
-    const cafeDistances: Cafe[] = [];
-    query.forEach(function (cafe) {
-      cafeDistances.push(calculateDistance(cafe, args.userLocation));
-    });
-    output = cafeDistances.filter(
-      (cafe) => cafe.distance < args.distanceFilter
-    );
-  } else {
-    // If the distance filter is 25 or more, return the unfiltered list of cafes
-    output = query;
-  }
-
-  return output;
-}
-
-/**
- * Calculates the distance between a cafe and a given location using the Haversine formula.
- * Takes the cafe's coordinates and the user's location to compute the distance in kilometers
- * and returns the cafe details along with the calculated distance.
- *
- * @param {Cafe} cafe The cafe object containing its location coordinates.
- * @param {Location} args The user's location containing latitude and longitude.
- * @returns {distance<Cafe>} An object containing the cafe details along with the calculated
- *                           distance to the user.
- */
-function calculateDistance(cafe: Cafe, args: Location): distance<Cafe> {
-  // lat2 = args.location.latitude, lat1 = cafe.latitude
-  // lon2 = args.location.longitude, lon1 = cafe.longitude
-
-  // Radius of Earth in km
-  const R = 6371;
-  const dLat = degToRad(args.latitude - cafe.location.latitude);
-  const dLong = degToRad(args.longitude - cafe.location.longitude);
-
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(degToRad(cafe.location.latitude)) *
-      Math.cos(degToRad(args.latitude)) *
-      Math.sin(dLong / 2) *
-      Math.sin(dLong / 2);
-
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const d = Math.round(R * c);
-
-  return {
-    ...cafe,
-    distance: d,
-  };
-}
-
-/**
- * Converts degrees to radians.
- * @param {number} deg The degree to be converted.
- * @returns {number} The resulting degree in radian.
- */
-function degToRad(deg: number): number {
-  return deg * (Math.PI / 180);
+  return query;
 }
 
 /**

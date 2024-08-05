@@ -4,14 +4,23 @@ export interface AuthTokenPayload {
   userId: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function getUserId(authHeader: String): AuthTokenPayload {
-  const token = authHeader.replace("Bearer", "");
+export function getUserId(authHeader: string): AuthTokenPayload {
+  if (!authHeader) {
+    throw new Error("Authorization header is missing");
+  }
+
+  const token = authHeader.replace("Bearer ", "").trim();
 
   if (!token) {
     throw new Error("No token found");
   }
-  return jwt.verify(token, <jwt.Secret>process.env.PUBLIC_KEY, {
-    algorithms: ["RS256"],
-  }) as AuthTokenPayload;
+
+  try {
+    return jwt.verify(token, <jwt.Secret>process.env.PUBLIC_KEY, {
+      algorithms: ["RS256"],
+    }) as AuthTokenPayload;
+  } catch (error) {
+    console.error("Invalid or expired token", error);
+    throw new Error("Invalid or expired token");
+  }
 }

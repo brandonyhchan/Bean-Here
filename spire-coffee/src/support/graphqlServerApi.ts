@@ -35,3 +35,20 @@ export const loginQuery = gql`
     }
   }
 `;
+
+export const returnAllCafeQuery = gql`
+  query ReturnAllCafes {
+    returnAllCafes {
+      id
+      stringId
+      name
+      street
+      city
+      province
+      profilePhotoURL
+      busyness
+      noisiness
+      price
+    }
+  }
+`;

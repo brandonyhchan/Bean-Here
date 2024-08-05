@@ -10,12 +10,17 @@ export interface Context {
 }
 
 export const context = ({ req }: { req: Request }): Context => {
-  const auth = req.headers.authorization?.split(" ")[1];
-
-  const token = req && auth ? getUserId(auth) : null;
+  let userId: number | undefined;
+  try {
+    const authHeader = req.headers.authorization || "";
+    const tokenPayload = getUserId(authHeader);
+    userId = tokenPayload.userId;
+  } catch (error) {
+    console.error("Authentication error:", error);
+  }
 
   return {
     prisma,
-    userId: token?.userId,
+    userId,
   };
 };
