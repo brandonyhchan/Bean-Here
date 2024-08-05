@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -18,4 +19,19 @@ html, body {
   min-height: 100vh;
   width: 100vw;
   overflow-y: scroll;
+}
+
+@font-face {
+  font-family: "Figtree-Regular";
+  src: url("assets/fonts/Figtree-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Figtree-SemiBold";
+  src: url("assets/fonts/Figtree-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Figtree-Bold";
+  src: url("assets/fonts/Figtree-Bold.ttf") format("truetype");
 }

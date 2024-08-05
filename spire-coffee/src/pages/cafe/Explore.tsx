@@ -2,7 +2,6 @@ import * as React from "react";
 import { Grid, Container, useMediaQuery, useTheme } from "@mui/material";
 import cafeData from "../../component/data/cafes.json";
 import CafeCard from "../../component/CafeCard";
-import "../../index.scss";
 
 const Explore = () => {
   const theme = useTheme();
@@ -18,7 +17,6 @@ const Explore = () => {
           maxWidth: isSmallScreen ? "320px" : "800px",
           paddingLeft: 0,
           paddingRight: 0,
-
         }}
       >
         <Grid
@@ -35,7 +33,7 @@ const Explore = () => {
               sm={12}
               md={6}
               lg={4}
-              style={{ display: 'flex', justifyContent: 'center' }}
+              style={{ display: "flex", justifyContent: "center" }}
             >
               <CafeCard
                 id={parseInt(cafe.stringId)}

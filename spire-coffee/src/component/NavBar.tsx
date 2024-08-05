@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom";
 import {
   AppBar,
   Box,
@@ -11,14 +11,13 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Button
+  Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavBarItems } from "./data/NavBarItems";
+import { NavBarItems } from "../config/NavBarItems";
 import { getNavBarIcons } from "./icons/NavBarIcons";
 import { ClickableIconButton } from "../styles/iconTheme";
 import strings from "@/config/strings";
-import "../index.scss";
 
 const NavBar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -33,7 +32,11 @@ const NavBar = () => {
   };
 
   const drawer = (
-    <Box sx={{ width: 250, textAlign: 'center' }} role="presentation" onClick={handleDrawerToggle}>
+    <Box
+      sx={{ width: 250, textAlign: "center" }}
+      role="presentation"
+      onClick={handleDrawerToggle}
+    >
       <List>
         {NavBarItems.map(({ label, path }) => (
           <ListItem key={label} disablePadding>
@@ -57,19 +60,19 @@ const NavBar = () => {
             color="inherit"
             aria-label="menu"
             onClick={handleDrawerToggle}
-            sx={{ 
-              mr: 2, 
-              display: { sm: 'none' }, 
-              color: 'white',
-              '&:hover': {
-                color: 'white',
-              }
+            sx={{
+              mr: 2,
+              display: { sm: "none" },
+              color: "white",
+              "&:hover": {
+                color: "white",
+              },
             }}
           >
             <MenuIcon />
           </ClickableIconButton>
 
-          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
               {strings.general.title}
             </Typography>
@@ -78,15 +81,15 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {NavBarItems.map(({ label, path }) => (
                 <Button
                   key={label}
                   sx={{
                     my: 2,
-                    color: 'white',
-                    display: 'block',
-                    textTransform: 'none'
+                    color: "white",
+                    display: "block",
+                    textTransform: "none",
                   }}
                   onClick={() => handleNavigation(path)}
                 >
@@ -97,7 +100,7 @@ const NavBar = () => {
           </Box>
         </Toolbar>
       </AppBar>
-      
+
       <nav>
         <Drawer
           variant="temporary"
@@ -107,8 +110,8 @@ const NavBar = () => {
             keepMounted: true, // for better open performance on mobile
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box' },
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": { boxSizing: "border-box" },
           }}
         >
           {drawer}
