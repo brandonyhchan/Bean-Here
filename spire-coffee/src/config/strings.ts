@@ -29,6 +29,10 @@ const strings = new LocalizedStrings({
       requiredField: "This field is required",
       passwordMatch: "Passwords do not match",
       emailInvalid: "Invalid email address",
+      passwordLength: "Password must have at least 5 characters",
+      passwordSpecial: "Password must have at least 1 special character",
+      passwordNum: "Password must have at least 1 number",
+      passwordCap: "Password must have at least 1 capital"
     },
     footer: {
       copyright: "Copyright © 2024 SpireTech, Inc",
