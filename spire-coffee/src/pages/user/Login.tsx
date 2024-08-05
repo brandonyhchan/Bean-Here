@@ -13,6 +13,7 @@ import {
   Typography,
   Container,
   Alert,
+  Link as MuiLink,
 } from "@mui/material";
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
 import { ROUTES } from "@/config/routes";
@@ -30,7 +31,9 @@ const Login = () => {
   const [login] = useLazyQuery(loginQuery, {
     onError: (error) => {
       console.error("Login error:", error);
-      setLoginError("Failed to login. Please check your credentials and try again.");
+      setLoginError(
+        "Failed to login. Please check your credentials and try again."
+      );
     },
     onCompleted: (data) => {
       localStorage.setItem("authToken", data.login.token);
@@ -48,12 +51,18 @@ const Login = () => {
     let valid = true;
 
     if (!username) {
-      setErrors(prevErrors => ({ ...prevErrors, username: strings.errorMsg.requiredField }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        username: strings.errorMsg.requiredField,
+      }));
       valid = false;
     }
 
     if (!password) {
-      setErrors(prevErrors => ({ ...prevErrors, password: strings.errorMsg.requiredField }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: strings.errorMsg.requiredField,
+      }));
       valid = false;
     }
 
@@ -72,7 +81,16 @@ const Login = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.login.signIn} />
-      <Container component="main" maxWidth="xs" sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
         <CssBaseline />
         <Box
           sx={{
@@ -133,10 +151,18 @@ const Login = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link to="#">{strings.login.forgotPassword}</Link>
+                <Typography variant="body2">
+                  <MuiLink variant="body2" component={Link} to={"#"}>
+                    {strings.login.forgotPassword}
+                  </MuiLink>
+                </Typography>
               </Grid>
               <Grid item>
-                <Link to={ROUTES.SIGN_UP}>{strings.login.signUpMsg}</Link>
+                <Typography variant="body2">
+                  <MuiLink variant="body2" component={Link} to={ROUTES.SIGN_UP}>
+                    {strings.login.signUpMsg}
+                  </MuiLink>
+                </Typography>
               </Grid>
             </Grid>
           </Box>
