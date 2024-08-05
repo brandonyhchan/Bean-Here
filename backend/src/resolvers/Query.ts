@@ -27,7 +27,7 @@ export async function signUp(parent, args, context) {
     const token = jwt.sign(
       { userId: user.id, userName: user.userName },
       <jwt.Secret>process.env.PRIVATE_KEY,
-      { algorithm: "RS256" }
+      { algorithm: "RS256", expiresIn: process.env.JWT_TOKEN_EXPIRATION }
     );
 
     return {
@@ -65,6 +65,7 @@ export async function login(parent, args, context) {
   if (!valid) {
     throw new Error("Invalid password");
   }
+  console.log(process.env.JWT_TOKEN_EXPIRATION);
 
   /**
    * Generates a JWT token for the user. This token can be used for
@@ -73,7 +74,7 @@ export async function login(parent, args, context) {
   const token = jwt.sign(
     { userId: user.id, userName: user.userName },
     <jwt.Secret>process.env.PRIVATE_KEY,
-    { algorithm: "RS256" }
+    { algorithm: "RS256", expiresIn: process.env.JWT_TOKEN_EXPIRATION }
   );
 
   return {

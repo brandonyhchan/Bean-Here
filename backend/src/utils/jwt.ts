@@ -20,7 +20,14 @@ export function getUserId(authHeader: string): AuthTokenPayload {
       algorithms: ["RS256"],
     }) as AuthTokenPayload;
   } catch (error) {
-    console.error("Invalid or expired token", error);
-    throw new Error("Invalid or expired token");
+    if (error instanceof jwt.JsonWebTokenError) {
+      if (error.name === "TokenExpiredError") {
+        throw new Error("Token expired");
+      } else {
+        throw new Error("Invalid token");
+      }
+    } else {
+      throw new Error("An unknown error occurred during token verification");
+    }
   }
 }
