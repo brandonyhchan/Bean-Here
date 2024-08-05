@@ -2,12 +2,12 @@ import { createTheme } from '@mui/material/styles';
 
 const mainTheme = createTheme({
   palette: {
-    primary: { // tan colours
+    primary: {
       main: "#a1887f",
       light: "#a1887fa4",
-      dark: "#8b7972"
+      dark: "#8b7972",
     },
-    secondary: { // blue colours
+    secondary: {
       main: "#3f51b5",
       light: "#bec8ff",
       dark: "#344397",
@@ -15,7 +15,7 @@ const mainTheme = createTheme({
     },
     warning: {
       main: "rgb(255, 0, 0)",
-    }
+    },
   },
   typography: {
     fontFamily: "Figtree-Regular",
@@ -31,21 +31,27 @@ const mainTheme = createTheme({
       fontSize: "2.3rem",
     },
     h4: {
-      fontSize: "2.125rem",
+      fontSize: "20px",
     },
     h5: {
-      fontSize: "20px", // This is the "large font" from old spire coffee
+      fontSize: "20px",
       color: "#4e576e",
-      fontFamily: "Figtree-SemiBold"
+      fontFamily: "Figtree-SemiBold",
     },
     h6: {
-      fontSize: "18px", // This is the "medium font" from old spire coffee
+      fontSize: "16px",
+      color: "#4e576e",
+      fontFamily: "Figtree-SemiBold",
+    },
+    body1: {
+      fontSize: "11px",
+      color: "#4c698b",
     },
     body2: {
       color: "#4c698b",
     },
     button: {
-      fontSize: "1em",
+      fontSize: "18px",
       fontWeight: 500,
       fontFamily: "Figtree-Regular",
     },
@@ -67,9 +73,18 @@ const mainTheme = createTheme({
       styleOverrides: {
         root: {
           color: "#4c698b",
-          fontSize: "2rem",
+          fontSize: "20px",
           '&:hover': {
             color: "#8b7972",
+          },
+        },
+      },
+    },
+    MuiTextField: { // input field text
+      styleOverrides: {
+        root: {
+          '& .MuiInputBase-input': {
+            fontSize: '14px',
           },
         },
       },

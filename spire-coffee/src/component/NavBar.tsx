@@ -5,7 +5,6 @@ import {
   Box,
   Toolbar,
   Typography,
-  IconButton,
   Drawer,
   List,
   ListItem,
@@ -15,9 +14,11 @@ import {
   Button
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { getNavBarIcons, NavBarItems } from "../data/NavBarItems";
+import { NavBarItems } from "./data/NavBarItems";
+import { getNavBarIcons } from "./icons/NavBarIcons";
+import { ClickableIconButton } from "../styles/iconTheme";
 import strings from "@/config/strings";
-import "../../index.scss";
+import "../index.scss";
 
 const NavBar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -50,7 +51,7 @@ const NavBar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" component="nav">
         <Toolbar>
-          <IconButton
+          <ClickableIconButton
             size="large"
             edge="start"
             color="inherit"
@@ -66,10 +67,10 @@ const NavBar = () => {
             }}
           >
             <MenuIcon />
-          </IconButton>
+          </ClickableIconButton>
 
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
               {strings.general.title}
             </Typography>
           </Link>
@@ -85,8 +86,7 @@ const NavBar = () => {
                     my: 2,
                     color: 'white',
                     display: 'block',
-                    textTransform: 'none',
-                    fontSize: '1.2rem' // needs to be updated once we have a theme
+                    textTransform: 'none'
                   }}
                   onClick={() => handleNavigation(path)}
                 >

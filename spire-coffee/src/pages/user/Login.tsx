@@ -72,7 +72,7 @@ const Login = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.login.signIn} />
-      <Container component="main" maxWidth="xs" sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <Container component="main" maxWidth="xs" sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
         <CssBaseline />
         <Box
           sx={{

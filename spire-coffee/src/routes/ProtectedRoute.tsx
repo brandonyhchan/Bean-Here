@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { ROUTES } from "../config/routes";
-import NavBar from "../component/navbar/NavBar";
+import NavBar from "../component/NavBar";
 import "../index.scss";
 
 interface ProtectedRouteProps {
