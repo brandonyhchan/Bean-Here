@@ -73,17 +73,16 @@ const NavBar = () => {
           >
             <MenuIcon />
           </ClickableIconButton>
-
-          <MuiLink
-            style={{ textDecoration: "none", color: "inherit" }}
-            component={Link}
-            to={ROUTES.ROOT}
-          >
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
+            <MuiLink
+              style={{ textDecoration: "none", color: "inherit" }}
+              component={Link}
+              to={ROUTES.ROOT}
+              variant="h3"
+            >
               {strings.general.title}
-            </Typography>
-          </MuiLink>
-
+            </MuiLink>
+          </Typography>
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
