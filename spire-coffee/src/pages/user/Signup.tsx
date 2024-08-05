@@ -18,6 +18,7 @@ import {
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
 import EmailValidator from "email-validator";
 import useFormErrors from "@/component/helpers/useFormErrors";
+import PasswordChecklist from "react-password-checklist";
 
 const SignUp = () => {
   const { setAuthStatus } = useAuth();
@@ -64,33 +65,54 @@ const SignUp = () => {
     let valid = true;
 
     if (!username) {
-      setErrors(prevErrors => ({ ...prevErrors, username: strings.errorMsg.requiredField }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        username: strings.errorMsg.requiredField,
+      }));
       valid = false;
     }
 
     if (!email) {
-      setErrors(prevErrors => ({ ...prevErrors, email: strings.errorMsg.requiredField }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: strings.errorMsg.requiredField,
+      }));
       valid = false;
     } else if (!EmailValidator.validate(email)) {
-      setErrors(prevErrors => ({ ...prevErrors, email: strings.errorMsg.emailInvalid }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: strings.errorMsg.emailInvalid,
+      }));
       valid = false;
     }
 
     if (!firstName) {
-      setErrors(prevErrors => ({ ...prevErrors, firstName: strings.errorMsg.requiredField }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        firstName: strings.errorMsg.requiredField,
+      }));
       valid = false;
     }
 
     if (!lastName) {
-      setErrors(prevErrors => ({ ...prevErrors, lastName: strings.errorMsg.requiredField }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        lastName: strings.errorMsg.requiredField,
+      }));
       valid = false;
     }
 
     if (!password) {
-      setErrors(prevErrors => ({ ...prevErrors, password: strings.errorMsg.requiredField }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: strings.errorMsg.requiredField,
+      }));
       valid = false;
     } else if (password !== confirmPassword) {
-      setErrors(prevErrors => ({ ...prevErrors, password: strings.errorMsg.passwordMatch }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: strings.errorMsg.passwordMatch,
+      }));
       valid = false;
     }
 
@@ -112,9 +134,12 @@ const SignUp = () => {
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
     if (event.target.value !== confirmPassword) {
-      setErrors(prevErrors => ({ ...prevErrors, password: strings.errorMsg.passwordMatch }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: strings.errorMsg.passwordMatch,
+      }));
     } else {
-      setErrors(prevErrors => ({ ...prevErrors, password: "" }));
+      setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
     }
   };
 
@@ -123,9 +148,12 @@ const SignUp = () => {
   ) => {
     setConfirmPassword(event.target.value);
     if (event.target.value !== password) {
-      setErrors(prevErrors => ({ ...prevErrors, password: strings.errorMsg.passwordMatch }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: strings.errorMsg.passwordMatch,
+      }));
     } else {
-      setErrors(prevErrors => ({ ...prevErrors, password: "" }));
+      setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
     }
   };
 
@@ -138,7 +166,7 @@ const SignUp = () => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center"
+            alignItems: "center",
           }}
           style={{ paddingTop: "25px", paddingBottom: "25px" }}
         >
@@ -219,6 +247,18 @@ const SignUp = () => {
               onChange={handlePasswordChange}
               error={!!errors.password}
               helperText={errors.password}
+            />
+            <PasswordChecklist
+              rules={["minLength", "specialChar", "number", "capital"]}
+              minLength={5}
+              value={password}
+              valueAgain={confirmPassword}
+              messages={{
+                minLength: strings.errorMsg.passwordLength,
+                specialChar: strings.errorMsg.passwordSpecial,
+                number: strings.errorMsg.passwordNum,
+                capital: strings.errorMsg.passwordCap
+              }}
             />
             <TextField
               margin="normal"
