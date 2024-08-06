@@ -1,8 +1,13 @@
-import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import { AccordionActions, AccordionSummary, AccordionDetails, Slider } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Button from '@mui/material/Button';
+import {
+  Accordion,
+  AccordionActions,
+  AccordionSummary,
+  AccordionDetails,
+  Slider,
+  Box
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Button from "@mui/material/Button";
 
 const marks = [
   {
@@ -30,7 +35,7 @@ function valuetext(value: number) {
 
 const FilterSidebar = () => {
   return (
-    <div>
+    <>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -84,11 +89,13 @@ const FilterSidebar = () => {
         <AccordionDetails>
         </AccordionDetails>
       </Accordion>
-      <AccordionActions>
-        <Button>Cancel</Button>
-        <Button>Agree</Button>
-      </AccordionActions>
-    </div>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <AccordionActions>
+          <Button>Cancel</Button>
+          <Button>Filter</Button>
+        </AccordionActions>
+      </Box>
+    </>
   );
 }
 
