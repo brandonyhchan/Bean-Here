@@ -1,55 +1,88 @@
-import * as React from "react";
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Grid, Container, useMediaQuery, useTheme } from "@mui/material";
-import cafeData from "../../component/data/cafes.json";
 import CafeCard from "../../component/CafeCard";
+import { useQuery } from "@apollo/client";
+import { returnAllCafeQuery } from "@/support/graphqlServerApi";
+import { Cafe } from "@/types/cafe";
+import strings from "@/config/strings";
 
 const Explore = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const [cafes, setCafes] = useState<Cafe[]>([]);
+  const [cafeCount, setCafeCount] = useState(0);
+
+  // add back refresh later
+  const { loading, error } = useQuery(returnAllCafeQuery, {
+    onError: (error) => {
+      throw error;
+    },
+
+    onCompleted: (data) => {
+      console.log(data);
+      setCafes(data?.returnAllCafes);
+      setCafeCount(data?.getCafeCount);
+    },
+    // add back variables for filtering
+    variables: {},
+  });
+
   return (
     <React.Fragment>
-      <h1 style={{ textAlign: "center" }}>
-        Hello world, this is the Explore page
-      </h1>
-      <Container
-        sx={{
-          maxWidth: isSmallScreen ? "320px" : "800px",
-          paddingLeft: 0,
-          paddingRight: 0,
-        }}
-      >
-        <Grid
-          container
-          spacing={2}
-          justifyContent={isSmallScreen ? "center" : "space-between"}
-          flexWrap="wrap"
+      <Helmet title={strings.navbar.explore} />
+      {loading && (
+        <div>
+          <p>Loading...</p>
+        </div>
+      )}
+      {error && (
+        <div>
+          <p> There was an error.</p>
+        </div>
+      )}
+      {cafes.length && (
+        <Container
+          sx={{
+            maxWidth: isSmallScreen ? "320px" : "800px",
+            paddingLeft: 0,
+            paddingRight: 0,
+          }}
         >
-          {cafeData.map((cafe) => (
-            <Grid
-              item
-              key={cafe.stringId}
-              xs={10}
-              sm={12}
-              md={6}
-              lg={4}
-              style={{ display: "flex", justifyContent: "center" }}
-            >
-              <CafeCard
-                id={parseInt(cafe.stringId)}
-                name={cafe.name}
-                street={cafe.street}
-                city={cafe.city}
-                province={cafe.province}
-                profilePhotoURL={cafe.profilePhotoURL}
-                busyness={cafe.busyness}
-                noisiness={cafe.noisiness}
-                price={cafe.price}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+          <p>{`Cafe count: ${cafeCount}`}</p>
+          <Grid
+            container
+            spacing={2}
+            justifyContent={isSmallScreen ? "center" : "space-between"}
+            flexWrap="wrap"
+          >
+            {cafes.map((cafe) => (
+              <Grid
+                item
+                key={cafe.stringId}
+                xs={10}
+                sm={12}
+                md={6}
+                lg={4}
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <CafeCard
+                  id={parseInt(cafe.stringId)}
+                  name={cafe.name}
+                  street={cafe.street}
+                  city={cafe.city}
+                  province={cafe.province}
+                  profilePhotoURL={cafe.profilePhotoURL}
+                  busyness={cafe.busyness}
+                  noisiness={cafe.noisiness}
+                  price={cafe.price}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      )}
     </React.Fragment>
   );
 };

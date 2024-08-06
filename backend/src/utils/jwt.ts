@@ -15,3 +15,10 @@ export function getUserId(authHeader: String): AuthTokenPayload {
     algorithms: ["RS256"],
   }) as AuthTokenPayload;
 }
+
+export function createToken(userId: string, userName: string) {
+  return jwt.sign({ userId, userName }, <jwt.Secret>process.env.PRIVATE_KEY, {
+    algorithm: "RS256",
+    expiresIn: process.env.JWT_TOKEN_EXPIRATION,
+  });
+}

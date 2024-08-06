@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { loginQuery } from "@/support/graphqlServerApi";
 import { useLazyQuery } from "@apollo/client";
+import { useAuth } from "@/context/AuthContext";
 import {
   Avatar,
   Button,
@@ -20,22 +21,22 @@ import strings from "@/config/strings";
 import useFormErrors from "@/component/helpers/useFormErrors";
 
 const Login = () => {
-  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [errors, setErrors, resetErrors] = useFormErrors();
 
-  const [login] = useLazyQuery(loginQuery, {
+  const [loginAction] = useLazyQuery(loginQuery, {
     onError: (error) => {
       console.error("Login error:", error);
-      setLoginError("Failed to login. Please check your credentials and try again.");
+      setLoginError(
+        "Failed to login. Please check your credentials and try again."
+      );
     },
     onCompleted: (data) => {
-      localStorage.setItem("authToken", data.login.token);
-      console.log("User authenticated, logging in");
-      navigate(ROUTES.ROOT);
+      login(data.login.token);
     },
   });
 
@@ -48,12 +49,18 @@ const Login = () => {
     let valid = true;
 
     if (!username) {
-      setErrors(prevErrors => ({ ...prevErrors, username: strings.errorMsg.requiredField }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        username: strings.errorMsg.requiredField,
+      }));
       valid = false;
     }
 
     if (!password) {
-      setErrors(prevErrors => ({ ...prevErrors, password: strings.errorMsg.requiredField }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: strings.errorMsg.requiredField,
+      }));
       valid = false;
     }
 
@@ -61,7 +68,7 @@ const Login = () => {
       return;
     }
 
-    login({
+    loginAction({
       variables: {
         userName: username,
         password: password,
@@ -72,7 +79,16 @@ const Login = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.login.signIn} />
-      <Container component="main" maxWidth="xs" sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
         <CssBaseline />
         <Box
           sx={{

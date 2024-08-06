@@ -1,5 +1,5 @@
 import LoadingSpinner from "@/component/LoadingSpinner";
-import * as React from "react";
+import React from "react";
 
 const AddCafe = () => {
   return (
