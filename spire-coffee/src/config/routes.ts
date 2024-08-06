@@ -1,6 +1,5 @@
 export const ROUTES = {
   ROOT: "/",
-  HOME: "/home",
   EXPLORE: "/explore",
   FAVOURITES: "/favourites",
   ADD_CAFE: "/addCafe",

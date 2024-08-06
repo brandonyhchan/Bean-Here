@@ -10,12 +10,24 @@ export interface Context {
 }
 
 export const context = ({ req }: { req: Request }): Context => {
-  const auth = req.headers.authorization?.split(" ")[1];
+  const authHeader = req.headers.authorization || "";
+  const token = authHeader.startsWith("Bearer ")
+    ? authHeader.substring(7)
+    : null;
 
-  const token = req && auth ? getUserId(auth) : null;
+  let userId: number | undefined;
+
+  if (token) {
+    try {
+      const tokenPayload = getUserId(token);
+      userId = tokenPayload.userId;
+    } catch (error) {
+      console.error("Token verification failed:", error);
+    }
+  }
 
   return {
     prisma,
-    userId: token?.userId,
+    userId,
   };
 };

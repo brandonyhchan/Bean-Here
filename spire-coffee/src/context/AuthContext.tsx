@@ -1,3 +1,4 @@
+import { ROUTES } from "@/config/routes";
 import React, {
   createContext,
   useContext,
@@ -21,7 +22,9 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!localStorage.getItem("authToken"));
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
+    !!localStorage.getItem("authToken")
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,10 +34,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   const login = (token: string) => {
+    localStorage.removeItem("authToken");
     localStorage.setItem("authToken", token);
     setIsAuthenticated(true);
     // Redirect to the homepage or the originally intended route
-    navigate("/");
+    navigate(ROUTES.EXPLORE);
   };
 
   const logout = () => {

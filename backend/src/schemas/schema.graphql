@@ -12,22 +12,11 @@ type Query {
     password: String!
   ): AuthPayload
   login(userName: String!, password: String!): AuthPayload
-  returnAllCafes(
-    filterByName: String
-    busyFilter: String
-    noiseFilter: String
-    priceFilter: [String]
-    distanceFilter: Int
-    userLocation: locationInput
-  ): [Cafe]
+  returnAllCafes: [Cafe]
   getCafeCount: Int
   getCafeInfo(stringId: String!): Cafe
 }
 
 type Mutation {
-  updateCafeInfo(
-    stringId: String!
-    busyness: String
-    noisiness: String
-  ): Cafe
+  updateCafeInfo(stringId: String!, busyness: String, noisiness: String): Cafe
 }

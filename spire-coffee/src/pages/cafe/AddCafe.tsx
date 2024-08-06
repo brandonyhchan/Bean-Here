@@ -1,8 +1,10 @@
-import * as React from "react";
+import LoadingSpinner from "@/component/LoadingSpinner";
+import React from "react";
 
 const AddCafe = () => {
   return (
     <React.Fragment>
+      <LoadingSpinner />
       <h1>Hello world this is the add cafes page</h1>
     </React.Fragment>
   );

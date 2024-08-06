@@ -18,7 +18,6 @@ const strings = new LocalizedStrings({
       confirmPassword: "Confirm Password",
     },
     navbar: {
-      home: "Home",
       explore: "Explore",
       favourites: "Favourites",
       addCafe: "Add a Cafe",
@@ -29,6 +28,10 @@ const strings = new LocalizedStrings({
       requiredField: "This field is required",
       passwordMatch: "Passwords do not match",
       emailInvalid: "Invalid email address",
+      passwordLength: "Password must have at least 5 characters",
+      passwordSpecial: "Password must have at least 1 special character",
+      passwordNum: "Password must have at least 1 number",
+      passwordCap: "Password must have at least 1 capital"
     },
     footer: {
       copyright: "Copyright © 2024 SpireTech, Inc",
@@ -45,6 +48,39 @@ const strings = new LocalizedStrings({
     aboutUs: {
       title: "About us page",
       helmet: "Who we are",
+    },
+    list: {
+      busyness1: "Not too busy",
+      busyness2: "Moderately busy",
+      busyness3: "Very Busy",
+      noisiness1: "Not too noisy",
+      noisiness2: "Moderately noisy",
+      noisiness3: "Very noisy",
+      price1: "$",
+      price2: "$$",
+      price3: "$$$",
+      priceText1: "Not too expensive",
+      priceText2: "Moderately expensive",
+      priceText3: "Very expensive",
+      amenities1: "Has outlets",
+      amenities2: "Has tables",
+      amenities3: "Has outdoor seating",
+    },
+    cafe: {
+      busynessLabel: "Capacity",
+      noisinessLabel: "Noise",
+      priceLabel: "Price",
+      cafeInformation: "Cafe Information",
+      reportText:
+        "What is the current status of the cafe? Help us report it live!",
+      reportButton: "Report Status",
+      submitReportButton: "Submit",
+      cancelReportButton: "Cancel",
+      businessHours: "Business Hours",
+      noWebsite: "Website unavailable",
+      noPhoneNumber: "Phone number unavailable",
+      getDirections: "Get Directions",
+      reportSubmitMessage: "Thank you! Your report has been submitted",
     },
   },
 });
