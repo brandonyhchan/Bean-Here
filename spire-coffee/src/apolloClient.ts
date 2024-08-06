@@ -13,7 +13,7 @@ const httpLink = new HttpLink({
 });
 
 const authLink = new ApolloLink((operation, forward) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("authToken");
   operation.setContext({
     headers: {
       authorization: token ? `Bearer ${token}` : "",
@@ -25,7 +25,7 @@ const authLink = new ApolloLink((operation, forward) => {
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.forEach(({ message }) => {
-      if (message.includes("invalid Token")) {
+      if (message.includes("Not authenticated")) {
         // Token expired, redirect to login
         window.location.href = "/login";
       }

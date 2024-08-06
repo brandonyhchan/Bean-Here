@@ -1,5 +1,5 @@
 import * as bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import { createToken } from "../utils/jwt.js";
 
 /**
  * Creates a new user with the inputs, hashes the password, and stores the
@@ -24,11 +24,7 @@ export async function signUp(parent, args, context) {
      * used for authentication in later requests without needing to access the database.
      * The token is signed with a private key using RS256 algorithm.
      */
-    const token = jwt.sign(
-      { userId: user.id, userName: user.userName },
-      <jwt.Secret>process.env.PRIVATE_KEY,
-      { algorithm: "RS256", expiresIn: process.env.JWT_TOKEN_EXPIRATION }
-    );
+    const token = createToken(user.id, user.userName);
 
     return {
       token,
@@ -65,17 +61,8 @@ export async function login(parent, args, context) {
   if (!valid) {
     throw new Error("Invalid password");
   }
-  console.log(process.env.JWT_TOKEN_EXPIRATION);
 
-  /**
-   * Generates a JWT token for the user. This token can be used for
-   * authentication in later requests without needing to access the database.
-   */
-  const token = jwt.sign(
-    { userId: user.id, userName: user.userName },
-    <jwt.Secret>process.env.PRIVATE_KEY,
-    { algorithm: "RS256", expiresIn: process.env.JWT_TOKEN_EXPIRATION }
-  );
+  const token = createToken(user.id, user.userName);
 
   return {
     token,

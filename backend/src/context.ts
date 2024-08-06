@@ -10,13 +10,20 @@ export interface Context {
 }
 
 export const context = ({ req }: { req: Request }): Context => {
+  const authHeader = req.headers.authorization || "";
+  const token = authHeader.startsWith("Bearer ")
+    ? authHeader.substring(7)
+    : null;
+
   let userId: number | undefined;
-  try {
-    const authHeader = req.headers.authorization || "";
-    const tokenPayload = getUserId(authHeader);
-    userId = tokenPayload.userId;
-  } catch (error) {
-    console.error("Authentication error:", error);
+
+  if (token) {
+    try {
+      const tokenPayload = getUserId(token);
+      userId = tokenPayload.userId;
+    } catch (error) {
+      console.error("Token verification failed:", error);
+    }
   }
 
   return {
