@@ -32,7 +32,7 @@ const Explore = () => {
 
   return (
     <React.Fragment>
-      <Helmet title={strings.navbar.explore} />
+      <Helmet title={strings.Navbar.explore} />
       {loading && (
         <div>
           <p>Loading...</p>
@@ -44,9 +44,11 @@ const Explore = () => {
         </div>
       )}
       <Box sx={{ display: "flex", height: "100%", borderRadius: 0 }}>
+        {/* Flter sidebar */}
         <Box sx={{ flex: "0 0 250px", borderRight: "1px solid #ddd" }}>
           <FilterSidebar />
         </Box>
+        {/* Cafes */}
         <Box sx={{ flex: "1", overflowY: "auto" }}>
           {cafes.length > 0 && (
             <Container

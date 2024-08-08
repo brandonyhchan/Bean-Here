@@ -5,17 +5,17 @@ import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import strings from "../../config/strings";
 
-export const getNavBarIcons = (text: string) => {
+export const getNavbarIcons = (text: string) => {
   switch (text) {
-    case strings.navbar.explore:
+    case strings.Navbar.explore:
       return <ExploreIcon />;
-    case strings.navbar.favourites:
+    case strings.Navbar.favourites:
       return <FavoriteIcon />;
-    case strings.navbar.addCafe:
+    case strings.Navbar.addCafe:
       return <LocalCafeIcon />;
-    case strings.navbar.account:
+    case strings.Navbar.account:
       return <PersonIcon />;
-    case strings.navbar.signOut:
+    case strings.Navbar.signOut:
       return <LogoutIcon />;
     default:
       return null;

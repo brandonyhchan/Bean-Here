@@ -1,25 +1,25 @@
 import { ROUTES } from "@/config/routes";
 import strings from "@/config/strings";
 
-export const NavBarItems = [
+export const NavbarItems = [
   {
-    label: strings.navbar.explore,
+    label: strings.Navbar.explore,
     path: ROUTES.EXPLORE,
   },
   { 
-    label: strings.navbar.favourites, 
+    label: strings.Navbar.favourites, 
     path: ROUTES.FAVOURITES
   },
   { 
-    label: strings.navbar.addCafe, 
+    label: strings.Navbar.addCafe, 
     path: ROUTES.ADD_CAFE
   },
   { 
-    label: strings.navbar.account, 
+    label: strings.Navbar.account, 
     path: ROUTES.ACCOUNT
   },
   { 
-    label: strings.navbar.signOut, 
+    label: strings.Navbar.signOut, 
     path: ROUTES.SIGN_OUT 
   }
 ];

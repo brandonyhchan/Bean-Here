@@ -9,7 +9,8 @@ import strings from "@/config/strings";
 
 const FilterSidebar = () => {
   return (
-    <>
+    <form>
+      {/* this design might need to be changed */}
       <CustomAccordion
         title={strings.filter.distance}
         type="slider"
@@ -21,28 +22,30 @@ const FilterSidebar = () => {
           getAriaValueText: valuetext,
         }}
       />
+      {/* Radio buttons, single selection */}
       <CustomAccordion
         title={strings.filter.capacity}
-        type="checkboxes"
+        type="radio"
         labels={[Level.LOW, Level.MEDIUM, Level.HIGH]}
       />
+      {/* Radio buttons, single selection */}
       <CustomAccordion
         title={strings.filter.noise}
-        type="checkboxes"
+        type="radio"
         labels={[Level.LOW, Level.MEDIUM, Level.HIGH]}
       />
+      {/* Checkboxes, multiple selection */}
       <CustomAccordion
         title={strings.filter.price}
         type="checkboxes"
         labels={[Price.LOW, Price.MEDIUM, Price.HIGH]}
       />
+      {/* Buttons need to be updated and form needs to be set up */}
       <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <AccordionActions>
-          <Button>Cancel</Button>
-          <Button>Filter</Button>
-        </AccordionActions>
+        <Button>Cancel</Button>
+        <Button>Filter</Button>
       </Box>
-    </>
+    </form>
   );
 }
 
