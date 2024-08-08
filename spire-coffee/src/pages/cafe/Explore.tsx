@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useSearchParams } from "react-router-dom";
 import { Grid, Container, useMediaQuery, useTheme } from "@mui/material";
 import CafeCard from "../../component/CafeCard";
+import SearchBar from "../../component/SearchBar";
 import { useQuery } from "@apollo/client";
 import { returnAllCafeQuery } from "@/support/graphqlServerApi";
 import { Cafe } from "@/types/cafe";
 import strings from "@/config/strings";
+
 
 const Explore = () => {
   const theme = useTheme();
@@ -13,6 +16,10 @@ const Explore = () => {
 
   const [cafes, setCafes] = useState<Cafe[]>([]);
   const [cafeCount, setCafeCount] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchCafeName, setSearchCafeName] = useState(
+    searchParams.get("search") || ""
+  );
 
   // add back refresh later
   const { loading, error } = useQuery(returnAllCafeQuery, {
@@ -26,8 +33,16 @@ const Explore = () => {
       setCafeCount(data?.getCafeCount);
     },
     // add back variables for filtering
-    variables: {},
+    variables: {
+      filterByName: searchCafeName,
+    },
   });
+
+  const handleSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchCafeName(event.target.value);
+    setSearchParams({ search: event.target.value });
+  };
+
 
   return (
     <React.Fragment>
@@ -51,6 +66,8 @@ const Explore = () => {
           }}
         >
           <p>{`Cafe count: ${cafeCount}`}</p>
+          <SearchBar query={searchCafeName}
+                     handleQuery={handleSearchQuery}/>
           <Grid
             container
             spacing={2}

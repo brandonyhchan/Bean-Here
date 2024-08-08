@@ -45,10 +45,10 @@ const mainTheme = createTheme({
     },
     body1: {
       fontSize: "11px",
-      color: "#4c698b",
+      color: "#4e576e", //dark grey
     },
     body2: {
-      color: "#4c698b",
+      color: "#4e576e", //dark grey
     },
     button: {
       fontSize: "18px",
