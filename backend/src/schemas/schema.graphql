@@ -12,7 +12,9 @@ type Query {
     password: String!
   ): AuthPayload
   login(userName: String!, password: String!): AuthPayload
-  returnAllCafes: [Cafe]
+  returnAllCafes(
+    filterByName: String
+  ): [Cafe]
   getCafeCount: Int
   getCafeInfo(stringId: String!): Cafe
 }
