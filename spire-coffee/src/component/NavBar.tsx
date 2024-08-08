@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { ROUTES } from "../config/routes";
 import {
   AppBar,
   Box,
@@ -12,6 +13,7 @@ import {
   ListItemIcon,
   ListItemText,
   Button,
+  Link as MuiLink,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavBarItems } from "../config/NavBarItems";
@@ -71,13 +73,16 @@ const NavBar = () => {
           >
             <MenuIcon />
           </ClickableIconButton>
-
-          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
+            <MuiLink
+              style={{ textDecoration: "none", color: "inherit" }}
+              component={Link}
+              to={ROUTES.ROOT}
+              variant="h3"
+            >
               {strings.general.title}
-            </Typography>
-          </Link>
-
+            </MuiLink>
+          </Typography>
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
