@@ -9,10 +9,10 @@ import { returnAllCafeQuery } from "@/support/graphqlServerApi";
 import { Cafe } from "@/types/cafe";
 import strings from "@/config/strings";
 
-
 const Explore = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   const [cafes, setCafes] = useState<Cafe[]>([]);
   const [cafeCount, setCafeCount] = useState(0);
@@ -43,7 +43,6 @@ const Explore = () => {
     setSearchParams({ search: event.target.value });
   };
 
-
   return (
     <React.Fragment>
       <Helmet title={strings.navbar.explore} />
@@ -66,12 +65,11 @@ const Explore = () => {
           }}
         >
           <p>{`Cafe count: ${cafeCount}`}</p>
-          <SearchBar query={searchCafeName}
-                     handleQuery={handleSearchQuery}/>
+          <SearchBar query={searchCafeName} handleQuery={handleSearchQuery} />
           <Grid
             container
             spacing={2}
-            justifyContent={isSmallScreen ? "center" : "space-between"}
+            justifyContent={isSmallScreen || (isLargeScreen && cafes.length == 2) ? "center" : "space-between"}
             flexWrap="wrap"
           >
             {cafes.map((cafe) => (
