@@ -174,7 +174,7 @@ const SignUp = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            {strings.login.signIn}
+            {strings.login.signUp}
           </Typography>
           {signUpError && <Alert severity="error">{signUpError}</Alert>}
           <Box component="form" sx={{ mt: 2 }} onSubmit={handleSignUp}>
