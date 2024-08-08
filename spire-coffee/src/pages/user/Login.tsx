@@ -14,6 +14,7 @@ import {
   Typography,
   Container,
   Alert,
+  Link as MuiLink,
 } from "@mui/material";
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
 import { ROUTES } from "@/config/routes";
@@ -149,10 +150,18 @@ const Login = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link to="#">{strings.login.forgotPassword}</Link>
+                <Typography variant="body2">
+                  <MuiLink variant="body2" component={Link} to={"#"}>
+                    {strings.login.forgotPassword}
+                  </MuiLink>
+                </Typography>
               </Grid>
               <Grid item>
-                <Link to={ROUTES.SIGN_UP}>{strings.login.signUpMsg}</Link>
+                <Typography variant="body2">
+                  <MuiLink variant="body2" component={Link} to={ROUTES.SIGN_UP}>
+                    {strings.login.signUpMsg}
+                  </MuiLink>
+                </Typography>
               </Grid>
             </Grid>
           </Box>
