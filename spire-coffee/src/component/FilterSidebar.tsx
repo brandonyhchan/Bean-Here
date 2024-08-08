@@ -1,45 +1,17 @@
 import {
-  Accordion,
   AccordionActions,
-  AccordionSummary,
-  AccordionDetails,
-  Slider,
   Box
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
 import CustomAccordion from "./CustomAccordion";
-import { Level, Price } from "@/config/Level";
-
-const marks = [
-  {
-    value: 0,
-    label: '0 km',
-  },
-  {
-    value: 10,
-    label: '10 km',
-  },
-  {
-    value: 20,
-    label: '20 km',
-  },
-  {
-    value: 30,
-    label: '30 km',
-  },
-];
-
-function valuetext(value: number) {
-  return `${value} km`;
-}
-
+import { Level, Price, marks, valuetext } from "@/config/FilterItems";
+import strings from "@/config/strings";
 
 const FilterSidebar = () => {
   return (
     <>
       <CustomAccordion
-        title="Distance (km)"
+        title={strings.filter.distance}
         type="slider"
         sliderProps={{
           defaultValue: 10,
@@ -50,17 +22,17 @@ const FilterSidebar = () => {
         }}
       />
       <CustomAccordion
-        title="Available Capacity"
+        title={strings.filter.capacity}
         type="checkboxes"
         labels={[Level.LOW, Level.MEDIUM, Level.HIGH]}
       />
       <CustomAccordion
-        title="Noise Level"
+        title={strings.filter.noise}
         type="checkboxes"
         labels={[Level.LOW, Level.MEDIUM, Level.HIGH]}
       />
       <CustomAccordion
-        title="Price"
+        title={strings.filter.price}
         type="checkboxes"
         labels={[Price.LOW, Price.MEDIUM, Price.HIGH]}
       />

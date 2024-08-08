@@ -9,7 +9,7 @@ import {
   Slider 
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Level, Price } from "@/config/Level";
+import { Level, Price } from "@/config/FilterItems";
 
 interface CustomAccordionProps {
   title: string;
