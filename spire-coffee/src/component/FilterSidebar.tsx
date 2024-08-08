@@ -8,6 +8,8 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
+import CustomAccordion from "./CustomAccordion";
+import { Level, Price } from "@/config/Level";
 
 const marks = [
   {
@@ -36,59 +38,32 @@ function valuetext(value: number) {
 const FilterSidebar = () => {
   return (
     <>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1-content"
-          id="panel1-header"
-        >
-          Distance (km)
-        </AccordionSummary>
-        <AccordionDetails>
-          <Slider
-            aria-label="Always visible"
-            defaultValue={10}
-            getAriaValueText={valuetext}
-            step={5}
-            max={30}
-            marks={marks}
-            valueLabelDisplay="on"
-          />
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2-content"
-          id="panel2-header"
-        >
-          Available Capacity
-        </AccordionSummary>
-        <AccordionDetails>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion defaultExpanded>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3-content"
-          id="panel3-header"
-        >
-          Noise Level
-        </AccordionSummary>
-        <AccordionDetails>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion defaultExpanded>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3-content"
-          id="panel3-header"
-        >
-          Price
-        </AccordionSummary>
-        <AccordionDetails>
-        </AccordionDetails>
-      </Accordion>
+      <CustomAccordion
+        title="Distance (km)"
+        type="slider"
+        sliderProps={{
+          defaultValue: 10,
+          step: 5,
+          max: 30,
+          marks: marks,
+          getAriaValueText: valuetext,
+        }}
+      />
+      <CustomAccordion
+        title="Available Capacity"
+        type="checkboxes"
+        labels={[Level.LOW, Level.MEDIUM, Level.HIGH]}
+      />
+      <CustomAccordion
+        title="Noise Level"
+        type="checkboxes"
+        labels={[Level.LOW, Level.MEDIUM, Level.HIGH]}
+      />
+      <CustomAccordion
+        title="Price"
+        type="checkboxes"
+        labels={[Price.LOW, Price.MEDIUM, Price.HIGH]}
+      />
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <AccordionActions>
           <Button>Cancel</Button>

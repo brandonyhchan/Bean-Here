@@ -44,8 +44,7 @@ const mainTheme = createTheme({
       fontFamily: "Figtree-SemiBold",
     },
     body1: {
-      fontSize: "11px",
-      color: "#4c698b",
+      fontSize: "14px",
     },
     body2: {
     },
