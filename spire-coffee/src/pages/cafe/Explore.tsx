@@ -39,15 +39,16 @@ const Explore = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.navbar.explore} />
-      <Container>
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+        }}
+      >
         {loading && (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+          <Box>
             <LoadingSpinner />
           </Box>
         )}
