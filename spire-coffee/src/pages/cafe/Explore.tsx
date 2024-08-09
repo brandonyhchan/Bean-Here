@@ -44,11 +44,10 @@ const Explore = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          minHeight: "100vh",
         }}
       >
-        {loading && (
-          <Box>
+        {!loading && (
+          <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
             <LoadingSpinner />
           </Box>
         )}
