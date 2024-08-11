@@ -46,7 +46,7 @@ const Explore = () => {
           alignItems: "center",
         }}
       >
-        {!loading && (
+        {loading && (
           <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
             <LoadingSpinner />
           </Box>
