@@ -3,23 +3,23 @@ import strings from "@/config/strings";
 
 export const NavbarItems = [
   {
-    label: strings.Navbar.explore,
+    label: strings.navbar.explore,
     path: ROUTES.EXPLORE,
   },
   { 
-    label: strings.Navbar.favourites, 
+    label: strings.navbar.favourites, 
     path: ROUTES.FAVOURITES
   },
   { 
-    label: strings.Navbar.addCafe, 
+    label: strings.navbar.addCafe, 
     path: ROUTES.ADD_CAFE
   },
   { 
-    label: strings.Navbar.account, 
+    label: strings.navbar.account, 
     path: ROUTES.ACCOUNT
   },
   { 
-    label: strings.Navbar.signOut, 
+    label: strings.navbar.signOut, 
     path: ROUTES.SIGN_OUT 
   }
 ];

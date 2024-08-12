@@ -7,15 +7,15 @@ import strings from "../../config/strings";
 
 export const getNavbarIcons = (text: string) => {
   switch (text) {
-    case strings.Navbar.explore:
+    case strings.navbar.explore:
       return <ExploreIcon />;
-    case strings.Navbar.favourites:
+    case strings.navbar.favourites:
       return <FavoriteIcon />;
-    case strings.Navbar.addCafe:
+    case strings.navbar.addCafe:
       return <LocalCafeIcon />;
-    case strings.Navbar.account:
+    case strings.navbar.account:
       return <PersonIcon />;
-    case strings.Navbar.signOut:
+    case strings.navbar.signOut:
       return <LogoutIcon />;
     default:
       return null;
