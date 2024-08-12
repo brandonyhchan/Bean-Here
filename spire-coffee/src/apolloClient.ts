@@ -22,7 +22,7 @@ const authLink = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
+const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) {
     graphQLErrors.forEach(({ message }) => {
       if (message.includes("Not authenticated")) {
@@ -30,10 +30,6 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         window.location.href = "/login";
       }
     });
-  }
-
-  if (networkError) {
-    window.location.href = "/login";
   }
 });
 
