@@ -255,6 +255,7 @@ const SignUp = () => {
                 rules={["minLength", "specialChar", "number", "capital"]}
                 minLength={5}
                 value={password}
+                valueAgain={confirmPassword}
                 messages={{
                   minLength: strings.errorMsg.passwordLength,
                   specialChar: strings.errorMsg.passwordSpecial,
