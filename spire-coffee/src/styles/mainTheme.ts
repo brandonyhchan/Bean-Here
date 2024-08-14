@@ -44,9 +44,11 @@ const mainTheme = createTheme({
       fontFamily: "Figtree-SemiBold",
     },
     body1: {
-      fontSize: "14px",
+      fontSize: "11px",
+      color: "#4c698b",
     },
     body2: {
+      color: "#4c698b",
     },
     button: {
       fontSize: "18px",
@@ -83,29 +85,6 @@ const mainTheme = createTheme({
         root: {
           '& .MuiInputBase-input': {
             fontSize: '14px',
-          },
-        },
-      },
-    },
-     MuiAccordion: {
-      styleOverrides: {
-        root: {
-          boxShadow: 'none',
-          '&.Mui-expanded': {
-            margin: '0px 0', // Remove the default margin
-          },
-          '&:before': {
-            display: 'none', // Remove the default border
-          },
-          '&:first-of-type': {
-            borderTopLeftRadius: 0,
-            borderTopRightRadius: 0,
-          },
-          '&:last-of-type': {
-            borderBottomLeftRadius: 0,
-            borderBottomRightRadius: 0,
-            border: 'none',
-            boxShadow: 'none',
           },
         },
       },
