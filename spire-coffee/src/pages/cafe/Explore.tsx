@@ -40,72 +40,80 @@ const Explore = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.navbar.explore} />
-      <Container
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {loading && (
-          <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
-            <LoadingSpinner />
-          </Box>
-        )}
-        {error && (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-              flexGrow: 1,
-            }}
-          >
-            <Typography variant="h3">{strings.error.exploreGeneric}</Typography>
-          </Box>
-        )}
-        {!!cafes.length && (
-          <Container
-            sx={{
-              maxWidth: isSmallScreen ? "320px" : "800px",
-              paddingLeft: 0,
-              paddingRight: 0,
-            }}
-          >
-            <Grid
-              container
-              spacing={2}
-              justifyContent={isSmallScreen ? "center" : "space-between"}
-              flexWrap="wrap"
+      <div style={{
+        display: "flex",
+        flexDirection: "row",
+        paddingLeft: "0",
+        paddingRight: "0",
+      }}>
+        <FilterSidebar />
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {loading && (
+            <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
+              <LoadingSpinner />
+            </Box>
+          )}
+          {error && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                flexGrow: 1,
+              }}
             >
-              {cafes.map((cafe) => (
-                <Grid
-                  item
-                  key={cafe.stringId}
-                  xs={10}
-                  sm={12}
-                  md={6}
-                  lg={4}
-                  style={{ display: "flex", justifyContent: "center" }}
-                >
-                  <CafeCard
-                    id={parseInt(cafe.stringId)}
-                    name={cafe.name}
-                    street={cafe.street}
-                    city={cafe.city}
-                    province={cafe.province}
-                    profilePhotoURL={cafe.profilePhotoURL}
-                    busyness={cafe.busyness}
-                    noisiness={cafe.noisiness}
-                    price={cafe.price}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          </Container>
-        )}
-      </Container>
+              <Typography variant="h3">{strings.error.exploreGeneric}</Typography>
+            </Box>
+          )}
+          {!!cafes.length && (
+            <Container
+              sx={{
+                maxWidth: isSmallScreen ? "320px" : "800px",
+                paddingLeft: 0,
+                paddingRight: 0,
+              }}
+            >
+              <Grid
+                container
+                spacing={2}
+                justifyContent={isSmallScreen ? "center" : "space-between"}
+                flexWrap="wrap"
+              >
+                {cafes.map((cafe) => (
+                  <Grid
+                    item
+                    key={cafe.stringId}
+                    xs={10}
+                    sm={12}
+                    md={6}
+                    lg={4}
+                    style={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <CafeCard
+                      id={parseInt(cafe.stringId)}
+                      name={cafe.name}
+                      street={cafe.street}
+                      city={cafe.city}
+                      province={cafe.province}
+                      profilePhotoURL={cafe.profilePhotoURL}
+                      busyness={cafe.busyness}
+                      noisiness={cafe.noisiness}
+                      price={cafe.price}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </Container>
+          )}
+        </Container>
+      </div>
     </React.Fragment>
   );
 };

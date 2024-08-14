@@ -42,7 +42,7 @@ const CustomAccordion: React.FC<CustomAccordionProps> = ({
   };
 
   return (
-    <Accordion>
+    <Accordion sx={{ p: 2 }}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel-content"

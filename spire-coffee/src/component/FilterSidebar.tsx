@@ -9,7 +9,7 @@ import strings from "@/config/strings";
 
 const FilterSidebar = () => {
   return (
-    <form>
+    <form style={{ width: "250px" }}>
       {/* this design might need to be changed */}
       <CustomAccordion
         title={strings.filter.distance}
