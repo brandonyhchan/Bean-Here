@@ -54,7 +54,7 @@ const Explore = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.navbar.explore} />
-      {loading ? (
+      {error ? (
         <Container sx={{
           display: "flex",
           justifyContent: "center",
@@ -67,7 +67,7 @@ const Explore = () => {
             alignItems: "center",
             height: "50%",
           }}>
-            {error ? (
+            {loading ? <LoadingSpinner /> : (
               <Box
                 sx={{
                   display: "flex",
@@ -81,7 +81,7 @@ const Explore = () => {
                   {strings.error.exploreGeneric}
                 </Typography>
               </Box>
-            ) : <LoadingSpinner />}
+            )}
           </Box>
         </Container>
       ) : (
