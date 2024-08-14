@@ -83,6 +83,12 @@ const strings = new LocalizedStrings({
       getDirections: "Get Directions",
       reportSubmitMessage: "Thank you! Your report has been submitted",
     },
+    filter: {
+      distance: "Distance (km)",
+      capacity: "Current Capacity",
+      noise: "Noise Level",
+      price: "Price"
+    }
   },
 });
 
