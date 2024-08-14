@@ -32,14 +32,17 @@ async function seedUsers() {
 
 /**
  * Seed province codes for countries (currently only Canada).
- * 
+ *
  * Countries can be expanded in the future to include states, prefectures, etc.
- * 
+ *
  * @async
  * @returns {Object} seeded provinces
  */
 async function seedProvinces() {
-  const provincePath = await fs.readFile("./prisma/data/provinces.json", "utf-8");
+  const provincePath = await fs.readFile(
+    "./prisma/data/provinces.json",
+    "utf-8"
+  );
   const provinceData = JSON.parse(provincePath);
 
   const countries = provinceData.countries;
@@ -49,9 +52,9 @@ async function seedProvinces() {
     const provinces = country.provinces;
     for (const code of provinces) {
       await prisma.provinceCode.create({
-        data: { 
+        data: {
           code: code,
-          country: country.country
+          country: country.country,
         },
       });
     }
@@ -88,17 +91,26 @@ async function seedNoisinessLevels() {
   }
 }
 
+async function seedPriceLevels() {
+  const levels = ["LOW", "MEDIUM", "HIGH"];
+  for (const level of levels) {
+    await prisma.priceOption.create({
+      data: { level },
+    });
+  }
+}
+
 /**
  * Seed initial cafe data.
  * @async
  * @returns {Object} seeded cafe
  */
 async function seedCafes() {
-
   // Get all of the data for each category
   const provinceCodes = await prisma.provinceCode.findMany();
   const busynessOptions = await prisma.busynessOption.findMany();
   const noisinessOptions = await prisma.noisinessOption.findMany();
+  const priceOptions = await prisma.priceOption.findMany();
 
   const cafePath = await fs.readFile("./prisma/data/cafes.json", "utf-8");
   const cafeData = JSON.parse(cafePath);
@@ -117,6 +129,11 @@ async function seedCafes() {
     const noisiness = noisinessOptions.find((n) => n.level === cafe.noisiness);
     if (noisiness) {
       cafe.noisiness = noisiness.level;
+    }
+
+    const price = priceOptions.find((n) => n.level === cafe.price);
+    if (price) {
+      cafe.price = price.level;
     }
   });
 
@@ -144,6 +161,7 @@ async function seedDatabase() {
     await seedProvinces();
     await seedBusynessLevels();
     await seedNoisinessLevels();
+    await seedPriceLevels();
     await seedCafes();
   } catch (error) {
     console.error("There was an error seeding the database", error);

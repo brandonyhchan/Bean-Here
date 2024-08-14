@@ -32,9 +32,11 @@ model Cafe {
   location        Location?
   busyness        String?
   noisiness       String?
+  price           String?
   provinceCode    ProvinceCode     @relation("CafesProvince", fields: [province], references: [code])
   busynessLevel   BusynessOption?  @relation("CafesBusyness", fields: [busyness], references: [level])
   noisinessLevel  NoisinessOption? @relation("CafesNoisiness", fields: [noisiness], references: [level])
+  priceLevel      PriceOption?     @relation("CafesPrice", fields: [price], references: [level])
 }
 
 model Location {
@@ -59,4 +61,9 @@ model BusynessOption {
 model NoisinessOption {
   level String @id
   cafes Cafe[] @relation("CafesNoisiness")
+}
+
+model PriceOption {
+  level String @id
+  cafes Cafe[] @relation("CafesPrice")
 }
