@@ -6,7 +6,8 @@ import {
   CardActions,
   Box,
   useMediaQuery,
-  useTheme
+  useTheme,
+  IconButton,
 } from "@mui/material";
 import { renderBusyIcon, renderNoiseIcon, renderPrice, renderFavoriteIcon } from "./icons/Icons";
 import { ClickableIconButton, NonClickableIconButton } from "../styles/iconTheme";
@@ -105,12 +106,12 @@ const CafeCard = ({
           </Box>
         </CardActions>
       </Box>
-      <ClickableIconButton
+      <IconButton
         sx={{ position: 'absolute', top: 0, right: 0 }}
         onClick={handleFavoriteClick}
       >
         {renderFavoriteIcon(isFavorite)}
-      </ClickableIconButton>
+      </IconButton>
     </Card>
   );
 };

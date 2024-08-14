@@ -16,12 +16,12 @@ import {
   Link as MuiLink,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavbarItems } from "../config/NavbarItems";
-import { getNavbarIcons } from "./icons/NavbarIcons";
+import { NavBarItems } from "../config/NavBarItems";
+import { getNavBarIcons } from "./icons/NavBarIcons";
 import { ClickableIconButton } from "../styles/iconTheme";
 import strings from "@/config/strings";
 
-const Navbar = () => {
+const NavBar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -40,10 +40,10 @@ const Navbar = () => {
       onClick={handleDrawerToggle}
     >
       <List>
-        {NavbarItems.map(({ label, path }) => (
+        {NavBarItems.map(({ label, path }) => (
           <ListItem key={label} disablePadding>
             <ListItemButton onClick={() => handleNavigation(path)}>
-              <ListItemIcon>{getNavbarIcons(label)}</ListItemIcon>
+              <ListItemIcon>{getNavBarIcons(label)}</ListItemIcon>
               <ListItemText primary={label} />
             </ListItemButton>
           </ListItem>
@@ -87,7 +87,7 @@ const Navbar = () => {
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {NavbarItems.map(({ label, path }) => (
+              {NavBarItems.map(({ label, path }) => (
                 <Button
                   key={label}
                   sx={{
@@ -126,4 +126,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;

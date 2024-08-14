@@ -2,10 +2,10 @@ import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 
 const NonClickableIconButton = styled(IconButton)({
-  color: "#000000DE",
+  color: "#4c698b",
   pointerEvents: "none", // Disable click events
   '&:hover': {
-    color: "#000000DE", // No color change on hover
+    color: "#4c698b", // No color change on hover
   },
 });
 
