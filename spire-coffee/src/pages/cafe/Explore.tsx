@@ -54,18 +54,21 @@ const Explore = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.navbar.explore} />
-      <div style={{
-        display: "flex",
-        flexDirection: "row",
-        paddingLeft: "0",
-        paddingRight: "0",
-      }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          paddingLeft: "0",
+          paddingRight: "0",
+        }}
+      >
         <FilterSidebar />
         <Container
           sx={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            flexDirection: "column",
           }}
         >
           {loading && (
@@ -83,12 +86,13 @@ const Explore = () => {
                 flexGrow: 1,
               }}
             >
-              <Typography variant="h3">{strings.error.exploreGeneric}</Typography>
+              <Typography variant="h3">
+                {strings.error.exploreGeneric}
+              </Typography>
             </Box>
           )}
-          
-
-          {!!cafes.length && (
+          <SearchBar query={searchCafeName} handleQuery={handleSearchQuery} />
+          {cafes.length ? (
             <Container
               sx={{
                 maxWidth: isSmallScreen ? "320px" : "800px",
@@ -99,7 +103,11 @@ const Explore = () => {
               <Grid
                 container
                 spacing={2}
-                justifyContent={isSmallScreen ? "center" : "space-between"}
+                justifyContent={
+                  isSmallScreen || (isLargeScreen && cafes.length == 2)
+                    ? "center"
+                    : "flex-start"
+                }
                 flexWrap="wrap"
               >
                 {cafes.map((cafe) => (
@@ -127,6 +135,8 @@ const Explore = () => {
                 ))}
               </Grid>
             </Container>
+          ) : (
+            <p>{strings.error.noCafe}</p>
           )}
         </Container>
       </div>
