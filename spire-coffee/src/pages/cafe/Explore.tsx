@@ -54,29 +54,21 @@ const Explore = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.navbar.explore} />
-      <div
-        style={{
+      {/* {loading && (
+        <Container sx={{
           display: "flex",
-          flexDirection: "row",
-          paddingLeft: "0",
-          paddingRight: "0",
-        }}
-      >
-        <FilterSidebar />
-        <Container
-          sx={{
+          justifyContent: "center",
+          alignItems: "center",
+          height: "calc(100% - 32px)"
+        }}>
+          <Box sx={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          {loading && (
-            <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
-              <LoadingSpinner />
-            </Box>
-          )}
-          {error && (
+            height: "50%",
+          }}>
+            <LoadingSpinner />
+            {error && (
             <Box
               sx={{
                 display: "flex",
@@ -91,15 +83,42 @@ const Explore = () => {
               </Typography>
             </Box>
           )}
+          </Box>
+        </Container>
+      )} */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          height: "100%"
+        }}
+      >
+        <FilterSidebar />
+        <div style={{
+          justifyContent: "center",
+          flexDirection: "column",
+          minWidth: "calc(100% - 300px)",
+          paddingTop: "1rem",
+          paddingBottom: "0.5rem",
+        }}>
           <SearchBar query={searchCafeName} handleQuery={handleSearchQuery} />
-          {cafes.length ? (
-            <Container
-              sx={{
-                maxWidth: isSmallScreen ? "320px" : "800px",
-                paddingLeft: 0,
-                paddingRight: 0,
-              }}
-            >
+          <Container
+            sx={{
+              maxWidth: isSmallScreen ? "320px" : "800px",
+              height: "100%",
+            }}
+          >
+            {(loading && cafes.length === 0) && (
+              <Box sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "50%",
+              }}>
+                <LoadingSpinner />
+              </Box>
+            )}
+            {cafes.length ? (
               <Grid
                 container
                 spacing={2}
@@ -134,11 +153,11 @@ const Explore = () => {
                   </Grid>
                 ))}
               </Grid>
-            </Container>
-          ) : (
-            <p>{strings.error.noCafe}</p>
-          )}
-        </Container>
+            ) : (
+              <Typography variant="h3" textAlign={"center"}>{strings.error.noCafe}</Typography>
+            )}
+          </Container>
+        </div>
       </div>
     </React.Fragment>
   );
