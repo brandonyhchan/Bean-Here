@@ -54,7 +54,7 @@ const Explore = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.navbar.explore} />
-      {/* {loading && (
+      {loading ? (
         <Container sx={{
           display: "flex",
           justifyContent: "center",
@@ -67,98 +67,98 @@ const Explore = () => {
             alignItems: "center",
             height: "50%",
           }}>
-            <LoadingSpinner />
-            {error && (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-                flexGrow: 1,
-              }}
-            >
-              <Typography variant="h3">
-                {strings.error.exploreGeneric}
-              </Typography>
-            </Box>
-          )}
+            {error ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                  flexGrow: 1,
+                }}
+              >
+                <Typography variant="h3">
+                  {strings.error.exploreGeneric}
+                </Typography>
+              </Box>
+            ) : <LoadingSpinner />}
           </Box>
         </Container>
-      )} */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          height: "100%"
-        }}
-      >
-        <FilterSidebar />
-        <div style={{
-          justifyContent: "center",
-          flexDirection: "column",
-          minWidth: "calc(100% - 300px)",
-          paddingTop: "1rem",
-          paddingBottom: "0.5rem",
-        }}>
-          <SearchBar query={searchCafeName} handleQuery={handleSearchQuery} />
-          <Container
-            sx={{
-              maxWidth: isSmallScreen ? "320px" : "800px",
-              height: "100%",
-            }}
-          >
-            {(loading && cafes.length === 0) && (
-              <Box sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "50%",
-              }}>
-                <LoadingSpinner />
-              </Box>
-            )}
-            {cafes.length ? (
-              <Grid
-                container
-                spacing={2}
-                justifyContent={
-                  isSmallScreen || (isLargeScreen && cafes.length == 2)
-                    ? "center"
-                    : "flex-start"
-                }
-                flexWrap="wrap"
-              >
-                {cafes.map((cafe) => (
-                  <Grid
-                    item
-                    key={cafe.stringId}
-                    xs={10}
-                    sm={12}
-                    md={6}
-                    lg={4}
-                    style={{ display: "flex", justifyContent: "center" }}
-                  >
-                    <CafeCard
-                      id={parseInt(cafe.stringId)}
-                      name={cafe.name}
-                      street={cafe.street}
-                      city={cafe.city}
-                      province={cafe.province}
-                      profilePhotoURL={cafe.profilePhotoURL}
-                      busyness={cafe.busyness}
-                      noisiness={cafe.noisiness}
-                      price={cafe.price}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
-            ) : (
-              <Typography variant="h3" textAlign={"center"}>{strings.error.noCafe}</Typography>
-            )}
-          </Container>
-        </div>
-      </div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            height: "100%"
+          }}
+        >
+          <FilterSidebar />
+          <div style={{
+            justifyContent: "center",
+            flexDirection: "column",
+            minWidth: "calc(100% - 300px)",
+            paddingTop: "1rem",
+            paddingBottom: "0.5rem",
+          }}>
+            <SearchBar query={searchCafeName} handleQuery={handleSearchQuery} />
+            <Container
+              sx={{
+                maxWidth: isSmallScreen ? "320px" : "800px",
+                height: "100%",
+              }}
+            >
+              {(loading && cafes.length === 0) && (
+                <Box sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "50%",
+                }}>
+                  <LoadingSpinner />
+                </Box>
+              )}
+              {cafes.length ? (
+                <Grid
+                  container
+                  spacing={2}
+                  justifyContent={
+                    isSmallScreen || (isLargeScreen && cafes.length == 2)
+                      ? "center"
+                      : "flex-start"
+                  }
+                  flexWrap="wrap"
+                >
+                  {cafes.map((cafe) => (
+                    <Grid
+                      item
+                      key={cafe.stringId}
+                      xs={10}
+                      sm={12}
+                      md={6}
+                      lg={4}
+                      style={{ display: "flex", justifyContent: "center" }}
+                    >
+                      <CafeCard
+                        id={parseInt(cafe.stringId)}
+                        name={cafe.name}
+                        street={cafe.street}
+                        city={cafe.city}
+                        province={cafe.province}
+                        profilePhotoURL={cafe.profilePhotoURL}
+                        busyness={cafe.busyness}
+                        noisiness={cafe.noisiness}
+                        price={cafe.price}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              ) : (
+                <Typography variant="h3" textAlign={"center"}>{strings.error.noCafe}</Typography>
+              )}
+            </Container>
+          </div>
+        </div>)
+      }
     </React.Fragment>
   );
 };
