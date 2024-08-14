@@ -32,7 +32,7 @@ const strings = new LocalizedStrings({
       passwordSpecial: "Password must have at least 1 special character",
       passwordNum: "Password must have at least 1 number",
       passwordCap: "Password must have at least 1 capital",
-      exploreGeneric: "There was an error retrieving cafes.",,
+      exploreGeneric: "There was an error retrieving cafes.",
       noCafe: "No cafes found",
     },
     footer: {
