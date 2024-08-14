@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Grid, Container, useMediaQuery, useTheme, Box } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Container,
+  useMediaQuery,
+  useTheme,
+  Typography,
+} from "@mui/material";
 import CafeCard from "../../component/CafeCard";
+import LoadingSpinner from "@/component/LoadingSpinner";
 import { useQuery } from "@apollo/client";
 import { returnAllCafeQuery } from "@/support/graphqlServerApi";
 import { Cafe } from "@/types/cafe";
@@ -13,7 +21,7 @@ const Explore = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [cafes, setCafes] = useState<Cafe[]>([]);
-  const [cafeCount, setCafeCount] = useState(0);
+  // const [cafeCount, setCafeCount] = useState(0);
 
   // add back refresh later
   const { loading, error } = useQuery(returnAllCafeQuery, {
@@ -22,9 +30,8 @@ const Explore = () => {
     },
 
     onCompleted: (data) => {
-      console.log(data);
       setCafes(data?.returnAllCafes);
-      setCafeCount(data?.getCafeCount);
+      // setCafeCount(data?.getCafeCount);
     },
     // add back variables for filtering
     variables: {},
@@ -32,25 +39,44 @@ const Explore = () => {
 
   return (
     <React.Fragment>
-      <Helmet title={strings.Navbar.explore} />
-      {loading && (
-        <div>
-          <p>Loading...</p>
-        </div>
-      )}
-      {error && (
-        <div>
-          <p> There was an error.</p>
-        </div>
-      )}
-      <Box sx={{ display: "flex", height: "100%", borderRadius: 0 }}>
-        {/* Flter sidebar */}
-        <Box sx={{ flex: "0 0 250px", borderRight: "1px solid #ddd" }}>
-          <FilterSidebar />
-        </Box>
-        {/* Cafes */}
-        <Box sx={{ flex: "1", overflowY: "auto" }}>
-          {cafes.length > 0 && (
+      <Helmet title={strings.navbar.explore} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          paddingLeft: "0",
+          paddingRight: "0",
+        }}
+      >
+        <FilterSidebar />
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {loading && (
+            <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
+              <LoadingSpinner />
+            </Box>
+          )}
+          {error && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                flexGrow: 1,
+              }}
+            >
+              <Typography variant="h3">
+                {strings.error.exploreGeneric}
+              </Typography>
+            </Box>
+          )}
+          {!!cafes.length && (
             <Container
               sx={{
                 maxWidth: isSmallScreen ? "320px" : "800px",
@@ -58,7 +84,6 @@ const Explore = () => {
                 paddingRight: 0,
               }}
             >
-              <p>{`Cafe count: ${cafeCount}`}</p>
               <Grid
                 container
                 spacing={2}
@@ -91,8 +116,8 @@ const Explore = () => {
               </Grid>
             </Container>
           )}
-        </Box>
-      </Box>
+        </Container>
+      </div>
     </React.Fragment>
   );
 };

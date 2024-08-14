@@ -1,7 +1,4 @@
-import {
-  AccordionActions,
-  Box
-} from "@mui/material";
+import { AccordionActions, Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import CustomAccordion from "./CustomAccordion";
 import { Level, Price, marks, valuetext } from "@/config/FilterItems";
@@ -47,6 +44,6 @@ const FilterSidebar = () => {
       </Box>
     </form>
   );
-}
+};
 
 export default FilterSidebar;

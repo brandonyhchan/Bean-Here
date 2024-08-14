@@ -9,7 +9,7 @@ import {
   Slider,
   Radio,
   RadioGroup,
-  FormControl
+  FormControl,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Level, Price } from "@/config/FilterItems";
@@ -42,7 +42,7 @@ const CustomAccordion: React.FC<CustomAccordionProps> = ({
   };
 
   return (
-    <Accordion>
+    <Accordion sx={{ p: 2 }}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel-content"
@@ -86,7 +86,6 @@ const CustomAccordion: React.FC<CustomAccordionProps> = ({
               ))}
             </RadioGroup>
           </FormControl>
-
         )}
       </AccordionDetails>
     </Accordion>

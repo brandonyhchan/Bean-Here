@@ -52,7 +52,7 @@ const Login = () => {
     if (!username) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        username: strings.errorMsg.requiredField,
+        username: strings.error.requiredField,
       }));
       valid = false;
     }
@@ -60,7 +60,7 @@ const Login = () => {
     if (!password) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: strings.errorMsg.requiredField,
+        password: strings.error.requiredField,
       }));
       valid = false;
     }
