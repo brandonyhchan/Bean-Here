@@ -56,7 +56,8 @@ const Explore = () => {
           <p> There was an error.</p>
         </div>
       )}
-      {cafes.length && (
+      <SearchBar query={searchCafeName} handleQuery={handleSearchQuery} />
+      {cafes.length ? (
         <Container
           sx={{
             maxWidth: isSmallScreen ? "320px" : "800px",
@@ -65,11 +66,10 @@ const Explore = () => {
           }}
         >
           <p>{`Cafe count: ${cafeCount}`}</p>
-          <SearchBar query={searchCafeName} handleQuery={handleSearchQuery} />
           <Grid
             container
             spacing={2}
-            justifyContent={isSmallScreen || (isLargeScreen && cafes.length == 2) ? "center" : "space-between"}
+            justifyContent={isSmallScreen || (isLargeScreen && cafes.length == 2) ? "center" : "flex-start"}
             flexWrap="wrap"
           >
             {cafes.map((cafe) => (
@@ -97,7 +97,7 @@ const Explore = () => {
             ))}
           </Grid>
         </Container>
-      )}
+      ) : <p>{strings.errorMsg.noCafe}</p>}
     </React.Fragment>
   );
 };

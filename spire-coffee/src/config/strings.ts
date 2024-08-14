@@ -31,7 +31,8 @@ const strings = new LocalizedStrings({
       passwordLength: "Password must have at least 5 characters",
       passwordSpecial: "Password must have at least 1 special character",
       passwordNum: "Password must have at least 1 number",
-      passwordCap: "Password must have at least 1 capital"
+      passwordCap: "Password must have at least 1 capital",
+      noCafe: "No cafes found",
     },
     footer: {
       copyright: "Copyright © 2024 SpireTech, Inc",
