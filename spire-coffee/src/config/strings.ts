@@ -17,7 +17,7 @@ const strings = new LocalizedStrings({
       signUp: "Sign Up",
       confirmPassword: "Confirm Password",
     },
-    Navbar: {
+    navbar: {
       explore: "Explore",
       favourites: "Favourites",
       addCafe: "Add a Cafe",
@@ -87,8 +87,8 @@ const strings = new LocalizedStrings({
       distance: "Distance (km)",
       capacity: "Current Capacity",
       noise: "Noise Level",
-      price: "Price"
-    }
+      price: "Price",
+    },
   },
 });
 
