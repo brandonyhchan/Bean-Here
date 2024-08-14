@@ -1,7 +1,7 @@
 import { ROUTES } from "@/config/routes";
 import strings from "@/config/strings";
 
-export const NavBarItems = [
+export const NavbarItems = [
   {
     label: strings.navbar.explore,
     path: ROUTES.EXPLORE,

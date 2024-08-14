@@ -5,7 +5,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import strings from "../../config/strings";
 
-export const getNavBarIcons = (text: string) => {
+export const getNavbarIcons = (text: string) => {
   switch (text) {
     case strings.navbar.explore:
       return <ExploreIcon />;

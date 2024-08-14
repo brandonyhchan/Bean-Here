@@ -22,9 +22,9 @@ const strings = new LocalizedStrings({
       favourites: "Favourites",
       addCafe: "Add a Cafe",
       account: "Account",
-      signOut: "Sign Out"
+      signOut: "Sign Out",
     },
-    errorMsg: {
+    error: {
       requiredField: "This field is required",
       passwordMatch: "Passwords do not match",
       emailInvalid: "Invalid email address",
@@ -32,6 +32,7 @@ const strings = new LocalizedStrings({
       passwordSpecial: "Password must have at least 1 special character",
       passwordNum: "Password must have at least 1 number",
       passwordCap: "Password must have at least 1 capital",
+      exploreGeneric: "There was an error retrieving cafes.",,
       noCafe: "No cafes found",
     },
     footer: {
@@ -83,6 +84,12 @@ const strings = new LocalizedStrings({
       getDirections: "Get Directions",
       reportSubmitMessage: "Thank you! Your report has been submitted",
     },
+    filter: {
+      distance: "Distance (km)",
+      capacity: "Current Capacity",
+      noise: "Noise Level",
+      price: "Price"
+    }
   },
 });
 

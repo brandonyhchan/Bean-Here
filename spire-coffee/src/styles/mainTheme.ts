@@ -89,6 +89,29 @@ const mainTheme = createTheme({
         },
       },
     },
+     MuiAccordion: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+          '&.Mui-expanded': {
+            margin: '0px 0', // Remove the default margin
+          },
+          '&:before': {
+            display: 'none', // Remove the default border
+          },
+          '&:first-of-type': {
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
+          },
+          '&:last-of-type': {
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+            border: 'none',
+            boxShadow: 'none',
+          },
+        },
+      },
+    },
   },
 });
 
