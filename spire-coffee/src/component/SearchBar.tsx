@@ -1,6 +1,7 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { Container, TextField, InputAdornment, IconButton } from "@mui/material";
 import mainTheme from "@/styles/mainTheme";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 interface SearchBarProps {
   query: string;
@@ -19,12 +20,17 @@ const SearchBar: React.FC<SearchBarProps> = ({ query, handleQuery }) => (
         onInput={handleQuery}
         placeholder="Search Cafes..."
         InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          ),
           endAdornment: (
             <InputAdornment position="end">
               <IconButton type="submit" aria-label="search" sx={{
                 color: mainTheme.palette.primary.main,
               }}>
-                <SearchIcon />
+                <HighlightOffIcon />
               </IconButton>
             </InputAdornment>
           ),
