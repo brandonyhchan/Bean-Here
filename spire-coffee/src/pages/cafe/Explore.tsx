@@ -69,7 +69,11 @@ const Explore = () => {
           <Grid
             container
             spacing={2}
-            justifyContent={isSmallScreen || (isLargeScreen && cafes.length == 2) ? "center" : "space-between"}
+            justifyContent={
+              isSmallScreen || (isLargeScreen && cafes.length == 2)
+                ? "center"
+                : "space-between"
+            }
             flexWrap="wrap"
           >
             {cafes.map((cafe) => (

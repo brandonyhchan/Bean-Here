@@ -84,7 +84,7 @@ export async function login(parent, args, context) {
  */
 export async function returnAllCafes(parent, args, context) {
   // Previously we used mode: "insensitive" but this is no longer supported
-  const filterByName = args.filterByName ? args.filterByName.toLowerCase() : '';
+  const filterByName = args.filterByName ? args.filterByName.toLowerCase() : "";
 
   try {
     if (!context.userId) {
@@ -117,7 +117,6 @@ export async function returnAllCafes(parent, args, context) {
     throw new Error("Failed to fetch cafes");
   }
 }
-
 
 /**
  * Gets the cafe details of the requested cafe by unique id.
