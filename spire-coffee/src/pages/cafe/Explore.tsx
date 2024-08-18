@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
-import { useSearchParams } from "react-router-dom";
 import {
   Box,
   Grid,
@@ -13,7 +12,6 @@ import {
 import CafeCard from "../../component/CafeCard";
 import SearchBar from "../../component/SearchBar";
 import LoadingSpinner from "@/component/LoadingSpinner";
-import SearchBar from "../../component/SearchBar";
 import { useQuery } from "@apollo/client";
 import { returnAllCafeQuery } from "@/support/graphqlServerApi";
 import { Cafe } from "@/types/cafe";
@@ -23,7 +21,6 @@ import strings from "@/config/strings";
 const Explore = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   const [cafes, setCafes] = useState<Cafe[]>([]);
@@ -47,15 +44,7 @@ const Explore = () => {
     variables: {
       filterByName: searchCafeName,
     },
-    variables: {
-      filterByName: searchCafeName,
-    },
   });
-
-  const handleSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchCafeName(event.target.value);
-    setSearchParams({ search: event.target.value });
-  };
 
   const handleSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchCafeName(event.target.value);
