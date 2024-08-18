@@ -1,8 +1,5 @@
-import {
-  Typography,
-  Box,
-  Container
-} from "@mui/material";
+import { Typography, Box,
+  Container } from "@mui/material";
 import Button from "@mui/material/Button";
 import CustomAccordion from "./CustomAccordion";
 import { Level, Price, marks, valuetext } from "@/config/FilterItems";
@@ -51,6 +48,6 @@ const FilterSidebar = () => {
       </Box>
     </form>
   );
-}
+};
 
 export default FilterSidebar;

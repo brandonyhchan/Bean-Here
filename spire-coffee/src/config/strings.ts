@@ -88,8 +88,8 @@ const strings = new LocalizedStrings({
       distance: "Distance (km)",
       capacity: "Current Capacity",
       noise: "Noise Level",
-      price: "Price"
-    }
+      price: "Price",
+    },
   },
 });
 

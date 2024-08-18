@@ -1,5 +1,10 @@
 import SearchIcon from "@mui/icons-material/Search";
-import { Container, TextField, InputAdornment, IconButton } from "@mui/material";
+import {
+  Container,
+  TextField,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
 import mainTheme from "@/styles/mainTheme";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 

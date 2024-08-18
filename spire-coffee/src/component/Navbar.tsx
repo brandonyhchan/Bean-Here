@@ -19,6 +19,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { NavbarItems } from "../config/NavbarItems";
 import { getNavbarIcons } from "./icons/NavbarIcons";
 import { ClickableIconButton } from "../styles/iconTheme";
+import { useAuth } from "@/context/AuthContext";
 import strings from "@/config/strings";
 
 const Navbar = () => {
@@ -28,9 +29,14 @@ const Navbar = () => {
   };
 
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleNavigation = (path: string) => {
-    navigate(path);
+    if (path === ROUTES.SIGN_OUT) {
+      logout();
+    } else {
+      navigate(path);
+    }
   };
 
   const drawer = (
