@@ -83,29 +83,39 @@ export async function login(parent, args, context) {
  * @returns {Promise<object[]>} Resolves to a list of cafes matching the filters.
  */
 export async function returnAllCafes(parent, args, context) {
-  if (!context.userId) {
-    throw new Error("Not authenticated");
-  }
+  // Previously we used mode: "insensitive" but this is no longer supported
+  const filterByName = args.filterByName ? args.filterByName.toLowerCase() : "";
 
-  // Query cafes from the database with the specified filters and selections
-  const query = await context.prisma.cafe.findMany({
-    select: {
-      id: true,
-      stringId: true,
-      name: true,
-      street: true,
-      city: true,
-      province: true,
-      profilePhotoURL: true,
-      location: true,
-      busyness: true,
-      noisiness: true,
-    },
-    orderBy: {
-      id: "asc",
-    },
-  });
-  return query;
+  try {
+    if (!context.userId) {
+      throw new Error("Not authenticated");
+    }
+
+    const query = await context.prisma.cafe.findMany({
+      select: {
+        id: true,
+        stringId: true,
+        name: true,
+        street: true,
+        city: true,
+        province: true,
+        profilePhotoURL: true,
+        location: true,
+        busyness: true,
+        noisiness: true,
+      },
+      where: {
+        name: { contains: filterByName },
+      },
+      orderBy: {
+        id: "asc",
+      },
+    });
+    return query;
+  } catch (error) {
+    console.error("Error in returnAllCafes resolver:", error);
+    throw new Error("Failed to fetch cafes");
+  }
 }
 
 /**
