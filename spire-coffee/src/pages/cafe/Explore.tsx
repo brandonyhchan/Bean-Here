@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useSearchParams } from "react-router-dom";
 import {
   Box,
   Grid,
@@ -9,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import CafeCard from "../../component/CafeCard";
+import SearchBar from "../../component/SearchBar";
 import LoadingSpinner from "@/component/LoadingSpinner";
 import { useQuery } from "@apollo/client";
 import { returnAllCafeQuery } from "@/support/graphqlServerApi";
@@ -19,9 +21,14 @@ import strings from "@/config/strings";
 const Explore = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   const [cafes, setCafes] = useState<Cafe[]>([]);
-  // const [cafeCount, setCafeCount] = useState(0);
+  const [cafeCount, setCafeCount] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchCafeName, setSearchCafeName] = useState(
+    searchParams.get("search") || ""
+  );
 
   // add back refresh later
   const { loading, error } = useQuery(returnAllCafeQuery, {
@@ -34,8 +41,15 @@ const Explore = () => {
       // setCafeCount(data?.getCafeCount);
     },
     // add back variables for filtering
-    variables: {},
+    variables: {
+      filterByName: searchCafeName,
+    },
   });
+
+  const handleSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchCafeName(event.target.value);
+    setSearchParams({ search: event.target.value });
+  };
 
   return (
     <React.Fragment>
@@ -84,10 +98,18 @@ const Explore = () => {
                 paddingRight: 0,
               }}
             >
+              <SearchBar
+                query={searchCafeName}
+                handleQuery={handleSearchQuery}
+              />
               <Grid
                 container
                 spacing={2}
-                justifyContent={isSmallScreen ? "center" : "space-between"}
+                justifyContent={
+                  isSmallScreen || (isLargeScreen && cafes.length == 2)
+                    ? "center"
+                    : "space-between"
+                }
                 flexWrap="wrap"
               >
                 {cafes.map((cafe) => (
