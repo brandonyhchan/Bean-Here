@@ -33,6 +33,7 @@ const strings = new LocalizedStrings({
       passwordNum: "Password must have at least 1 number",
       passwordCap: "Password must have at least 1 capital",
       exploreGeneric: "There was an error retrieving cafes.",
+      noCafe: "No cafes found!",
     },
     footer: {
       copyright: "Copyright © 2024 SpireTech, Inc",

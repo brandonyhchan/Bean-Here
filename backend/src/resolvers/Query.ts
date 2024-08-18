@@ -119,6 +119,7 @@ export async function returnAllCafes(parent, args, context) {
   }
 }
 
+
 /**
  * Gets the cafe details of the requested cafe by unique id.
  *

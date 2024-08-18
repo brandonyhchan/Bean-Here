@@ -6,6 +6,7 @@ import {
   IconButton,
 } from "@mui/material";
 import mainTheme from "@/styles/mainTheme";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 interface SearchBarProps {
   query: string;
@@ -14,9 +15,7 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ query, handleQuery }) => (
   <form>
-    <Container
-      sx={{ display: "flex", flexDirection: "row", width: "600px", mb: 3 }}
-    >
+    <Container sx={{ display: "flex", flexDirection: "row", width: "600px", mb: 3 }}>
       <TextField
         margin="normal"
         fullWidth
@@ -26,16 +25,17 @@ const SearchBar: React.FC<SearchBarProps> = ({ query, handleQuery }) => (
         onInput={handleQuery}
         placeholder="Search Cafes..."
         InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          ),
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton
-                type="submit"
-                aria-label="search"
-                sx={{
-                  color: mainTheme.palette.primary.main,
-                }}
-              >
-                <SearchIcon />
+              <IconButton type="submit" aria-label="search" sx={{
+                color: mainTheme.palette.primary.main,
+              }}>
+                <HighlightOffIcon />
               </IconButton>
             </InputAdornment>
           ),
