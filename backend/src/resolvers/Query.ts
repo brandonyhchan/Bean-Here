@@ -100,6 +100,7 @@ export async function returnAllCafes(parent, args, context) {
       location: true,
       busyness: true,
       noisiness: true,
+      price: true,
     },
     orderBy: {
       id: "asc",
