@@ -1,7 +1,4 @@
-import {
-  AccordionActions,
-  Box
-} from "@mui/material";
+import { AccordionActions, Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import CustomAccordion from "./CustomAccordion";
 import { Level, Price, marks, valuetext } from "@/config/FilterItems";
@@ -9,7 +6,7 @@ import strings from "@/config/strings";
 
 const FilterSidebar = () => {
   return (
-    <form style={{ width: "250px" }}>
+    <form>
       {/* this design might need to be changed */}
       <CustomAccordion
         title={strings.filter.distance}
@@ -47,6 +44,6 @@ const FilterSidebar = () => {
       </Box>
     </form>
   );
-}
+};
 
 export default FilterSidebar;

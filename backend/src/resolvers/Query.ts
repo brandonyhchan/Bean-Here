@@ -103,6 +103,7 @@ export async function returnAllCafes(parent, args, context) {
         location: true,
         busyness: true,
         noisiness: true,
+        price: true,
       },
       where: {
         name: { contains: filterByName },
