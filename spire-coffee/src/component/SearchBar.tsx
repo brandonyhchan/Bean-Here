@@ -19,8 +19,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ query, handleQuery }) => (
       <TextField
         margin="normal"
         fullWidth
-        id="search-bar"
-        name="search-bar"
+        id="search"
+        name="search"
         value={query}
         onInput={handleQuery}
         placeholder="Search Cafes..."
