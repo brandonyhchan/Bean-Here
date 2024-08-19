@@ -29,6 +29,7 @@ const SignUp = () => {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordTyped, setPasswordTyped] = useState(false);
   const [signUpError, setSignUpError] = useState("");
   const [errors, setErrors, resetErrors] = useFormErrors();
 
@@ -132,6 +133,7 @@ const SignUp = () => {
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
+    setPasswordTyped(true); // Mark password as typed
     if (event.target.value !== confirmPassword) {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -254,18 +256,20 @@ const SignUp = () => {
               error={!!errors.password}
               helperText={errors.password}
             />
-            <PasswordChecklist
-              rules={["minLength", "specialChar", "number", "capital"]}
-              minLength={5}
-              value={password}
-              valueAgain={confirmPassword}
-              messages={{
-                minLength: strings.error.passwordLength,
-                specialChar: strings.error.passwordSpecial,
-                number: strings.error.passwordNum,
-                capital: strings.error.passwordCap,
-              }}
-            />
+            {passwordTyped && (
+              <PasswordChecklist
+                rules={["minLength", "specialChar", "number", "capital"]}
+                minLength={5}
+                value={password}
+                valueAgain={confirmPassword}
+                messages={{
+                  minLength: strings.error.passwordLength,
+                  specialChar: strings.error.passwordSpecial,
+                  number: strings.error.passwordNum,
+                  capital: strings.error.passwordCap
+                }}
+              />
+            )}
             <TextField
               margin="normal"
               fullWidth
