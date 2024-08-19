@@ -1,21 +1,31 @@
+import mainTheme from '@/styles/mainTheme';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import SearchIcon from "@mui/icons-material/Search";
 import {
   Container,
-  TextField,
-  InputAdornment,
   IconButton,
+  InputAdornment,
+  TextField,
 } from "@mui/material";
-import mainTheme from "@/styles/mainTheme";
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 interface SearchBarProps {
+  showCloseButton: boolean,
+  handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   query: string;
   handleQuery: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ query, handleQuery }) => (
+const SearchBar: React.FC<SearchBarProps> = ({
+  showCloseButton, query, handleClick, handleQuery
+}) => (
   <form>
-    <Container sx={{ display: "flex", flexDirection: "row", width: "600px", mb: 3 }}>
+    <Container sx={{ display: "flex", flexDirection: "row", mb: 3,
+        width: {
+          xs: '100%',
+          sm: '400px',
+          md: '600px',
+        },
+     }}>
       <TextField
         margin="normal"
         fullWidth
@@ -32,11 +42,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ query, handleQuery }) => (
           ),
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton type="submit" aria-label="search" sx={{
-                color: mainTheme.palette.primary.main,
-              }}>
-                <HighlightOffIcon />
-              </IconButton>
+              {showCloseButton && query.length > 0 && (
+                <IconButton
+                  onClick={handleClick}
+                  aria-label="clear"
+                  sx={{ color: mainTheme.palette.primary.main }}
+                >
+                  <HighlightOffIcon />
+                </IconButton>
+              )}
             </InputAdornment>
           ),
         }}

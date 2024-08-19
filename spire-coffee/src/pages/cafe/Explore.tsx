@@ -1,22 +1,24 @@
+import FilterSidebar from "@/component/FilterSidebar";
+import LoadingSpinner from "@/component/LoadingSpinner";
+import strings from "@/config/strings";
+import { ClickableIconButton } from "@/styles/iconTheme";
+import { returnAllCafeQuery } from "@/support/graphqlServerApi";
+import { Cafe } from "@/types/cafe";
+import { useQuery } from "@apollo/client";
+import TuneRoundedIcon from '@mui/icons-material/TuneRounded';
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
-import {
-  Box,
-  Grid,
-  Container,
-  useMediaQuery,
-  useTheme,
-  Typography,
-} from "@mui/material";
 import CafeCard from "../../component/CafeCard";
 import SearchBar from "../../component/SearchBar";
-import LoadingSpinner from "@/component/LoadingSpinner";
-import { useQuery } from "@apollo/client";
-import { returnAllCafeQuery } from "@/support/graphqlServerApi";
-import { Cafe } from "@/types/cafe";
-import FilterSidebar from "@/component/FilterSidebar";
-import strings from "@/config/strings";
 
 const Explore = () => {
   const theme = useTheme();
@@ -29,6 +31,7 @@ const Explore = () => {
   const [searchCafeName, setSearchCafeName] = useState(
     searchParams.get("search") || ""
   );
+  const [showCloseButton, setShowCloseButton] = useState(false);
 
   // add back refresh later
   const { loading, error } = useQuery(returnAllCafeQuery, {
@@ -46,9 +49,17 @@ const Explore = () => {
     },
   });
 
+  const handleClick = (event: React.MouseEvent<Element, MouseEvent>) => {
+    event.preventDefault();
+    setSearchCafeName("");
+    setSearchParams({});
+    setShowCloseButton(false);
+  };
+
   const handleSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchCafeName(event.target.value);
     setSearchParams({ search: event.target.value });
+    setShowCloseButton(true);
   };
 
   return (
@@ -92,7 +103,7 @@ const Explore = () => {
             height: "100%"
           }}
         >
-          <FilterSidebar />
+          {!isSmallScreen && <FilterSidebar />}
           <div style={{
             justifyContent: "center",
             flexDirection: "column",
@@ -100,7 +111,16 @@ const Explore = () => {
             paddingTop: "1rem",
             paddingBottom: "0.5rem",
           }}>
-            <SearchBar query={searchCafeName} handleQuery={handleSearchQuery} />
+            <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+              <SearchBar query={searchCafeName} handleQuery={handleSearchQuery} showCloseButton={showCloseButton}
+                handleClick={handleClick} />
+              <Box sx={{ mt: 3 }}>
+                {isSmallScreen &&
+                  <ClickableIconButton>
+                    <TuneRoundedIcon />
+                  </ClickableIconButton>}
+              </Box>
+            </Box>
             <Container
               sx={{
                 maxWidth: isSmallScreen ? "320px" : "800px",
