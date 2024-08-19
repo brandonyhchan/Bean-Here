@@ -16,21 +16,27 @@ import {
   Link as MuiLink,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavBarItems } from "../config/NavBarItems";
-import { getNavBarIcons } from "./icons/NavBarIcons";
+import { NavbarItems } from "../config/NavbarItems";
+import { getNavbarIcons } from "./icons/NavbarIcons";
 import { ClickableIconButton } from "../styles/iconTheme";
+import { useAuth } from "@/context/AuthContext";
 import strings from "@/config/strings";
 
-const NavBar = () => {
+const Navbar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleNavigation = (path: string) => {
-    navigate(path);
+    if (path === ROUTES.SIGN_OUT) {
+      logout();
+    } else {
+      navigate(path);
+    }
   };
 
   const drawer = (
@@ -40,10 +46,10 @@ const NavBar = () => {
       onClick={handleDrawerToggle}
     >
       <List>
-        {NavBarItems.map(({ label, path }) => (
+        {NavbarItems.map(({ label, path }) => (
           <ListItem key={label} disablePadding>
             <ListItemButton onClick={() => handleNavigation(path)}>
-              <ListItemIcon>{getNavBarIcons(label)}</ListItemIcon>
+              <ListItemIcon>{getNavbarIcons(label)}</ListItemIcon>
               <ListItemText primary={label} />
             </ListItemButton>
           </ListItem>
@@ -87,7 +93,7 @@ const NavBar = () => {
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {NavBarItems.map(({ label, path }) => (
+              {NavbarItems.map(({ label, path }) => (
                 <Button
                   key={label}
                   sx={{
@@ -126,4 +132,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;

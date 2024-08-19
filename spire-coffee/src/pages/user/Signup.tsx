@@ -68,7 +68,7 @@ const SignUp = () => {
     if (!username) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        username: strings.errorMsg.requiredField,
+        username: strings.error.requiredField,
       }));
       valid = false;
     }
@@ -76,13 +76,13 @@ const SignUp = () => {
     if (!email) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        email: strings.errorMsg.requiredField,
+        email: strings.error.requiredField,
       }));
       valid = false;
     } else if (!EmailValidator.validate(email)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        email: strings.errorMsg.emailInvalid,
+        email: strings.error.emailInvalid,
       }));
       valid = false;
     }
@@ -90,7 +90,7 @@ const SignUp = () => {
     if (!firstName) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        firstName: strings.errorMsg.requiredField,
+        firstName: strings.error.requiredField,
       }));
       valid = false;
     }
@@ -98,7 +98,7 @@ const SignUp = () => {
     if (!lastName) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        lastName: strings.errorMsg.requiredField,
+        lastName: strings.error.requiredField,
       }));
       valid = false;
     }
@@ -106,13 +106,13 @@ const SignUp = () => {
     if (!password) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: strings.errorMsg.requiredField,
+        password: strings.error.requiredField,
       }));
       valid = false;
     } else if (password !== confirmPassword) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: strings.errorMsg.passwordMatch,
+        password: strings.error.passwordMatch,
       }));
       valid = false;
     }
@@ -138,7 +138,7 @@ const SignUp = () => {
     if (event.target.value !== confirmPassword) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: strings.errorMsg.passwordMatch,
+        password: strings.error.passwordMatch,
       }));
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
@@ -152,7 +152,7 @@ const SignUp = () => {
     if (event.target.value !== password) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: strings.errorMsg.passwordMatch,
+        password: strings.error.passwordMatch,
       }));
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
@@ -257,10 +257,10 @@ const SignUp = () => {
                 value={password}
                 valueAgain={confirmPassword}
                 messages={{
-                  minLength: strings.errorMsg.passwordLength,
-                  specialChar: strings.errorMsg.passwordSpecial,
-                  number: strings.errorMsg.passwordNum,
-                  capital: strings.errorMsg.passwordCap
+                  minLength: strings.error.passwordLength,
+                  specialChar: strings.error.passwordSpecial,
+                  number: strings.error.passwordNum,
+                  capital: strings.error.passwordCap
                 }}
               />
             )}

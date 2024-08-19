@@ -37,8 +37,12 @@ export const loginQuery = gql`
 `;
 
 export const returnAllCafeQuery = gql`
-  query ReturnAllCafes {
-    returnAllCafes {
+  query ReturnAllCafes(
+    $filterByName: String
+  ) {
+    returnAllCafes(
+      filterByName: $filterByName
+    ) {
       id
       stringId
       name
