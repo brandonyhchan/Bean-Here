@@ -1,26 +1,28 @@
-import React from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { ROUTES } from "../config/routes";
+import strings from "@/config/strings";
+import { useAuth } from "@/context/AuthContext";
+import mainTheme from "@/styles/mainTheme";
+import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
   Box,
-  Toolbar,
-  Typography,
+  Button,
   Drawer,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Button,
   Link as MuiLink,
+  Toolbar,
+  Typography,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { NavbarItems } from "../config/NavbarItems";
-import { getNavbarIcons } from "./icons/NavbarIcons";
+import { ROUTES } from "../config/routes";
 import { ClickableIconButton } from "../styles/iconTheme";
-import { useAuth } from "@/context/AuthContext";
-import strings from "@/config/strings";
+import { getNavbarIcons } from "./icons/NavbarIcons";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -60,7 +62,7 @@ const Navbar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" component="nav">
+      <AppBar position="static" component="nav" sx={{ backgroundColor: mainTheme.palette.secondary.main }}>
         <Toolbar>
           <ClickableIconButton
             size="large"
@@ -79,6 +81,7 @@ const Navbar = () => {
           >
             <MenuIcon />
           </ClickableIconButton>
+          <Logo size="70px" type="logo"/>
           <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
             <MuiLink
               style={{ textDecoration: "none", color: "inherit" }}

@@ -97,7 +97,7 @@ const Login = () => {
             alignItems: "center",
           }}
         >
-          <Logo />
+          <Logo size="250px" type="logo" />
           <Typography component="h1" variant="h5">
             {strings.login.signIn}
           </Typography>
