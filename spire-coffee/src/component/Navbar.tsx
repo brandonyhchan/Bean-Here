@@ -81,17 +81,14 @@ const Navbar = () => {
           >
             <MenuIcon />
           </ClickableIconButton>
-          <Logo size="70px" type="logo"/>
-          <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
-            <MuiLink
-              style={{ textDecoration: "none", color: "inherit" }}
-              component={Link}
-              to={ROUTES.ROOT}
-              variant="h3"
-            >
-              {strings.general.title}
-            </MuiLink>
-          </Typography>
+          <MuiLink
+            style={{ textDecoration: "none", color: "inherit" }}
+            component={Link}
+            to={ROUTES.ROOT}
+            variant="h3"
+          >
+            <Logo size="75px" type="wordmark" />
+          </MuiLink>
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>

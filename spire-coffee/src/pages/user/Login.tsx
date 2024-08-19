@@ -82,11 +82,13 @@ const Login = () => {
       <Container
         component="main"
         maxWidth="xs"
+
         sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           height: "100%",
+          paddingBottom: { xs: "50px", sm: "50px" },
         }}
       >
         <CssBaseline />

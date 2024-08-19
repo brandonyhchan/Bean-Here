@@ -1,5 +1,5 @@
 import { Avatar } from "@mui/material";
-import word_mark from "../assets/images/favicon.png";
+import wordmark from "../assets/images/wordmark.png";
 import logo from "../assets/images/logo.png";
 
 type LogoPropsType = {
@@ -8,7 +8,7 @@ type LogoPropsType = {
 }
 
 const Logo = ({ size, type } : LogoPropsType) => (
-  <Avatar sx={{ width: size, height: size }} src={type === "logo" ? logo : word_mark } />
+  <Avatar sx={{ width: size, height: size }} src={type === "logo" ? logo : wordmark } />
 );
 
 export default Logo;
