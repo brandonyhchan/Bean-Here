@@ -1,24 +1,23 @@
-import React, { useState } from "react";
-import { Helmet } from "react-helmet-async";
+import useFormErrors from "@/component/helpers/useFormErrors";
+import Logo from "@/component/Logo";
 import strings from "@/config/strings";
-import { useLazyQuery } from "@apollo/client";
-import { signUpMutation } from "@/support/graphqlServerApi";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
+import { signUpMutation } from "@/support/graphqlServerApi";
+import { useLazyQuery } from "@apollo/client";
 import {
   Alert,
-  Avatar,
-  Typography,
-  Container,
   Box,
-  TextField,
-  CssBaseline,
   Button,
+  Container,
+  CssBaseline,
+  TextField,
+  Typography,
 } from "@mui/material";
-import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
 import EmailValidator from "email-validator";
-import useFormErrors from "@/component/helpers/useFormErrors";
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import PasswordChecklist from "react-password-checklist";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const { setAuthStatus } = useAuth();
@@ -162,7 +161,16 @@ const SignUp = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.login.signUp} />
-      <Container component="main" maxWidth="xs">
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+        }}
+      >
         <CssBaseline />
         <Box
           sx={{
@@ -172,9 +180,7 @@ const SignUp = () => {
           }}
           style={{ paddingTop: "25px", paddingBottom: "25px" }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <Logo size="250px" type="logo" />
           <Typography component="h1" variant="h5">
             {strings.login.signUp}
           </Typography>
