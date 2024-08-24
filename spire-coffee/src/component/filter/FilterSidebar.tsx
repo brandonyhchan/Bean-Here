@@ -1,12 +1,12 @@
-import { 
-  Typography, 
+import { Level, Price, marks, valuetext } from "@/config/FilterItems";
+import strings from "@/config/strings";
+import {
   Box,
-  Container 
+  Container,
+  Typography
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import CustomAccordion from "./CustomAccordion";
-import { Level, Price, marks, valuetext } from "@/config/FilterItems";
-import strings from "@/config/strings";
 
 const FilterSidebar = () => {
   return (

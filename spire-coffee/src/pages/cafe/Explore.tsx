@@ -1,15 +1,15 @@
-import FilterSidebar from "@/component/FilterSidebar";
+import ExploreBar from "@/component/ExploreBar";
+import FilterSidebar from "@/component/filter/FilterSidebar";
 import LoadingSpinner from "@/component/LoadingSpinner";
 import strings from "@/config/strings";
 import { ClickableIconButton } from "@/styles/iconTheme";
 import { returnAllCafeQuery } from "@/support/graphqlServerApi";
 import { Cafe } from "@/types/cafe";
 import { useQuery } from "@apollo/client";
-import TuneRoundedIcon from '@mui/icons-material/TuneRounded';
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import {
   Box,
   Container,
-  Grid,
   Typography,
   useMediaQuery,
   useTheme,
@@ -17,8 +17,7 @@ import {
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
-import CafeCard from "../../component/CafeCard";
-import SearchBar from "../../component/SearchBar";
+import CafeList from "../../component/cafe/CafeList";
 
 const Explore = () => {
   const theme = useTheme();
@@ -31,8 +30,10 @@ const Explore = () => {
   const [searchCafeName, setSearchCafeName] = useState(
     searchParams.get("search") || ""
   );
-  const [showCloseButton, setShowCloseButton] = useState(false);
-
+  const [showCloseButton, setShowCloseButton] = useState<boolean>(false);
+  const [showFilterSidebar, setShowFilterSidebar] = useState<boolean>(false);
+  const [showSearchAndFilterButton, setShowSearchAndFilterButton] =
+    useState<boolean>(true);
   // add back refresh later
   const { loading, error } = useQuery(returnAllCafeQuery, {
     onError: (error) => {
@@ -49,11 +50,17 @@ const Explore = () => {
     },
   });
 
-  const handleClick = (event: React.MouseEvent<Element, MouseEvent>) => {
+  const handleCloseButton = (event: React.MouseEvent<Element, MouseEvent>) => {
     event.preventDefault();
     setSearchCafeName("");
     setSearchParams({});
     setShowCloseButton(false);
+  };
+
+  const handleFilterButton = (event: React.MouseEvent<Element, MouseEvent>) => {
+    event.preventDefault();
+    setShowFilterSidebar(!showFilterSidebar);
+    setShowSearchAndFilterButton(!showSearchAndFilterButton);
   };
 
   const handleSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,19 +73,25 @@ const Explore = () => {
     <React.Fragment>
       <Helmet title={strings.navbar.explore} />
       {error ? (
-        <Container sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "calc(100% - 32px)"
-        }}>
-          <Box sx={{
+        <Container
+          sx={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "50%",
-          }}>
-            {loading ? <LoadingSpinner /> : (
+            height: "calc(100% - 32px)",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "50%",
+            }}
+          >
+            {loading ? (
+              <LoadingSpinner />
+            ) : (
               <Box
                 sx={{
                   display: "flex",
@@ -96,89 +109,47 @@ const Explore = () => {
           </Box>
         </Container>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            height: "100%"
-          }}
-        >
+        <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
           {!isSmallScreen && <FilterSidebar />}
-          <div style={{
-            justifyContent: "center",
-            flexDirection: "column",
-            minWidth: "calc(100% - 300px)",
-            paddingTop: "1rem",
-            paddingBottom: "0.5rem",
-          }}>
-            <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
-              <SearchBar query={searchCafeName} handleQuery={handleSearchQuery} showCloseButton={showCloseButton}
-                handleClick={handleClick} />
-              <Box sx={{ mt: 3 }}>
-                {isSmallScreen &&
-                  <ClickableIconButton>
-                    <TuneRoundedIcon />
-                  </ClickableIconButton>}
-              </Box>
-            </Box>
-            <Container
-              sx={{
-                maxWidth: isSmallScreen ? "320px" : "800px",
-                height: "100%",
-              }}
-            >
-              {(loading && cafes.length === 0) && (
-                <Box sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "50%",
-                }}>
-                  <LoadingSpinner />
-                </Box>
-              )}
-              {cafes.length ? (
-                <Grid
-                  container
-                  spacing={2}
-                  justifyContent={
-                    isSmallScreen || (isLargeScreen && cafes.length == 2)
-                      ? "center"
-                      : "flex-start"
-                  }
-                  flexWrap="wrap"
-                >
-                  {cafes.map((cafe) => (
-                    <Grid
-                      item
-                      key={cafe.stringId}
-                      xs={10}
-                      sm={12}
-                      md={6}
-                      lg={4}
-                      style={{ display: "flex", justifyContent: "center" }}
-                    >
-                      <CafeCard
-                        id={parseInt(cafe.stringId)}
-                        name={cafe.name}
-                        street={cafe.street}
-                        city={cafe.city}
-                        province={cafe.province}
-                        profilePhotoURL={cafe.profilePhotoURL}
-                        busyness={cafe.busyness}
-                        noisiness={cafe.noisiness}
-                        price={cafe.price}
-                      />
-                    </Grid>
-                  ))}
-                </Grid>
-              ) : (
-                <Typography variant="h3" textAlign={"center"}>{strings.error.noCafe}</Typography>
-              )}
-            </Container>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              minWidth: isLargeScreen ? "calc(100% - 300px)" : "100%",
+              paddingTop: "1rem",
+              paddingBottom: "0.5rem",
+              height: "100%",
+            }}
+          >
+            {showFilterSidebar && isSmallScreen ? (
+              <div>
+                <ClickableIconButton onClick={handleFilterButton}>
+                  <CloseRoundedIcon />
+                </ClickableIconButton>
+                <FilterSidebar />
+              </div>
+            ) : (
+              <>
+                <ExploreBar
+                  searchCafeName={searchCafeName}
+                  showCloseButton={showCloseButton}
+                  handleSearchQuery={handleSearchQuery}
+                  handleCloseButton={handleCloseButton}
+                  handleFilterButton={handleFilterButton}
+                  isSmallScreen={isSmallScreen}
+                  showFilterSidebar={showFilterSidebar}
+                />
+                <CafeList
+                  cafes={cafes}
+                  isLoading={loading}
+                  isSmallScreen={isSmallScreen}
+                  isLargeScreen={isLargeScreen}
+                />
+              </>
+            )}
           </div>
-        </div>)
-      }
+        </div>
+      )}
     </React.Fragment>
   );
 };
