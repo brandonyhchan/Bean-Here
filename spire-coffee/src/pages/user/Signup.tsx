@@ -180,7 +180,7 @@ const SignUp = () => {
           }}
           style={{ paddingTop: "25px", paddingBottom: "25px" }}
         >
-          <Logo />
+          <Logo type="logo" />
           <Typography component="h1" variant="h5">
             {strings.login.signUp}
           </Typography>
