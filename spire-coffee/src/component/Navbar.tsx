@@ -87,7 +87,7 @@ const Navbar = () => {
             to={ROUTES.ROOT}
             variant="h3"
           >
-            <Logo size="75px" type="wordmark" />
+            <Logo size="100px" type="" />
           </MuiLink>
           <Box sx={{ flexGrow: 1 }} />
 
