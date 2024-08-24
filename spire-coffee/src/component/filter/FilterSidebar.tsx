@@ -1,19 +1,44 @@
 import { Level, Price, marks, valuetext } from "@/config/FilterItems";
 import strings from "@/config/strings";
-import {
-  Box,
-  Container,
-  Typography
-} from "@mui/material";
-import Button from "@mui/material/Button";
+import { ClickableIconButton } from "@/styles/iconTheme";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { Box, Container, Typography } from "@mui/material";
 import CustomAccordion from "./CustomAccordion";
 
-const FilterSidebar = () => {
+type FilterSidebarPropsType = {
+  handleFilterButton: (event: React.MouseEvent<Element, MouseEvent>) => void;
+  showFilterSidebar: boolean;
+  isSmallScreen: boolean;
+};
+
+const FilterSidebar = ({
+  handleFilterButton,
+  showFilterSidebar,
+  isSmallScreen
+}: FilterSidebarPropsType) => {
   return (
     <form style={{ width: "300px", height: "100%" }}>
       {/* this design might need to be changed */}
-      <Container sx={{ paddingLeft: 2, paddingTop: 5, marginLeft: 0.8 }}>
-        <Typography textAlign={'start'} variant="h3">Filter</Typography>
+      <Container
+        sx={{
+          paddingLeft: 2,
+          paddingTop: 5,
+          marginLeft: 0.8,
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography textAlign={"start"} variant="h3" sx={{ mt: 0.5 }}>
+          Filter
+        </Typography>
+        {isSmallScreen && showFilterSidebar && (
+          <Box sx={{ mr: 1.8 }}>
+            <ClickableIconButton onClick={handleFilterButton}>
+              <CloseRoundedIcon />
+            </ClickableIconButton>
+          </Box>
+        )}
       </Container>
       <CustomAccordion
         title={strings.filter.distance}
@@ -44,11 +69,6 @@ const FilterSidebar = () => {
         type="checkboxes"
         labels={[Price.LOW, Price.MEDIUM, Price.HIGH]}
       />
-      {/* Buttons need to be updated and form needs to be set up */}
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <Button>Cancel</Button>
-        <Button>Filter</Button>
-      </Box>
     </form>
   );
 };

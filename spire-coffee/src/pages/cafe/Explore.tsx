@@ -2,11 +2,9 @@ import ExploreBar from "@/component/ExploreBar";
 import FilterSidebar from "@/component/filter/FilterSidebar";
 import LoadingSpinner from "@/component/LoadingSpinner";
 import strings from "@/config/strings";
-import { ClickableIconButton } from "@/styles/iconTheme";
 import { returnAllCafeQuery } from "@/support/graphqlServerApi";
 import { Cafe } from "@/types/cafe";
 import { useQuery } from "@apollo/client";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import {
   Box,
   Container,
@@ -110,7 +108,13 @@ const Explore = () => {
         </Container>
       ) : (
         <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
-          {!isSmallScreen && <FilterSidebar />}
+          {!isSmallScreen && (
+            <FilterSidebar
+              handleFilterButton={handleFilterButton}
+              showFilterSidebar={showFilterSidebar}
+              isSmallScreen={isSmallScreen}
+            />
+          )}
           <div
             style={{
               display: "flex",
@@ -123,10 +127,11 @@ const Explore = () => {
           >
             {showFilterSidebar && isSmallScreen ? (
               <div>
-                <ClickableIconButton onClick={handleFilterButton}>
-                  <CloseRoundedIcon />
-                </ClickableIconButton>
-                <FilterSidebar />
+                <FilterSidebar
+                  handleFilterButton={handleFilterButton}
+                  showFilterSidebar={showFilterSidebar}
+                  isSmallScreen={isSmallScreen}
+                />
               </div>
             ) : (
               <>
