@@ -1,17 +1,25 @@
-import {
-  Typography,
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-  Box,
-  useMediaQuery,
-  useTheme
-} from "@mui/material";
-import { renderBusyIcon, renderNoiseIcon, renderPrice, renderFavoriteIcon } from "./icons/Icons";
-import { ClickableIconButton, NonClickableIconButton } from "../styles/iconTheme";
 import strings from "@/config/strings";
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { useState } from "react";
+import {
+  ClickableIconButton,
+  NonClickableIconButton,
+} from "../../styles/iconTheme";
+import {
+  renderBusyIcon,
+  renderFavoriteIcon,
+  renderNoiseIcon,
+  renderPrice,
+} from "../icons/Icons";
 
 type CafeCardPropsType = {
   id: number;
@@ -44,14 +52,19 @@ const CafeCard = ({
   };
 
   return (
-    <Card sx={{ display: "flex", width: 377, height: 115, position: 'relative' }}>
+    <Card
+      sx={{ display: "flex", width: 377, height: 115, position: "relative" }}
+    >
       <CardMedia
         component="img"
         sx={{
           width: {
             xs: 65,
-            sm: 100
-          }, height: "100%", objectFit: "contain", p: 0.5
+            sm: 100,
+          },
+          height: "100%",
+          objectFit: "contain",
+          p: 0.5,
         }}
         image={profilePhotoURL}
         alt={`${name} logo`}
@@ -64,23 +77,45 @@ const CafeCard = ({
           overflow: "hidden",
         }}
       >
-        <CardContent sx={{ p: 0, ml: 2, mr: 2, pr: 2, pt: 1, overflow: "hidden", textOverflow: "ellipsis" }}>
+        <CardContent
+          sx={{
+            p: 0,
+            ml: 2,
+            mr: 2,
+            pr: 2,
+            pt: 1,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
           <Typography
             noWrap
             variant="h6"
-            sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+            sx={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
           >
             {name}
           </Typography>
           <Typography
             variant={isSmallScreen ? "body1" : "body2"}
-            sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+            sx={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
           >
             {street}
           </Typography>
           <Typography
             variant={isSmallScreen ? "body1" : "body2"}
-            sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+            sx={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
           >
             {city}, {province}
           </Typography>
@@ -90,13 +125,17 @@ const CafeCard = ({
             <NonClickableIconButton>
               {renderBusyIcon(busyness)}
             </NonClickableIconButton>
-            <Typography variant={isSmallScreen ? "body1" : "body2"}>{strings.cafe.busynessLabel}</Typography>
+            <Typography variant={isSmallScreen ? "body1" : "body2"}>
+              {strings.cafe.busynessLabel}
+            </Typography>
           </Box>
           <Box display="flex" alignItems="center">
             <NonClickableIconButton>
               {renderNoiseIcon(noisiness)}
             </NonClickableIconButton>
-            <Typography variant={isSmallScreen ? "body1" : "body2"}>{strings.cafe.noisinessLabel}</Typography>
+            <Typography variant={isSmallScreen ? "body1" : "body2"}>
+              {strings.cafe.noisinessLabel}
+            </Typography>
           </Box>
           <Box display="flex" alignItems="center">
             <NonClickableIconButton>
@@ -106,7 +145,7 @@ const CafeCard = ({
         </CardActions>
       </Box>
       <ClickableIconButton
-        sx={{ position: 'absolute', top: 0, right: 0 }}
+        sx={{ position: "absolute", top: 0, right: 0 }}
         onClick={handleFavoriteClick}
       >
         {renderFavoriteIcon(isFavorite)}
