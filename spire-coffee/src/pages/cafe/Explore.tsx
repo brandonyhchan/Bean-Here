@@ -28,6 +28,7 @@ const Explore = () => {
   const [searchCafeName, setSearchCafeName] = useState(
     searchParams.get("search") || ""
   );
+
   const [showCloseButton, setShowCloseButton] = useState<boolean>(false);
   const [showFilterSidebar, setShowFilterSidebar] = useState<boolean>(false);
   const [showSearchAndFilterButton, setShowSearchAndFilterButton] =

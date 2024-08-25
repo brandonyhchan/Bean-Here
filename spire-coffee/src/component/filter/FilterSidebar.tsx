@@ -14,8 +14,17 @@ type FilterSidebarPropsType = {
 const FilterSidebar = ({
   handleFilterButton,
   showFilterSidebar,
-  isSmallScreen
+  isSmallScreen,
 }: FilterSidebarPropsType) => {
+  // const {
+  //   noiseFilter,
+  //   setNoiseFilter,
+  //   busynessFilter,
+  //   setBusynessFilter,
+  //   priceFilters,
+  //   setPriceFilters,
+  // } = useGlobalStateManager();
+
   return (
     <form style={{ width: "300px", height: "100%" }}>
       {/* this design might need to be changed */}
