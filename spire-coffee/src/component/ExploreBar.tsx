@@ -30,7 +30,10 @@ const SearchAndFilter = ({
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
-        gap: 1,
+        gap: {
+          xs: 0.5,
+          sm: 0.5,
+        }
       }}
     >
       <SearchBar

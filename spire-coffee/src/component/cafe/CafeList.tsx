@@ -43,10 +43,11 @@ const CafeList = ({
 
   return (
     <Container
+    disableGutters
       sx={{
         maxWidth: isSmallScreen ? "380px" : "800px",
         height: "100%",
-        padding: 0,
+        paddingRight: 4,
       }}
     >
       <Grid

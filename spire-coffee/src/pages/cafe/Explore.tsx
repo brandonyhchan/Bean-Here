@@ -19,7 +19,7 @@ import CafeList from "../../component/cafe/CafeList";
 
 const Explore = () => {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   const [cafes, setCafes] = useState<Cafe[]>([]);
@@ -116,6 +116,7 @@ const Explore = () => {
             />
           )}
           <Container
+          disableGutters
             sx={{
               display: "flex",
               flexDirection: "column",  

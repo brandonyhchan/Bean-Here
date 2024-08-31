@@ -14,7 +14,6 @@ import {
   ListItemText,
   Link as MuiLink,
   Toolbar,
-  Typography,
 } from "@mui/material";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -62,7 +61,11 @@ const Navbar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" component="nav" sx={{ backgroundColor: mainTheme.palette.secondary.main }}>
+      <AppBar
+        position="static"
+        component="nav"
+        sx={{ backgroundColor: mainTheme.palette.secondary.main }}
+      >
         <Toolbar>
           <ClickableIconButton
             size="large"
@@ -72,7 +75,7 @@ const Navbar = () => {
             onClick={handleDrawerToggle}
             sx={{
               mr: 2,
-              display: { sm: "none" },
+              display: { xs: "block", sm: "block", md: "none" }, // Display on xs and sm, hide on md and above
               color: "white",
               "&:hover": {
                 color: "white",

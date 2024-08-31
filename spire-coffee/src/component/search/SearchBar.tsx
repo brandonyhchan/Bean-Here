@@ -19,13 +19,17 @@ const SearchBar: React.FC<SearchBarProps> = ({
   showCloseButton, query, handleClick, handleQuery
 }) => (
   <form>
-    <Container sx={{ display: "flex", flexDirection: "row", mb: 3, p: 0,
-        width: {
-          xs: '268px',
-          sm: '427px',
-          md: '600px',
-        }
-     }}>
+    <Container 
+    disableGutters
+    sx={{
+      display: "flex", flexDirection: "row", mb: 3,
+      width: {
+        xs: '274px',
+        sm: '335px',
+        md: '450px',
+        lg: '600px',
+      },
+    }}>
       <TextField
         margin="normal"
         fullWidth

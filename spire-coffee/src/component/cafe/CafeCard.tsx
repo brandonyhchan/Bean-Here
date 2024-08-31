@@ -61,8 +61,6 @@ const CafeCard = ({
           width: {
             xs: 70,
             sm: 80,
-            md: 70,
-            lg: 65,
           },
           height: "100%",
           objectFit: "contain",
