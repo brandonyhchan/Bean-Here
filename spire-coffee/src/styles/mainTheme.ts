@@ -21,7 +21,8 @@ const mainTheme = createTheme({
     fontFamily: "Figtree-Regular",
     fontSize: 14,
     h1: {
-      fontSize: "3.2rem",
+      fontFamily: "Figtree-Regular",
+      fontSize: "30px",
       lineHeight: "1.1",
     },
     h2: {
