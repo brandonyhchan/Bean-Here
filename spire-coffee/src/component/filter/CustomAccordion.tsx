@@ -1,18 +1,18 @@
-import React from "react";
+import { Level, Price } from "@/config/FilterItems";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   Accordion,
-  AccordionSummary,
   AccordionDetails,
-  FormGroup,
-  FormControlLabel,
+  AccordionSummary,
   Checkbox,
-  Slider,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
   Radio,
   RadioGroup,
-  FormControl,
+  Slider,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Level, Price } from "@/config/FilterItems";
+import React from "react";
 
 interface CustomAccordionProps {
   title: string;
@@ -50,7 +50,7 @@ const CustomAccordion: React.FC<CustomAccordionProps> = ({
       >
         {title}
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails sx={{ pr: 5, pl: 5 }}>
         {type === "slider" && sliderProps && (
           <Slider
             aria-label="Always visible"

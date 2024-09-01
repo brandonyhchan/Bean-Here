@@ -30,6 +30,10 @@ const SearchAndFilter = ({
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
+        gap: {
+          xs: 0.5,
+          sm: 0.5,
+        }
       }}
     >
       <SearchBar
@@ -42,7 +46,7 @@ const SearchAndFilter = ({
       {isSmallScreen && (
         <Box sx={{ mt: 3 }}>
           <ClickableIconButton onClick={handleFilterButton}>
-            {showFilterSidebar ? <CloseRoundedIcon /> : <TuneRoundedIcon />}
+            {showFilterSidebar ? <CloseRoundedIcon /> : <TuneRoundedIcon sx={{ ml: 0 }}/>}
           </ClickableIconButton>
         </Box>
       )}

@@ -19,7 +19,7 @@ import CafeList from "../../component/cafe/CafeList";
 
 const Explore = () => {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   const [cafes, setCafes] = useState<Cafe[]>([]);
@@ -116,24 +116,25 @@ const Explore = () => {
               isSmallScreen={isSmallScreen}
             />
           )}
-          <div
-            style={{
+          <Container
+          disableGutters
+            sx={{
               display: "flex",
-              flexDirection: "column",
-              minWidth: isLargeScreen ? "calc(100% - 300px)" : "100%",
+              flexDirection: "column",  
+              padding: "0",   
               paddingTop: "1rem",
               paddingBottom: "0.5rem",
               height: "100%",
             }}
           >
             {showFilterSidebar && isSmallScreen ? (
-              <div>
+  
                 <FilterSidebar
                   handleFilterButton={handleFilterButton}
                   showFilterSidebar={showFilterSidebar}
                   isSmallScreen={isSmallScreen}
                 />
-              </div>
+
             ) : (
               <>
                 <ExploreBar
@@ -153,7 +154,7 @@ const Explore = () => {
                 />
               </>
             )}
-          </div>
+          </Container>
         </div>
       )}
     </React.Fragment>

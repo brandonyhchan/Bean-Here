@@ -25,7 +25,7 @@ export const marks = [
   },
   {
     value: 30,
-    label: '30 km',
+    label: '30 km+',
   },
 ];
 

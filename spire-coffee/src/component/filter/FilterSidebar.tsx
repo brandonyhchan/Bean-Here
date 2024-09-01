@@ -26,7 +26,7 @@ const FilterSidebar = ({
   // } = useGlobalStateManager();
 
   return (
-    <form style={{ width: "300px", height: "100%" }}>
+    <form style={{ minWidth: isSmallScreen ? "100%" : "260px", height: "100%" }}>
       {/* this design might need to be changed */}
       <Container
         sx={{
