@@ -44,7 +44,7 @@ const CafeCard = ({
   price,
 }: CafeCardPropsType) => {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.only("xs"));
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleFavoriteClick = () => {
@@ -59,8 +59,8 @@ const CafeCard = ({
         component="img"
         sx={{
           width: {
-            xs: 65,
-            sm: 100,
+            xs: 70,
+            sm: 80,
           },
           height: "100%",
           objectFit: "contain",
