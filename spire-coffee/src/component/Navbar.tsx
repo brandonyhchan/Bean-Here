@@ -81,13 +81,16 @@ const Navbar = () => {
           >
             <MenuIcon />
           </ClickableIconButton>
+          <Logo size="100px" type="" />
           <MuiLink
-            style={{ textDecoration: "none", color: "inherit" }}
+            style={{ textDecoration: "none", color: "inherit", marginLeft: "10px" }}
             component={Link}
             to={ROUTES.ROOT}
             variant="h3"
           >
-            <Logo size="100px" type="" />
+            <Typography variant="h1" component="div" sx={{ flexGrow: 1 }}>
+              {strings.general.title}
+            </Typography>
           </MuiLink>
           <Box sx={{ flexGrow: 1 }} />
 
