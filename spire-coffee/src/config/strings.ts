@@ -85,6 +85,7 @@ const strings = new LocalizedStrings({
       reportSubmitMessage: "Thank you! Your report has been submitted",
     },
     filter: {
+      heading: "Filter",
       distance: "Distance (km)",
       capacity: "Current Capacity",
       noise: "Noise Level",
