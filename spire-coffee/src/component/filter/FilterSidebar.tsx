@@ -3,7 +3,7 @@ import strings from "@/config/strings";
 import { useGlobalStateManager } from "@/context/StateContext";
 import { ClickableIconButton } from "@/styles/iconTheme";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import CustomAccordion from "./CustomAccordion";
 import FilterCheckbox from "./FilterCheckbox";
 import FilterRadio from "./FilterRadio";
@@ -27,6 +27,12 @@ const FilterSidebar = ({
     priceFilters,
     setPriceFilters,
   } = useGlobalStateManager();
+
+  const clearFilters = () => {
+    setNoiseFilter(undefined);
+    setBusynessFilter(undefined);
+    setPriceFilters([]);
+  };
 
   return (
     <form
@@ -83,8 +89,13 @@ const FilterSidebar = ({
         value={priceFilters}
         setValue={setPriceFilters}
       />
+
+      <Box sx={{ mt: 3, display: "flex", justifyContent: "center" }}>
+        <Button color="primary" onClick={clearFilters}>
+          {strings.filter.clearFilters}
+        </Button>
+      </Box>
     </form>
-    // TODO: add button to clear/ reset filters
   );
 };
 
