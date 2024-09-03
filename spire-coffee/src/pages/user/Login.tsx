@@ -1,5 +1,7 @@
+import Form from "@/component/Form";
 import useFormErrors from "@/component/helpers/useFormErrors";
 import Logo from "@/component/Logo";
+import { LoginFormItems } from "@/config/FormItems";
 import { ROUTES } from "@/config/routes";
 import strings from "@/config/strings";
 import { useAuth } from "@/context/AuthContext";
@@ -8,12 +10,10 @@ import { useLazyQuery } from "@apollo/client";
 import {
   Alert,
   Box,
-  Button,
   Container,
   CssBaseline,
   Grid,
   Link as MuiLink,
-  TextField,
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
@@ -76,6 +76,16 @@ const Login = () => {
     });
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    if (name === "username") {
+      setUsername(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
+  };
+
   return (
     <React.Fragment>
       <Helmet title={strings.login.signIn} />
@@ -103,67 +113,33 @@ const Login = () => {
           <Typography component="h1" variant="h5">
             {strings.login.signIn}
           </Typography>
-          {loginError && <Alert severity="error">{loginError}</Alert>}
-          <Box component="form" noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label={strings.general.username}
-              name="username"
-              autoComplete="username"
-              autoFocus
-              value={username}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setUsername(event.target.value);
-              }}
-              error={!!errors.username}
-              helperText={errors.username}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label={strings.general.password}
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setPassword(event.target.value);
-              }}
-              error={!!errors.password}
-              helperText={errors.password}
-            />
-            <Button
-              color="secondary"
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={handleLogin}
-            >
-              {strings.login.signIn}
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Typography variant="body2">
-                  <MuiLink variant="body2" component={Link} to={"#"}>
-                    {strings.login.forgotPassword}
-                  </MuiLink>
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="body2">
-                  <MuiLink variant="body2" component={Link} to={ROUTES.SIGN_UP}>
-                    {strings.login.signUpMsg}
-                  </MuiLink>
-                </Typography>
-              </Grid>
-            </Grid>
+          <Box sx={{ pt: 2 }}>
+            {loginError && <Alert severity="error">{loginError}</Alert>}
           </Box>
+          <Form
+            fields={LoginFormItems}
+            values={{ username, password }}
+            errors={errors}
+            onClick={handleLogin}
+            onChange={handleChange}
+            buttonLabel={strings.login.signIn}
+          />
+          <Grid container>
+            <Grid item xs>
+              <Typography variant="body2">
+                <MuiLink variant="body2" component={Link} to={"#"}>
+                  {strings.login.forgotPassword}
+                </MuiLink>
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="body2">
+                <MuiLink variant="body2" component={Link} to={ROUTES.SIGN_UP}>
+                  {strings.login.signUpMsg}
+                </MuiLink>
+              </Typography>
+            </Grid>
+          </Grid>
         </Box>
       </Container>
     </React.Fragment>
