@@ -24,7 +24,6 @@ export async function returnAllCafes(parent, args, context) {
     if (!context.userId) {
       throw new Error("Not authenticated");
     }
-
     const query = await context.prisma.cafe.findMany({
       select: {
         id: true,
@@ -41,6 +40,12 @@ export async function returnAllCafes(parent, args, context) {
       },
       where: {
         name: { contains: filterByName },
+        busynessLevel: {
+          level: args.busynessFilter,
+        },
+        noisinessLevel: {
+          level: args.noiseFilter,
+        },
       },
       orderBy: {
         id: "asc",

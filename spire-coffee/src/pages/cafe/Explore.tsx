@@ -2,6 +2,7 @@ import ExploreBar from "@/component/ExploreBar";
 import FilterSidebar from "@/component/filter/FilterSidebar";
 import LoadingSpinner from "@/component/LoadingSpinner";
 import strings from "@/config/strings";
+import { useGlobalStateManager } from "@/context/StateContext";
 import { returnAllCafeQuery } from "@/support/graphqlServerApi";
 import { Cafe } from "@/types/cafe";
 import { useQuery } from "@apollo/client";
@@ -18,6 +19,11 @@ import { useSearchParams } from "react-router-dom";
 import CafeList from "../../component/cafe/CafeList";
 
 const Explore = () => {
+  const {
+    noiseFilter,
+    busynessFilter,
+    // priceFilters,
+  } = useGlobalStateManager();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
@@ -46,8 +52,12 @@ const Explore = () => {
     // add back variables for filtering
     variables: {
       filterByName: searchCafeName,
+      busynessFilter,
+      noiseFilter,
     },
   });
+
+  // console.log(busynessFilter);
 
   const handleCloseButton = (event: React.MouseEvent<Element, MouseEvent>) => {
     event.preventDefault();
@@ -117,24 +127,22 @@ const Explore = () => {
             />
           )}
           <Container
-          disableGutters
+            disableGutters
             sx={{
               display: "flex",
-              flexDirection: "column",  
-              padding: "0",   
+              flexDirection: "column",
+              padding: "0",
               paddingTop: "1rem",
               paddingBottom: "0.5rem",
               height: "100%",
             }}
           >
             {showFilterSidebar && isSmallScreen ? (
-  
-                <FilterSidebar
-                  handleFilterButton={handleFilterButton}
-                  showFilterSidebar={showFilterSidebar}
-                  isSmallScreen={isSmallScreen}
-                />
-
+              <FilterSidebar
+                handleFilterButton={handleFilterButton}
+                showFilterSidebar={showFilterSidebar}
+                isSmallScreen={isSmallScreen}
+              />
             ) : (
               <>
                 <ExploreBar

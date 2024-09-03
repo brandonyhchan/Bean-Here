@@ -2,10 +2,10 @@ import { Level } from "@/config/FilterItems";
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
 interface StateContextType {
-  noiseFilter: Level | null;
-  setNoiseFilter: React.Dispatch<React.SetStateAction<Level | null>>;
-  busynessFilter: Level | null;
-  setBusynessFilter: React.Dispatch<React.SetStateAction<Level | null>>;
+  noiseFilter: Level | undefined;
+  setNoiseFilter: React.Dispatch<React.SetStateAction<Level | undefined>>;
+  busynessFilter: Level | undefined;
+  setBusynessFilter: React.Dispatch<React.SetStateAction<Level | undefined>>;
   priceFilters: Level[];
   setPriceFilters: React.Dispatch<React.SetStateAction<Level[]>>;
 }
@@ -15,8 +15,8 @@ const StateContext = createContext<StateContextType | undefined>(undefined);
 export const StateProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [noiseFilter, setNoiseFilter] = useState<Level | null>(null);
-  const [busynessFilter, setBusynessFilter] = useState<Level | null>(null);
+  const [noiseFilter, setNoiseFilter] = useState<Level | undefined>();
+  const [busynessFilter, setBusynessFilter] = useState<Level | undefined>();
   const [priceFilters, setPriceFilters] = useState<Level[]>([]);
 
   const contextValue: StateContextType = {

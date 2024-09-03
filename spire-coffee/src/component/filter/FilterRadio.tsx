@@ -9,8 +9,8 @@ import FilterAccordion from "./FilterAccordion";
 
 type FilterRadioProps = {
   title: string;
-  value: Level | null;
-  setValue: React.Dispatch<React.SetStateAction<Level | null>>;
+  value: Level | undefined;
+  setValue: React.Dispatch<React.SetStateAction<Level | undefined>>;
 };
 
 const FilterRadio: React.FC<FilterRadioProps> = ({
