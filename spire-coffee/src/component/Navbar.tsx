@@ -102,8 +102,8 @@ const Navbar = () => {
           </MuiLink>
           <Box sx={{ flexGrow: 1 }} />
 
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ display: { xs: "none", sm: "none", md: "flex" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "none", md: "flex" } }}>
               {NavbarItems.map(({ label, path }) => (
                 <Button
                   key={label}
@@ -132,7 +132,7 @@ const Navbar = () => {
             keepMounted: true, // for better open performance on mobile
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", sm: "block", md: "none" },
             "& .MuiDrawer-paper": { boxSizing: "border-box" },
           }}
         >
