@@ -155,7 +155,6 @@ const Explore = () => {
                   cafes={cafes}
                   isLoading={loading}
                   isSmallScreen={isSmallScreen}
-                  isLargeScreen={isLargeScreen}
                 />
               </>
             )}

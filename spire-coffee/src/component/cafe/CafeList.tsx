@@ -9,14 +9,12 @@ type CafeListPropsType = {
   cafes: Cafe[];
   isLoading: boolean;
   isSmallScreen: boolean;
-  isLargeScreen: boolean;
 };
 
 const CafeList = ({
   cafes,
   isLoading,
   isSmallScreen,
-  isLargeScreen,
 }: CafeListPropsType) => {
   if (isLoading && cafes.length === 0) {
     return (
@@ -47,14 +45,14 @@ const CafeList = ({
       sx={{
         maxWidth: isSmallScreen ? "380px" : "800px",
         height: "100%",
-        paddingRight: 4,
+        paddingRight: { xs: "0", sm: "0", md: 4, lg: 4 },
       }}
     >
       <Grid
         container
         spacing={2}
         justifyContent={
-          isSmallScreen || (isLargeScreen && cafes.length == 2)
+          isSmallScreen
             ? "center"
             : "flex-start"
         }
