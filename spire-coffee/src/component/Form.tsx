@@ -10,7 +10,7 @@ type FormField = {
 type FormProps = {
   fields: FormField[];
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onClick: (event: React.MouseEvent<Element, MouseEvent>) => void;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
   errors: { [key: string]: string };
   values: { [key: string]: string };
   buttonLabel: string;
@@ -19,13 +19,13 @@ type FormProps = {
 const Form = ({
   fields,
   onChange,
-  onClick,
+  onSubmit,
   errors,
   values,
   buttonLabel,
 }: FormProps) => {
   return (
-    <Box component="form" noValidate sx={{ mt: 1 }}>
+    <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={onSubmit}>
       {fields.map((field) => (
         <TextField
           key={field.id}
@@ -49,7 +49,6 @@ const Form = ({
         fullWidth
         variant="contained"
         sx={{ mt: 3, mb: 2 }}
-        onClick={onClick}
       >
         {buttonLabel}
       </Button>

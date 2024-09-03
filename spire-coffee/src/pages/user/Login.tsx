@@ -40,7 +40,7 @@ const Login = () => {
     },
   });
 
-  const handleLogin = (event: React.MouseEvent<Element, MouseEvent>) => {
+  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setLoginError(""); // Clear previous errors
@@ -120,7 +120,7 @@ const Login = () => {
             fields={LoginFormItems}
             values={{ username, password }}
             errors={errors}
-            onClick={handleLogin}
+            onSubmit={handleLogin}
             onChange={handleChange}
             buttonLabel={strings.login.signIn}
           />
