@@ -16,6 +16,11 @@ export enum Price {
   HIGH = "$$$",
 }
 
+export enum RadioAttribute {
+  NOISE = "noise",
+  CAPACITY = "capacity",
+}
+
 export const marks = [
   {
     value: 0,

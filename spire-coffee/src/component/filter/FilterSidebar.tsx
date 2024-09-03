@@ -1,9 +1,10 @@
-import { marks, valuetext } from "@/config/FilterItems";
+import { marks, RadioAttribute, valuetext } from "@/config/FilterItems";
 import strings from "@/config/strings";
 import { useGlobalStateManager } from "@/context/StateContext";
 import { ClickableIconButton } from "@/styles/iconTheme";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { Box, Button, Container, Typography } from "@mui/material";
+import { useSearchParams } from "react-router-dom";
 import CustomAccordion from "./CustomAccordion";
 import FilterCheckbox from "./FilterCheckbox";
 import FilterRadio from "./FilterRadio";
@@ -19,6 +20,9 @@ const FilterSidebar = ({
   showFilterSidebar,
   isSmallScreen,
 }: FilterSidebarPropsType) => {
+  // eslint-disable-next-line prefer-const
+  let [searchParams, setSearchParams] = useSearchParams();
+
   const {
     noiseFilter,
     setNoiseFilter,
@@ -32,6 +36,8 @@ const FilterSidebar = ({
     setNoiseFilter(undefined);
     setBusynessFilter(undefined);
     setPriceFilters([]);
+    searchParams = new URLSearchParams();
+    setSearchParams(searchParams);
   };
 
   return (
@@ -73,12 +79,14 @@ const FilterSidebar = ({
       />
       {/* Busyness Radio buttons */}
       <FilterRadio
+        type={RadioAttribute.CAPACITY}
         title={strings.filter.capacity}
         value={busynessFilter}
         setValue={setBusynessFilter}
       />
       {/* Noise level Radio buttons */}
       <FilterRadio
+        type={RadioAttribute.NOISE}
         title={strings.filter.noise}
         value={noiseFilter}
         setValue={setNoiseFilter}
