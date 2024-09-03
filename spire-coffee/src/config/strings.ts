@@ -23,6 +23,8 @@ const strings = new LocalizedStrings({
       addCafe: "Add a Cafe",
       account: "Account",
       signOut: "Sign Out",
+      login: "Login",
+      signUp: "Sign Up",
     },
     error: {
       requiredField: "This field is required",
