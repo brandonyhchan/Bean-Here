@@ -24,7 +24,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
     sx={{
       display: "flex", flexDirection: "row", mb: 3,
       width: {
-        xs: '274px',
+        xs: '272px',
         sm: '335px',
         md: '450px',
         lg: '600px',
