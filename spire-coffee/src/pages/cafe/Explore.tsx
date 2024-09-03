@@ -19,11 +19,7 @@ import { useSearchParams } from "react-router-dom";
 import CafeList from "../../component/cafe/CafeList";
 
 const Explore = () => {
-  const {
-    noiseFilter,
-    busynessFilter,
-    // priceFilters,
-  } = useGlobalStateManager();
+  const { noiseFilter, busynessFilter, priceFilters } = useGlobalStateManager();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
@@ -54,6 +50,7 @@ const Explore = () => {
       filterByName: searchCafeName,
       busynessFilter,
       noiseFilter,
+      priceFilters,
     },
   });
 

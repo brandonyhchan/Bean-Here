@@ -22,8 +22,6 @@ const FilterCheckbox: React.FC<FilterCheckboxProps> = ({
     );
   };
 
-  console.log(value);
-
   return (
     <FilterAccordion title={title}>
       <FormControl>

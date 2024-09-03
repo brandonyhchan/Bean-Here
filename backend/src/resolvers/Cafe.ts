@@ -46,6 +46,11 @@ export async function returnAllCafes(parent, args, context) {
         noisinessLevel: {
           level: args.noiseFilter,
         },
+        priceLevel: {
+          level: {
+            in: args.priceFilters.length ? args.priceFilters : undefined,
+          },
+        },
       },
       orderBy: {
         id: "asc",
