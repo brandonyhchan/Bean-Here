@@ -1,9 +1,12 @@
-import { Level, Price, marks, valuetext } from "@/config/FilterItems";
+import { marks, valuetext } from "@/config/FilterItems";
 import strings from "@/config/strings";
+import { useGlobalStateManager } from "@/context/StateContext";
 import { ClickableIconButton } from "@/styles/iconTheme";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { Box, Container, Typography } from "@mui/material";
 import CustomAccordion from "./CustomAccordion";
+import FilterCheckbox from "./FilterCheckbox";
+import FilterRadio from "./FilterRadio";
 
 type FilterSidebarPropsType = {
   handleFilterButton: (event: React.MouseEvent<Element, MouseEvent>) => void;
@@ -14,10 +17,21 @@ type FilterSidebarPropsType = {
 const FilterSidebar = ({
   handleFilterButton,
   showFilterSidebar,
-  isSmallScreen
+  isSmallScreen,
 }: FilterSidebarPropsType) => {
+  const {
+    noiseFilter,
+    setNoiseFilter,
+    busynessFilter,
+    setBusynessFilter,
+    priceFilters,
+    setPriceFilters,
+  } = useGlobalStateManager();
+
   return (
-    <form style={{ minWidth: isSmallScreen ? "100%" : "260px", height: "100%" }}>
+    <form
+      style={{ minWidth: isSmallScreen ? "100%" : "260px", height: "100%" }}
+    >
       {/* this design might need to be changed */}
       <Container
         sx={{
@@ -30,7 +44,7 @@ const FilterSidebar = ({
         }}
       >
         <Typography textAlign={"start"} variant="h3" sx={{ mt: 0.5 }}>
-          Filter
+          {strings.filter.heading}
         </Typography>
         {isSmallScreen && showFilterSidebar && (
           <Box sx={{ mr: 1.8 }}>
@@ -51,25 +65,26 @@ const FilterSidebar = ({
           getAriaValueText: valuetext,
         }}
       />
-      {/* Radio buttons, single selection */}
-      <CustomAccordion
+      {/* Busyness Radio buttons */}
+      <FilterRadio
         title={strings.filter.capacity}
-        type="radio"
-        labels={[Level.LOW, Level.MEDIUM, Level.HIGH]}
+        value={busynessFilter}
+        setValue={setBusynessFilter}
       />
-      {/* Radio buttons, single selection */}
-      <CustomAccordion
+      {/* Noise level Radio buttons */}
+      <FilterRadio
         title={strings.filter.noise}
-        type="radio"
-        labels={[Level.LOW, Level.MEDIUM, Level.HIGH]}
+        value={noiseFilter}
+        setValue={setNoiseFilter}
       />
       {/* Checkboxes, multiple selection */}
-      <CustomAccordion
+      <FilterCheckbox
         title={strings.filter.price}
-        type="checkboxes"
-        labels={[Price.LOW, Price.MEDIUM, Price.HIGH]}
+        value={priceFilters}
+        setValue={setPriceFilters}
       />
     </form>
+    // TODO: add button to clear/ reset filters
   );
 };
 

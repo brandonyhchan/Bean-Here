@@ -1,21 +1,22 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import { ThemeProvider } from "@mui/material/styles";
-import { AuthProvider } from "./context/AuthContext";
-import { ROUTES } from "./config/routes";
 import { CssBaseline } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import { Navigate, Route, Routes } from "react-router-dom";
+import "./App.scss";
 import Body from "./component/Body";
-import SignUp from "./pages/user/Signup";
-import Login from "./pages/user/Login";
-import ProtectedRoute from "./routes/ProtectedRoute";
+import { ROUTES } from "./config/routes";
+import { AuthProvider } from "./context/AuthContext";
+import { StateProvider } from "./context/StateContext";
+import AddCafe from "./pages/cafe/AddCafe";
 import Explore from "./pages/cafe/Explore";
 import Favourites from "./pages/cafe/Favourites";
-import AddCafe from "./pages/cafe/AddCafe";
-import Account from "./pages/user/Account";
 import AboutUs from "./pages/info/AboutUs";
 import FAQ from "./pages/info/FAQ";
 import Help from "./pages/info/Help";
+import Account from "./pages/user/Account";
+import Login from "./pages/user/Login";
+import SignUp from "./pages/user/Signup";
+import ProtectedRoute from "./routes/ProtectedRoute";
 import mainTheme from "./styles/mainTheme";
-import "./App.scss";
 
 function App() {
   return (
@@ -23,47 +24,51 @@ function App() {
       <ThemeProvider theme={mainTheme}>
         <Body>
           <AuthProvider>
-            <CssBaseline />
-            <Routes>
-              <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
-              <Route path={ROUTES.LOGIN} element={<Login />} />
-              <Route path={ROUTES.ABOUT_US} element={<AboutUs />} />
-              <Route path={ROUTES.FAQ} element={<FAQ />} />
-              <Route path={ROUTES.HELP} element={<Help />} />
+            <StateProvider>
+              <CssBaseline />
+              <Routes>
+                <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+                <Route path={ROUTES.LOGIN} element={<Login />} />
+                <Route path={ROUTES.ABOUT_US} element={<AboutUs />} />
+                <Route path={ROUTES.FAQ} element={<FAQ />} />
+                <Route path={ROUTES.HELP} element={<Help />} />
 
-              {/* Default redirection based on authentication status */}
-              <Route
-                path={ROUTES.ROOT}
-                element={
-                  <ProtectedRoute element={<Navigate to={ROUTES.EXPLORE} />} />
-                }
-              />
+                {/* Default redirection based on authentication status */}
+                <Route
+                  path={ROUTES.ROOT}
+                  element={
+                    <ProtectedRoute
+                      element={<Navigate to={ROUTES.EXPLORE} />}
+                    />
+                  }
+                />
 
-              {/* Protected routes */}
-              <Route
-                path={ROUTES.EXPLORE}
-                element={<ProtectedRoute element={<Explore />} />}
-              />
-              <Route
-                path={ROUTES.FAVOURITES}
-                element={<ProtectedRoute element={<Favourites />} />}
-              />
-              <Route
-                path={ROUTES.ADD_CAFE}
-                element={<ProtectedRoute element={<AddCafe />} />}
-              />
-              <Route
-                path={ROUTES.ACCOUNT}
-                element={<ProtectedRoute element={<Account />} />}
-              />
+                {/* Protected routes */}
+                <Route
+                  path={ROUTES.EXPLORE}
+                  element={<ProtectedRoute element={<Explore />} />}
+                />
+                <Route
+                  path={ROUTES.FAVOURITES}
+                  element={<ProtectedRoute element={<Favourites />} />}
+                />
+                <Route
+                  path={ROUTES.ADD_CAFE}
+                  element={<ProtectedRoute element={<AddCafe />} />}
+                />
+                <Route
+                  path={ROUTES.ACCOUNT}
+                  element={<ProtectedRoute element={<Account />} />}
+                />
 
-              {/* Redirect unknown paths to the login page */}
-              <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
-            </Routes>
+                {/* Redirect unknown paths to the login page */}
+                <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
+              </Routes>
+            </StateProvider>
           </AuthProvider>
         </Body>
       </ThemeProvider>
-    </div >
+    </div>
   );
 }
 

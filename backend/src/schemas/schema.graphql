@@ -14,6 +14,9 @@ type Query {
   login(userName: String!, password: String!): AuthPayload
   returnAllCafes(
     filterByName: String
+    busynessFilter: String
+    noiseFilter: String
+    priceFilters: [String]
   ): [Cafe]
   getCafeCount: Int
   getCafeInfo(stringId: String!): Cafe
