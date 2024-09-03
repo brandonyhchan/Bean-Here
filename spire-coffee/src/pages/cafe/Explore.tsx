@@ -9,9 +9,7 @@ import { useQuery } from "@apollo/client";
 import {
   Box,
   Container,
-  Typography,
-  useMediaQuery,
-  useTheme,
+  Typography
 } from "@mui/material";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
@@ -19,10 +17,7 @@ import { useSearchParams } from "react-router-dom";
 import CafeList from "../../component/cafe/CafeList";
 
 const Explore = () => {
-  const { noiseFilter, busynessFilter, priceFilters } = useGlobalStateManager();
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
+  const { noiseFilter, busynessFilter, priceFilters, showFilterSidebar, setShowFilterSidebar, isSmallScreen } = useGlobalStateManager();
 
   const [cafes, setCafes] = useState<Cafe[]>([]);
   // const [cafeCount, setCafeCount] = useState(0);
@@ -32,7 +27,6 @@ const Explore = () => {
   );
 
   const [showCloseButton, setShowCloseButton] = useState<boolean>(false);
-  const [showFilterSidebar, setShowFilterSidebar] = useState<boolean>(false);
   const [showSearchAndFilterButton, setShowSearchAndFilterButton] =
     useState<boolean>(true);
   // add back refresh later

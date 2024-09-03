@@ -1,4 +1,5 @@
 import { Level } from "@/config/FilterItems";
+import { useMediaQuery, useTheme } from "@mui/material";
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
 interface StateContextType {
@@ -8,6 +9,9 @@ interface StateContextType {
   setBusynessFilter: React.Dispatch<React.SetStateAction<Level | undefined>>;
   priceFilters: Level[];
   setPriceFilters: React.Dispatch<React.SetStateAction<Level[]>>;
+  showFilterSidebar: boolean;
+  setShowFilterSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+  isSmallScreen: boolean;
 }
 
 const StateContext = createContext<StateContextType | undefined>(undefined);
@@ -15,9 +19,13 @@ const StateContext = createContext<StateContextType | undefined>(undefined);
 export const StateProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
   const [noiseFilter, setNoiseFilter] = useState<Level | undefined>();
   const [busynessFilter, setBusynessFilter] = useState<Level | undefined>();
   const [priceFilters, setPriceFilters] = useState<Level[]>([]);
+  const [showFilterSidebar, setShowFilterSidebar] = useState<boolean>(false);
 
   const contextValue: StateContextType = {
     noiseFilter,
@@ -26,6 +34,9 @@ export const StateProvider: React.FC<{ children: ReactNode }> = ({
     setBusynessFilter,
     priceFilters,
     setPriceFilters,
+    showFilterSidebar,
+    setShowFilterSidebar,
+    isSmallScreen
   };
 
   return (

@@ -20,55 +20,53 @@ import mainTheme from "./styles/mainTheme";
 
 function App() {
   return (
-    <div className="App">
-      <ThemeProvider theme={mainTheme}>
-        <Body>
-          <AuthProvider>
-            <StateProvider>
-              <CssBaseline />
-              <Routes>
-                <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
-                <Route path={ROUTES.LOGIN} element={<Login />} />
-                <Route path={ROUTES.ABOUT_US} element={<AboutUs />} />
-                <Route path={ROUTES.FAQ} element={<FAQ />} />
-                <Route path={ROUTES.HELP} element={<Help />} />
+    <ThemeProvider theme={mainTheme}>
+      <CssBaseline />
+      <AuthProvider>
+        <StateProvider>
+          <Body>
+            <Routes>
+              <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+              <Route path={ROUTES.LOGIN} element={<Login />} />
+              <Route path={ROUTES.ABOUT_US} element={<AboutUs />} />
+              <Route path={ROUTES.FAQ} element={<FAQ />} />
+              <Route path={ROUTES.HELP} element={<Help />} />
 
-                {/* Default redirection based on authentication status */}
-                <Route
-                  path={ROUTES.ROOT}
-                  element={
-                    <ProtectedRoute
-                      element={<Navigate to={ROUTES.EXPLORE} />}
-                    />
-                  }
-                />
+              {/* Default redirection based on authentication status */}
+              <Route
+                path={ROUTES.ROOT}
+                element={
+                  <ProtectedRoute
+                    element={<Navigate to={ROUTES.EXPLORE} />}
+                  />
+                }
+              />
 
-                {/* Protected routes */}
-                <Route
-                  path={ROUTES.EXPLORE}
-                  element={<ProtectedRoute element={<Explore />} />}
-                />
-                <Route
-                  path={ROUTES.FAVOURITES}
-                  element={<ProtectedRoute element={<Favourites />} />}
-                />
-                <Route
-                  path={ROUTES.ADD_CAFE}
-                  element={<ProtectedRoute element={<AddCafe />} />}
-                />
-                <Route
-                  path={ROUTES.ACCOUNT}
-                  element={<ProtectedRoute element={<Account />} />}
-                />
+              {/* Protected routes */}
+              <Route
+                path={ROUTES.EXPLORE}
+                element={<ProtectedRoute element={<Explore />} />}
+              />
+              <Route
+                path={ROUTES.FAVOURITES}
+                element={<ProtectedRoute element={<Favourites />} />}
+              />
+              <Route
+                path={ROUTES.ADD_CAFE}
+                element={<ProtectedRoute element={<AddCafe />} />}
+              />
+              <Route
+                path={ROUTES.ACCOUNT}
+                element={<ProtectedRoute element={<Account />} />}
+              />
 
-                {/* Redirect unknown paths to the login page */}
-                <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
-              </Routes>
-            </StateProvider>
-          </AuthProvider>
-        </Body>
-      </ThemeProvider>
-    </div>
+              {/* Redirect unknown paths to the login page */}
+              <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
+            </Routes>
+          </Body>
+        </StateProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
