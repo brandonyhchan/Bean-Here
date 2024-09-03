@@ -90,6 +90,7 @@ const strings = new LocalizedStrings({
       capacity: "Current Capacity",
       noise: "Noise Level",
       price: "Price",
+      clearFilters: "Clear Filters",
     },
   },
 });
