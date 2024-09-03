@@ -1,10 +1,11 @@
-import { Price, marks, valuetext } from "@/config/FilterItems";
+import { marks, valuetext } from "@/config/FilterItems";
 import strings from "@/config/strings";
 import { useGlobalStateManager } from "@/context/StateContext";
 import { ClickableIconButton } from "@/styles/iconTheme";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { Box, Container, Typography } from "@mui/material";
 import CustomAccordion from "./CustomAccordion";
+import FilterCheckbox from "./FilterCheckbox";
 import FilterRadio from "./FilterRadio";
 
 type FilterSidebarPropsType = {
@@ -23,8 +24,8 @@ const FilterSidebar = ({
     setNoiseFilter,
     busynessFilter,
     setBusynessFilter,
-    // priceFilters,
-    // setPriceFilters,
+    priceFilters,
+    setPriceFilters,
   } = useGlobalStateManager();
 
   return (
@@ -77,10 +78,10 @@ const FilterSidebar = ({
         setValue={setNoiseFilter}
       />
       {/* Checkboxes, multiple selection */}
-      <CustomAccordion
+      <FilterCheckbox
         title={strings.filter.price}
-        type="checkboxes"
-        labels={[Price.LOW, Price.MEDIUM, Price.HIGH]}
+        value={priceFilters}
+        setValue={setPriceFilters}
       />
     </form>
     // TODO: add button to clear/ reset filters
