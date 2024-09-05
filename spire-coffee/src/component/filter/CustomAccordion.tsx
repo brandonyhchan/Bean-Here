@@ -50,7 +50,7 @@ const CustomAccordion: React.FC<CustomAccordionProps> = ({
       >
         {title}
       </AccordionSummary>
-      <AccordionDetails sx={{ pr: 5, pl: 5 }}>
+      <AccordionDetails>
         {type === "slider" && sliderProps && (
           <Slider
             aria-label="Always visible"

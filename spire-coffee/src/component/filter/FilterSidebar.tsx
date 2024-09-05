@@ -42,30 +42,31 @@ const FilterSidebar = ({
 
   return (
     <form
-      style={{ minWidth: isSmallScreen ? "100%" : "260px", height: "100%" }}
+      style={{ width: isSmallScreen ? "100%" : "260px" }}
     >
       {/* this design might need to be changed */}
-      <Container
+      <Box
         sx={{
-          paddingLeft: 2,
-          paddingTop: 5,
-          marginLeft: 0.8,
+          pl: 3.8,
+          pr: 3,
+          pt: 3,
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
         }}
       >
-        <Typography textAlign={"start"} variant="h3" sx={{ mt: 0.5 }}>
+        <Typography textAlign={"start"} variant="h3">
           {strings.filter.heading}
         </Typography>
+
         {isSmallScreen && showFilterSidebar && (
-          <Box sx={{ mr: 1.8 }}>
-            <ClickableIconButton onClick={handleFilterButton}>
-              <CloseRoundedIcon />
-            </ClickableIconButton>
-          </Box>
+
+          <ClickableIconButton onClick={handleFilterButton}>
+            <CloseRoundedIcon />
+          </ClickableIconButton>
+
         )}
-      </Container>
+      </Box>
       <CustomAccordion
         title={strings.filter.distance}
         type="slider"
