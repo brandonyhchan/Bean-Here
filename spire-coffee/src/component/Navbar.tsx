@@ -66,7 +66,7 @@ const Navbar = ({ isAuthenticated }: NavbarPropsType) => {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar
         position="static"
         component="nav"

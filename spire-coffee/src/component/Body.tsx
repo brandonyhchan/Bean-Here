@@ -10,7 +10,7 @@ const Body = ({ children = null }: BodyPropsType) => {
   const { showFilterSidebar, isSmallScreen } = useGlobalStateManager(); // Access the state
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
       <Box sx={{ flex: 1 }}>
         {children}
       </Box>
