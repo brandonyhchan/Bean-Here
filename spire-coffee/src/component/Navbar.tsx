@@ -53,14 +53,22 @@ const Navbar = ({ isAuthenticated }: NavbarPropsType) => {
       onClick={handleDrawerToggle}
     >
       <List>
-        {AuthenticatedNavbarItems.map(({ label, path }) => (
-          <ListItem key={label} disablePadding>
-            <ListItemButton onClick={() => handleNavigation(path)}>
-              <ListItemIcon>{getNavbarIcons(label)}</ListItemIcon>
-              <ListItemText primary={label} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {isAuthenticated
+          ? AuthenticatedNavbarItems.map(({ label, path }) => (
+            <ListItem key={label} disablePadding>
+              <ListItemButton onClick={() => handleNavigation(path)}>
+                <ListItemIcon>{getNavbarIcons(label)}</ListItemIcon>
+                <ListItemText primary={label} />
+              </ListItemButton>
+            </ListItem>
+          ))
+          : UnauthenticatedNavbarItems.map(({ label, path }) => (
+            <ListItem key={label} disablePadding>
+              <ListItemButton onClick={() => handleNavigation(path)}>
+                <ListItemText primary={label} />
+              </ListItemButton>
+            </ListItem>
+          ))}
       </List>
     </Box>
   );
