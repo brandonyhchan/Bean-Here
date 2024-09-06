@@ -3,7 +3,7 @@ import strings from "@/config/strings";
 import { useGlobalStateManager } from "@/context/StateContext";
 import { ClickableIconButton } from "@/styles/iconTheme";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import CustomAccordion from "./CustomAccordion";
 import FilterCheckbox from "./FilterCheckbox";
