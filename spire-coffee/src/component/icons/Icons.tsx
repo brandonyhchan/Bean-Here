@@ -1,18 +1,18 @@
-import HourglassEmptyRoundedIcon from "@mui/icons-material/HourglassEmptyRounded";
-import HourglassBottomRoundedIcon from "@mui/icons-material/HourglassBottomRounded";
-import HourglassFullRoundedIcon from "@mui/icons-material/HourglassFullRounded";
-import VolumeMuteRoundedIcon from "@mui/icons-material/VolumeMuteRounded";
-import VolumeDownRoundedIcon from "@mui/icons-material/VolumeDownRounded";
-import VolumeUpRoundedIcon from "@mui/icons-material/VolumeUpRounded";
-import AttachMoneyRoundedIcon from "@mui/icons-material/AttachMoneyRounded";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
-import LocalPhoneRoundedIcon from "@mui/icons-material/LocalPhoneRounded";
+import AttachMoneyRoundedIcon from "@mui/icons-material/AttachMoneyRounded";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import HourglassBottomRoundedIcon from "@mui/icons-material/HourglassBottomRounded";
+import HourglassEmptyRoundedIcon from "@mui/icons-material/HourglassEmptyRounded";
+import HourglassFullRoundedIcon from "@mui/icons-material/HourglassFullRounded";
 import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
-import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
-import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
-import strings from "../../config/strings";
+import LocalPhoneRoundedIcon from "@mui/icons-material/LocalPhoneRounded";
+import VolumeDownRoundedIcon from "@mui/icons-material/VolumeDownRounded";
+import VolumeMuteRoundedIcon from "@mui/icons-material/VolumeMuteRounded";
+import VolumeUpRoundedIcon from "@mui/icons-material/VolumeUpRounded";
 import { SvgIconProps } from "@mui/material/SvgIcon";
+import strings from "../../config/strings";
 
 const iconFontSize: SvgIconProps['fontSize'] = 'small';
 

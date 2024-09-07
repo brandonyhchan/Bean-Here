@@ -124,7 +124,6 @@ const Explore = () => {
               flexDirection: "column",
               padding: "0",
               paddingTop: "1rem",
-              paddingBottom: "0.5rem",
               height: "100%",
             }}
           >

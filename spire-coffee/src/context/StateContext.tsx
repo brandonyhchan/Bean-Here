@@ -1,6 +1,8 @@
 import { Level } from "@/config/FilterItems";
 import { useMediaQuery, useTheme } from "@mui/material";
 import React, { createContext, ReactNode, useContext, useState } from "react";
+import Navbar from "../component/Navbar";
+import { useAuth } from "../context/AuthContext";
 
 interface StateContextType {
   noiseFilter: Level | undefined;
@@ -12,6 +14,7 @@ interface StateContextType {
   showFilterSidebar: boolean;
   setShowFilterSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   isSmallScreen: boolean;
+  isAuthenticated: boolean;
 }
 
 const StateContext = createContext<StateContextType | undefined>(undefined);
@@ -19,6 +22,8 @@ const StateContext = createContext<StateContextType | undefined>(undefined);
 export const StateProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
+  const { isAuthenticated } = useAuth();
+
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -36,11 +41,13 @@ export const StateProvider: React.FC<{ children: ReactNode }> = ({
     setPriceFilters,
     showFilterSidebar,
     setShowFilterSidebar,
-    isSmallScreen
+    isSmallScreen,
+    isAuthenticated
   };
 
   return (
     <StateContext.Provider value={contextValue}>
+      <Navbar isAuthenticated={isAuthenticated} />
       {children}
     </StateContext.Provider>
   );

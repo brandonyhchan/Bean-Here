@@ -1,15 +1,15 @@
 import strings from "@/config/strings";
-import { Link } from "react-router-dom";
+import { Facebook, Instagram, X } from "@mui/icons-material";
 import {
   Box,
-  Typography,
   Container,
   Grid,
   IconButton,
   Link as MuiLink,
+  Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { Facebook, X, Instagram } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import { ROUTES } from "../config/routes";
 
 const Footer = () => {
