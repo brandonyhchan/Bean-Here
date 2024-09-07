@@ -16,4 +16,4 @@ const ClickableIconButton = styled(IconButton)({
   },
 });
 
-export { NonClickableIconButton, ClickableIconButton };
+export { ClickableIconButton, NonClickableIconButton };

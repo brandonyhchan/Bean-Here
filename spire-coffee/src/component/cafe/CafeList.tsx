@@ -1,4 +1,3 @@
-// CafeList.tsx
 import CafeCard from "@/component/cafe/CafeCard";
 import LoadingSpinner from "@/component/LoadingSpinner";
 import strings from "@/config/strings";

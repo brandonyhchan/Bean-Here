@@ -1,4 +1,3 @@
-import React from "react";
 import { CircularProgress, styled } from "@mui/material";
 
 const StyledCircularProgress = styled(CircularProgress)(({ theme }) => ({
