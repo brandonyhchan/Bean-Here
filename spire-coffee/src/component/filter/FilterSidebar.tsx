@@ -42,7 +42,11 @@ const FilterSidebar = ({
 
   return (
     <form
-      style={{ width: isSmallScreen ? "100%" : "260px" }}
+      style={{
+        width: isSmallScreen ? "100%" : "260px",
+        maxHeight: "calc(100vh - 64px)",
+        overflowY: "auto",
+      }}
     >
       {/* this design might need to be changed */}
       <Box
@@ -60,11 +64,9 @@ const FilterSidebar = ({
         </Typography>
 
         {isSmallScreen && showFilterSidebar && (
-
           <ClickableIconButton onClick={handleFilterButton}>
             <CloseRoundedIcon />
           </ClickableIconButton>
-
         )}
       </Box>
       <CustomAccordion
