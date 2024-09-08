@@ -109,13 +109,13 @@ const SignUp = () => {
     if (!values.password) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: strings.error.requiredField,
+        password: strings.error.requiredField
       }));
       valid = false;
-    } if (values.password !== values.confirmPassword) {
+    } else if (values.password !== values.confirmPassword) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: strings.error.passwordMatch,
+        password: strings.error.passwordMatch
       }));
       valid = false;
     }
@@ -123,7 +123,7 @@ const SignUp = () => {
     if (!values.confirmPassword) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        confirmPassword: strings.error.requiredField,
+        confirmPassword: strings.error.requiredField
       }));
       valid = false;
     }
@@ -156,7 +156,7 @@ const SignUp = () => {
         password: strings.error.passwordMatch,
       }));
     } else {
-      setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
+      setErrors((prevErrors) => ({ ...prevErrors, password: "",  confirmPassword: "" }));
     }
   };
 
@@ -173,7 +173,7 @@ const SignUp = () => {
         password: strings.error.passwordMatch,
       }));
     } else {
-      setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
+      setErrors((prevErrors) => ({ ...prevErrors, password: "", confirmPassword: "" }));
     }
   };
 
