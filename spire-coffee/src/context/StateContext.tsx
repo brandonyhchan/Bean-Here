@@ -3,6 +3,7 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import React, { createContext, ReactNode, useContext, useState } from "react";
 import Navbar from "../component/Navbar";
 import { useAuth } from "../context/AuthContext";
+import { userCoords } from "@/types/cafe";
 
 interface StateContextType {
   noiseFilter: Level | undefined;
@@ -15,6 +16,8 @@ interface StateContextType {
   setShowFilterSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   isSmallScreen: boolean;
   isAuthenticated: boolean;
+  userLocation: userCoords | null;
+  setUserLocation: React.Dispatch<React.SetStateAction<userCoords | null>>;
 }
 
 const StateContext = createContext<StateContextType | undefined>(undefined);
@@ -31,6 +34,7 @@ export const StateProvider: React.FC<{ children: ReactNode }> = ({
   const [busynessFilter, setBusynessFilter] = useState<Level | undefined>();
   const [priceFilters, setPriceFilters] = useState<Level[]>([]);
   const [showFilterSidebar, setShowFilterSidebar] = useState<boolean>(false);
+  const [userLocation, setUserLocation] = useState<userCoords | null>(null);
 
   const contextValue: StateContextType = {
     noiseFilter,
@@ -42,7 +46,9 @@ export const StateProvider: React.FC<{ children: ReactNode }> = ({
     showFilterSidebar,
     setShowFilterSidebar,
     isSmallScreen,
-    isAuthenticated
+    isAuthenticated,
+    userLocation,
+    setUserLocation,
   };
 
   return (
