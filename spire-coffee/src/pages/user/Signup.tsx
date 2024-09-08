@@ -112,10 +112,18 @@ const SignUp = () => {
         password: strings.error.requiredField,
       }));
       valid = false;
-    } else if (values.password !== values.confirmPassword) {
+    } if (values.password !== values.confirmPassword) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         password: strings.error.passwordMatch,
+      }));
+      valid = false;
+    }
+
+    if (!values.confirmPassword) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        confirmPassword: strings.error.requiredField,
       }));
       valid = false;
     }
@@ -136,6 +144,10 @@ const SignUp = () => {
   };
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValues((prev) => ({
+      ...prev,
+      password: event.target.value
+    }));
     setPasswordTyped(true);
 
     if (event.target.value !== values.confirmPassword) {
@@ -151,6 +163,10 @@ const SignUp = () => {
   const handleConfirmPasswordChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
+    setValues((prev) => ({
+      ...prev,
+      confirmPassword: event.target.value
+    }));
     if (event.target.value !== values.password) {
       setErrors((prevErrors) => ({
         ...prevErrors,

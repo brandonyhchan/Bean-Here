@@ -26,9 +26,10 @@ const Form = ({
 }: FormProps) => {
   return (
     <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={onSubmit}>
-      {fields.map((field) => (
+      {fields.map((field, index) => (
         <TextField
           key={field.id}
+          autoFocus={index === 0} 
           margin="normal"
           required
           fullWidth
