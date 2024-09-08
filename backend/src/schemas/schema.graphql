@@ -17,6 +17,8 @@ type Query {
     busynessFilter: String
     noiseFilter: String
     priceFilters: [String]
+    userLocation: locationInput
+    distanceFilter: Int
   ): [Cafe]
   getCafeCount: Int
   getCafeInfo(stringId: String!): Cafe

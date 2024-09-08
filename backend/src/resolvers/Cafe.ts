@@ -2,6 +2,8 @@
  * Cafe.ts contains functions to Query or Mutate information directly relating to the Cafe table in the database.
  */
 
+import { Cafe, Coordinates, distance } from "../types/cafe";
+
 /**
  * @Query
  *
@@ -33,7 +35,6 @@ export async function returnAllCafes(parent, args, context) {
         city: true,
         province: true,
         profilePhotoURL: true,
-        location: true,
         busyness: true,
         noisiness: true,
         price: true,
@@ -56,8 +57,20 @@ export async function returnAllCafes(parent, args, context) {
         id: "asc",
       },
     });
-    return query;
-  } catch (error) {
+    if (args.distanceFilter < 25) {
+      const cafeDistances: Cafe[] = [];
+      query.forEach(function (cafe) {
+        cafeDistances.push(calculateDistance(cafe, args.userLocation));
+      });
+      const output = cafeDistances.filter(
+        (cafe) => cafe.distance < args.distanceFilter
+      );
+      return output;
+    } else {
+      return query;
+    }
+  
+    } catch (error) {
     console.error("Error in returnAllCafes resolver:", error);
     throw new Error("Failed to fetch cafes");
   }
@@ -95,4 +108,27 @@ export async function updateCafeInfo(parent, args, context) {
     where: { stringId: args.stringId },
     data: { busyness: args.busyness, noisiness: args.noisiness },
   });
+}
+
+function calculateDistance(cafe: Cafe, args: Coordinates): distance<Cafe> {
+  const R = 6371; // Radius of Earth in km
+  const dLat = degToRad(args.latitude - cafe.latitude);
+  const dLong = degToRad(args.longitude - cafe.longitude);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(degToRad(cafe.latitude)) *
+      Math.cos(degToRad(args.latitude)) *
+      Math.sin(dLong / 2) *
+      Math.sin(dLong / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = Math.round(R * c);
+  return {
+    ...cafe,
+    distance: d,
+  };
+}
+
+function degToRad(deg: number): number {
+  return deg * (Math.PI / 180);
 }

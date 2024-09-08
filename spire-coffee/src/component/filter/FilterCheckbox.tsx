@@ -19,7 +19,6 @@ const FilterCheckbox: React.FC<FilterCheckboxProps> = ({
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedValue = event.target.value as Level;
-    console.log(selectedValue);
 
     setValue((prevSelected) => {
       const newSelected = event.target.checked

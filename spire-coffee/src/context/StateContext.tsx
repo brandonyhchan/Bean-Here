@@ -16,8 +16,12 @@ interface StateContextType {
   setShowFilterSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   isSmallScreen: boolean;
   isAuthenticated: boolean;
-  userLocation: userCoords | null;
-  setUserLocation: React.Dispatch<React.SetStateAction<userCoords | null>>;
+  userLocation: userCoords | undefined;
+  setUserLocation: React.Dispatch<React.SetStateAction<userCoords | undefined>>;
+  distanceFilterValue: number | undefined;
+  setDistanceFilterValue: React.Dispatch<
+    React.SetStateAction<number | undefined>
+  >;
 }
 
 const StateContext = createContext<StateContextType | undefined>(undefined);
@@ -34,7 +38,12 @@ export const StateProvider: React.FC<{ children: ReactNode }> = ({
   const [busynessFilter, setBusynessFilter] = useState<Level | undefined>();
   const [priceFilters, setPriceFilters] = useState<Level[]>([]);
   const [showFilterSidebar, setShowFilterSidebar] = useState<boolean>(false);
-  const [userLocation, setUserLocation] = useState<userCoords | null>(null);
+  const [userLocation, setUserLocation] = useState<userCoords | undefined>(
+    undefined
+  );
+  const [distanceFilterValue, setDistanceFilterValue] = useState<
+    number | undefined
+  >(undefined);
 
   const contextValue: StateContextType = {
     noiseFilter,
@@ -49,6 +58,8 @@ export const StateProvider: React.FC<{ children: ReactNode }> = ({
     isAuthenticated,
     userLocation,
     setUserLocation,
+    distanceFilterValue,
+    setDistanceFilterValue,
   };
 
   return (

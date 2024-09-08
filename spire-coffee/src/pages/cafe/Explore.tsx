@@ -20,6 +20,7 @@ const Explore = () => {
     showFilterSidebar,
     setShowFilterSidebar,
     isSmallScreen,
+    userLocation,
     setUserLocation,
   } = useGlobalStateManager();
 
@@ -49,6 +50,7 @@ const Explore = () => {
       busynessFilter,
       noiseFilter,
       priceFilters,
+      userLocation,
     },
   });
 
