@@ -12,3 +12,8 @@ export interface Cafe {
   location: Location;
   distance?: number;
 }
+
+export type userCoords =  {
+  latitude: number;
+  longitude: number;
+}

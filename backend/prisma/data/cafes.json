@@ -11,7 +11,9 @@
     "busyness": "MEDIUM",
     "noisiness": "LOW",
     "price": "MEDIUM",
-    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/breka.png"
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/breka.png",
+    "latitude": 49.24395183887686,
+    "longitude": -123.10106046244594
   },
   {
     "stringId": "brekaFraser",
@@ -25,7 +27,9 @@
     "busyness": "MEDIUM",
     "noisiness": "LOW",
     "price": "MEDIUM",
-    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/breka.png"
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/breka.png",
+    "latitude": 49.22531283615734,
+    "longitude": -123.09110830477461
   },
   {
     "stringId": "nemesisGNW",
@@ -38,7 +42,9 @@
     "busyness": "HIGH",
     "noisiness": "MEDIUM",
     "price": "MEDIUM",
-    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/nemisis.png"
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/nemisis.png",
+    "latitude": 49.267168988981176,
+    "longitude": -123.09263211826324
   },
   {
     "stringId": "nemesisPolygon",
@@ -51,7 +57,9 @@
     "busyness": "HIGH",
     "noisiness": "HIGH",
     "price": "MEDIUM",
-    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/nemisis.png"
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/nemisis.png",
+    "latitude": 49.31067849315337,
+    "longitude": -123.08084128757065
   },
   {
     "stringId": "groundsForCoffee",
@@ -60,11 +68,14 @@
     "city": "Vancouver",
     "province": "BC",
     "postalCode": "V5N 4B2",
+    "phoneNumber": "604-254-3939",
     "website": "https://groundsforcoffee.ca/",
     "busyness": "MEDIUM",
     "noisiness": "MEDIUM",
     "price": "HIGH",
-    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/groundsForCoffee.png"
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/groundsForCoffee.png",
+    "latitude": 49.266369106980484,
+    "longitude": -123.0694613740821
   },
   {
     "stringId": "flavorBalance",
@@ -73,10 +84,13 @@
     "city": "New Westminster",
     "province": "BC",
     "postalCode": "V3M 5Z8",
+    "phoneNumber": "778-397-2229",
     "busyness": "LOW",
     "noisiness": "LOW",
     "price": "LOW",
-    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/flavorbalance.jpg"
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/flavorbalance.jpg",
+    "latitude": 49.21223000687766,
+    "longitude": -122.92051811641288
   },
   {
     "stringId": "fiorDeLatte",
@@ -85,9 +99,29 @@
     "city": "Burnaby",
     "province": "BC",
     "postalCode": "V5C 2J5",
+    "phoneNumber": "604-298-5955",
+    "website": "https://fdlcafe.ca/",
     "busyness": "MEDIUM",
     "noisiness": "LOW",
     "price": "LOW",
-    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/fdlcafe.png"
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/fdlcafe.png",
+    "latitude": 49.281329346514276,
+    "longitude": -123.0102098182624
+  },
+  {
+    "stringId": "cMarketPoco",
+    "name": "C Market Coffee (Port Coq)",
+    "street": "820 Village Dr #110 V3B 0G9",
+    "city": " Port Coquitlam",
+    "province": "BC",
+    "postalCode": "V3B 0G9",
+    "phoneNumber": "604-949-0305",
+    "website": "http://www.cmarket.ca/",
+    "busyness": "HIGH",
+    "noisiness": "HIGH",
+    "price": "LOW",
+    "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/cMarket.png",
+    "latitude": 49.25191163941184,
+    "longitude": -122.73605968942795
   }
 ]

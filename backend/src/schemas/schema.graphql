@@ -17,6 +17,8 @@ type Query {
     busynessFilter: String
     noiseFilter: String
     priceFilters: [String]
+    userLocation: locationInput
+    distanceFilter: Int
   ): [Cafe]
   getCafeCount: Int
   getCafeInfo(stringId: String!): Cafe
@@ -24,4 +26,14 @@ type Query {
 
 type Mutation {
   updateCafeInfo(stringId: String!, busyness: String, noisiness: String): Cafe
+}
+
+type Location {
+  latitude: Float
+  longitude: Float
+}
+
+input locationInput {
+  latitude: Float
+  longitude: Float
 }
