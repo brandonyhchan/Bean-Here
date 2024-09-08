@@ -22,6 +22,7 @@ const Explore = () => {
     isSmallScreen,
     userLocation,
     setUserLocation,
+    distanceFilterValue,
   } = useGlobalStateManager();
 
   const [cafes, setCafes] = useState<Cafe[]>([]);
@@ -51,6 +52,7 @@ const Explore = () => {
       noiseFilter,
       priceFilters,
       userLocation,
+      distanceFilter: distanceFilterValue,
     },
   });
 

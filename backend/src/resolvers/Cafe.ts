@@ -38,6 +38,8 @@ export async function returnAllCafes(parent, args, context) {
         busyness: true,
         noisiness: true,
         price: true,
+        latitude: true,
+        longitude: true,
       },
       where: {
         name: { contains: filterByName },
@@ -57,7 +59,7 @@ export async function returnAllCafes(parent, args, context) {
         id: "asc",
       },
     });
-    if (args.distanceFilter < 25) {
+    if (args.distanceFilter < 30) {
       const cafeDistances: Cafe[] = [];
       query.forEach(function (cafe) {
         cafeDistances.push(calculateDistance(cafe, args.userLocation));
