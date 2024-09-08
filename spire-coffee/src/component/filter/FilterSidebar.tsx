@@ -1,13 +1,13 @@
-import { marks, RadioAttribute, valuetext } from "@/config/FilterItems";
+import { RadioAttribute } from "@/config/FilterItems";
 import strings from "@/config/strings";
 import { useGlobalStateManager } from "@/context/StateContext";
 import { ClickableIconButton } from "@/styles/iconTheme";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
-import CustomAccordion from "./CustomAccordion";
 import FilterCheckbox from "./FilterCheckbox";
 import FilterRadio from "./FilterRadio";
+import FilterSlider from "./FilterSlider";
 
 type FilterSidebarPropsType = {
   handleFilterButton: (event: React.MouseEvent<Element, MouseEvent>) => void;
@@ -30,6 +30,8 @@ const FilterSidebar = ({
     setBusynessFilter,
     priceFilters,
     setPriceFilters,
+    distanceFilterValue,
+    setDistanceFilterValue,
   } = useGlobalStateManager();
 
   const clearFilters = () => {
@@ -42,41 +44,39 @@ const FilterSidebar = ({
 
   return (
     <form
-      style={{ minWidth: isSmallScreen ? "100%" : "260px", height: "100%" }}
+      style={{
+        width: isSmallScreen ? "100%" : "260px",
+        maxHeight: "calc(100vh - 64px)",
+        overflowY: "auto",
+      }}
     >
       {/* this design might need to be changed */}
-      <Container
+      <Box
         sx={{
-          paddingLeft: 2,
-          paddingTop: 5,
-          marginLeft: 0.8,
+          pl: 3.8,
+          pr: 3,
+          pt: 3,
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
         }}
       >
-        <Typography textAlign={"start"} variant="h3" sx={{ mt: 0.5 }}>
+        <Typography textAlign={"start"} variant="h3">
           {strings.filter.heading}
         </Typography>
+
         {isSmallScreen && showFilterSidebar && (
-          <Box sx={{ mr: 1.8 }}>
-            <ClickableIconButton onClick={handleFilterButton}>
-              <CloseRoundedIcon />
-            </ClickableIconButton>
-          </Box>
+          <ClickableIconButton onClick={handleFilterButton}>
+            <CloseRoundedIcon />
+          </ClickableIconButton>
         )}
-      </Container>
-      <CustomAccordion
+      </Box>
+      <FilterSlider
         title={strings.filter.distance}
-        type="slider"
-        sliderProps={{
-          defaultValue: 10,
-          step: 5,
-          max: 30,
-          marks: marks,
-          getAriaValueText: valuetext,
-        }}
+        value={distanceFilterValue}
+        setValue={setDistanceFilterValue}
       />
+
       {/* Busyness Radio buttons */}
       <FilterRadio
         type={RadioAttribute.CAPACITY}

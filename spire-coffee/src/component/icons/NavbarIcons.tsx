@@ -1,8 +1,8 @@
 import ExploreIcon from "@mui/icons-material/Explore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocalCafeIcon from "@mui/icons-material/LocalCafe";
-import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from "@mui/icons-material/Person";
 import strings from "../../config/strings";
 
 export const getNavbarIcons = (text: string) => {

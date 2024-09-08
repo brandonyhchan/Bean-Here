@@ -6,23 +6,24 @@ import { useGlobalStateManager } from "@/context/StateContext";
 import { returnAllCafeQuery } from "@/support/graphqlServerApi";
 import { Cafe } from "@/types/cafe";
 import { useQuery } from "@apollo/client";
-import {
-  Box,
-  Container,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-import React, { useState } from "react";
+import { Box, Container, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import CafeList from "../../component/cafe/CafeList";
 
 const Explore = () => {
-  const { noiseFilter, busynessFilter, priceFilters } = useGlobalStateManager();
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
+  const {
+    noiseFilter,
+    busynessFilter,
+    priceFilters,
+    showFilterSidebar,
+    setShowFilterSidebar,
+    isSmallScreen,
+    userLocation,
+    setUserLocation,
+    distanceFilterValue,
+  } = useGlobalStateManager();
 
   const [cafes, setCafes] = useState<Cafe[]>([]);
   // const [cafeCount, setCafeCount] = useState(0);
@@ -32,7 +33,6 @@ const Explore = () => {
   );
 
   const [showCloseButton, setShowCloseButton] = useState<boolean>(false);
-  const [showFilterSidebar, setShowFilterSidebar] = useState<boolean>(false);
   const [showSearchAndFilterButton, setShowSearchAndFilterButton] =
     useState<boolean>(true);
   // add back refresh later
@@ -51,10 +51,10 @@ const Explore = () => {
       busynessFilter,
       noiseFilter,
       priceFilters,
+      userLocation,
+      distanceFilter: distanceFilterValue,
     },
   });
-
-  // console.log(busynessFilter);
 
   const handleCloseButton = (event: React.MouseEvent<Element, MouseEvent>) => {
     event.preventDefault();
@@ -74,6 +74,26 @@ const Explore = () => {
     setSearchParams({ search: event.target.value });
     setShowCloseButton(true);
   };
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        () => {
+          console.error("Unable to retrieve your location");
+        }
+      );
+    }
+  };
+
+  useEffect(() => {
+    getLocation();
+  });
 
   return (
     <React.Fragment>
@@ -130,7 +150,6 @@ const Explore = () => {
               flexDirection: "column",
               padding: "0",
               paddingTop: "1rem",
-              paddingBottom: "0.5rem",
               height: "100%",
             }}
           >

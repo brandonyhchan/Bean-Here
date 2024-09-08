@@ -1,4 +1,3 @@
-// CafeList.tsx
 import CafeCard from "@/component/cafe/CafeCard";
 import LoadingSpinner from "@/component/LoadingSpinner";
 import strings from "@/config/strings";
@@ -45,7 +44,8 @@ const CafeList = ({
       sx={{
         maxWidth: isSmallScreen ? "380px" : "800px",
         height: "100%",
-        paddingRight: { xs: "0", sm: "0", md: 4, lg: 4 },
+        pr: { xs: "0", sm: "0", md: 4, lg: 4 },
+        pb: 4,
       }}
     >
       <Grid

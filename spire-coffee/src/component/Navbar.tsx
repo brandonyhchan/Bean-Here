@@ -18,13 +18,18 @@ import {
 } from "@mui/material";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { NavbarItems } from "../config/NavbarItems";
+import { AuthenticatedNavbarItems, UnauthenticatedNavbarItems } from "../config/NavbarItems";
 import { ROUTES } from "../config/routes";
 import { ClickableIconButton } from "../styles/iconTheme";
 import { getNavbarIcons } from "./icons/NavbarIcons";
 import Logo from "./Logo";
 
-const Navbar = () => {
+type NavbarPropsType = {
+  isAuthenticated: boolean; // If the user is authenticated
+};
+
+const Navbar = ({ isAuthenticated }: NavbarPropsType) => {
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -48,20 +53,28 @@ const Navbar = () => {
       onClick={handleDrawerToggle}
     >
       <List>
-        {NavbarItems.map(({ label, path }) => (
-          <ListItem key={label} disablePadding>
-            <ListItemButton onClick={() => handleNavigation(path)}>
-              <ListItemIcon>{getNavbarIcons(label)}</ListItemIcon>
-              <ListItemText primary={label} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {isAuthenticated
+          ? AuthenticatedNavbarItems.map(({ label, path }) => (
+            <ListItem key={label} disablePadding>
+              <ListItemButton onClick={() => handleNavigation(path)}>
+                <ListItemIcon>{getNavbarIcons(label)}</ListItemIcon>
+                <ListItemText primary={label} />
+              </ListItemButton>
+            </ListItem>
+          ))
+          : UnauthenticatedNavbarItems.map(({ label, path }) => (
+            <ListItem key={label} disablePadding>
+              <ListItemButton onClick={() => handleNavigation(path)}>
+                <ListItemText primary={label} />
+              </ListItemButton>
+            </ListItem>
+          ))}
       </List>
     </Box>
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar
         position="static"
         component="nav"
@@ -104,20 +117,35 @@ const Navbar = () => {
 
           <Box sx={{ display: { xs: "none", sm: "none", md: "flex" } }}>
             <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "none", md: "flex" } }}>
-              {NavbarItems.map(({ label, path }) => (
-                <Button
-                  key={label}
-                  sx={{
-                    my: 2,
-                    color: "white",
-                    display: "block",
-                    textTransform: "none",
-                  }}
-                  onClick={() => handleNavigation(path)}
-                >
-                  {label}
-                </Button>
-              ))}
+              {isAuthenticated
+                ? AuthenticatedNavbarItems.map(({ label, path }) => (
+                  <Button
+                    key={label}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      textTransform: "none",
+                    }}
+                    onClick={() => handleNavigation(path)}
+                  >
+                    {label}
+                  </Button>
+                ))
+                : UnauthenticatedNavbarItems.map(({ label, path }) => (
+                  <Button
+                    key={label}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      textTransform: "none",
+                    }}
+                    onClick={() => handleNavigation(path)}
+                  >
+                    {label}
+                  </Button>
+                ))}
             </Box>
           </Box>
         </Toolbar>

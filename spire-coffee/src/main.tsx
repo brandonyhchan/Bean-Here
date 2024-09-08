@@ -1,10 +1,10 @@
+import { ApolloProvider } from "@apollo/client";
 import React from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ApolloProvider } from "@apollo/client";
 import apolloClient from "./apolloClient";
+import App from "./App";
 
 const container = document.getElementById("root");
 if (container === null) throw new Error("Root container missing in index.html");
