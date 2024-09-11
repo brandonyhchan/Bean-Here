@@ -1,25 +1,24 @@
+import useFormErrors from "@/component/helpers/useFormErrors";
+import Logo from "@/component/Logo";
+import { ROUTES } from "@/config/routes";
+import strings from "@/config/strings";
+import { useAuth } from "@/context/AuthContext";
+import { loginQuery } from "@/support/graphqlServerApi";
+import { useLazyQuery } from "@apollo/client";
+import {
+  Alert,
+  Box,
+  Button,
+  Container,
+  CssBaseline,
+  Grid,
+  Link as MuiLink,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { loginQuery } from "@/support/graphqlServerApi";
-import { useLazyQuery } from "@apollo/client";
-import { useAuth } from "@/context/AuthContext";
-import {
-  Avatar,
-  Button,
-  CssBaseline,
-  TextField,
-  Grid,
-  Box,
-  Typography,
-  Container,
-  Alert,
-  Link as MuiLink,
-} from "@mui/material";
-import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
-import { ROUTES } from "@/config/routes";
-import strings from "@/config/strings";
-import useFormErrors from "@/component/helpers/useFormErrors";
 
 const Login = () => {
   const { login } = useAuth();
@@ -83,11 +82,13 @@ const Login = () => {
       <Container
         component="main"
         maxWidth="xs"
+
         sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100vh",
+          height: "100%",
+          paddingBottom: { xs: "50px", sm: "50px" },
         }}
       >
         <CssBaseline />
@@ -98,9 +99,7 @@ const Login = () => {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <Logo type="logo" />
           <Typography component="h1" variant="h5">
             {strings.login.signIn}
           </Typography>

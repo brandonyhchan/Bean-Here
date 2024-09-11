@@ -3,7 +3,7 @@ import LocalizedStrings from "react-localization";
 const strings = new LocalizedStrings({
   en: {
     general: {
-      title: "Spire Coffee",
+      title: "Bean Here?",
       email: "Email Address",
       username: "Username",
       password: "Password",
@@ -23,6 +23,8 @@ const strings = new LocalizedStrings({
       addCafe: "Add a Cafe",
       account: "Account",
       signOut: "Sign Out",
+      login: "Sign In",
+      signUp: "Sign Up",
     },
     error: {
       requiredField: "This field is required",
@@ -85,10 +87,12 @@ const strings = new LocalizedStrings({
       reportSubmitMessage: "Thank you! Your report has been submitted",
     },
     filter: {
+      heading: "Filter",
       distance: "Distance (km)",
       capacity: "Current Capacity",
       noise: "Noise Level",
       price: "Price",
+      clearFilters: "Clear Filters",
     },
   },
 });

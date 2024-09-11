@@ -1,8 +1,8 @@
 import {
   ApolloClient,
-  InMemoryCache,
   ApolloLink,
   HttpLink,
+  InMemoryCache,
   concat,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
@@ -27,6 +27,11 @@ const errorLink = onError(({ graphQLErrors }) => {
     graphQLErrors.forEach(({ message }) => {
       if (message.includes("Not authenticated")) {
         // Token expired, redirect to login
+        localStorage.removeItem("authToken");
+        window.location.href = "/login";
+      } else if (message.includes("jwt expired")) {
+        // Token expired, redirect to login
+        localStorage.removeItem("authToken");
         window.location.href = "/login";
       }
     });

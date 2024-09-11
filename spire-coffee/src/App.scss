@@ -1,13 +1,14 @@
 html,
 body {
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
 
 #root {
-  width: 100vw;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   font-size: 14px;
@@ -16,8 +17,6 @@ body {
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  width: 100vw;
   overflow-y: scroll;
 }
 

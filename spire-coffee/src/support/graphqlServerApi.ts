@@ -39,9 +39,19 @@ export const loginQuery = gql`
 export const returnAllCafeQuery = gql`
   query ReturnAllCafes(
     $filterByName: String
+    $busynessFilter: String
+    $noiseFilter: String
+    $priceFilters: [String]
+    $userLocation: locationInput
+    $distanceFilter: Int
   ) {
     returnAllCafes(
       filterByName: $filterByName
+      busynessFilter: $busynessFilter
+      noiseFilter: $noiseFilter
+      priceFilters: $priceFilters
+      userLocation: $userLocation
+      distanceFilter: $distanceFilter
     ) {
       id
       stringId

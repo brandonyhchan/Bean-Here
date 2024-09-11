@@ -9,11 +9,12 @@ export type Cafe = {
   busyness: string;
   noisiness: string;
   price: string;
-  location: Location;
+  latitude: number;
+  longitude: number;
   distance: number;
 };
 
-export type Location = {
+export type Coordinates = {
   latitude: number;
   longitude: number;
 };

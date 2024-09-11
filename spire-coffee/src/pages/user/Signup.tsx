@@ -1,24 +1,23 @@
-import React, { useState } from "react";
-import { Helmet } from "react-helmet-async";
+import useFormErrors from "@/component/helpers/useFormErrors";
+import Logo from "@/component/Logo";
 import strings from "@/config/strings";
-import { useLazyQuery } from "@apollo/client";
-import { signUpMutation } from "@/support/graphqlServerApi";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
+import { signUpMutation } from "@/support/graphqlServerApi";
+import { useLazyQuery } from "@apollo/client";
 import {
   Alert,
-  Avatar,
-  Typography,
-  Container,
   Box,
-  TextField,
-  CssBaseline,
   Button,
+  Container,
+  CssBaseline,
+  TextField,
+  Typography,
 } from "@mui/material";
-import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
 import EmailValidator from "email-validator";
-import useFormErrors from "@/component/helpers/useFormErrors";
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import PasswordChecklist from "react-password-checklist";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const { setAuthStatus } = useAuth();
@@ -30,6 +29,7 @@ const SignUp = () => {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordTyped, setPasswordTyped] = useState(false);
   const [signUpError, setSignUpError] = useState("");
   const [errors, setErrors, resetErrors] = useFormErrors();
 
@@ -133,6 +133,7 @@ const SignUp = () => {
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
+    setPasswordTyped(true); // Mark password as typed
     if (event.target.value !== confirmPassword) {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -160,7 +161,16 @@ const SignUp = () => {
   return (
     <React.Fragment>
       <Helmet title={strings.login.signUp} />
-      <Container component="main" maxWidth="xs">
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+        }}
+      >
         <CssBaseline />
         <Box
           sx={{
@@ -170,9 +180,7 @@ const SignUp = () => {
           }}
           style={{ paddingTop: "25px", paddingBottom: "25px" }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <Logo type="logo" />
           <Typography component="h1" variant="h5">
             {strings.login.signUp}
           </Typography>
@@ -248,18 +256,20 @@ const SignUp = () => {
               error={!!errors.password}
               helperText={errors.password}
             />
-            <PasswordChecklist
-              rules={["minLength", "specialChar", "number", "capital"]}
-              minLength={5}
-              value={password}
-              valueAgain={confirmPassword}
-              messages={{
-                minLength: strings.error.passwordLength,
-                specialChar: strings.error.passwordSpecial,
-                number: strings.error.passwordNum,
-                capital: strings.error.passwordCap,
-              }}
-            />
+            {passwordTyped && (
+              <PasswordChecklist
+                rules={["minLength", "specialChar", "number", "capital"]}
+                minLength={5}
+                value={password}
+                valueAgain={confirmPassword}
+                messages={{
+                  minLength: strings.error.passwordLength,
+                  specialChar: strings.error.passwordSpecial,
+                  number: strings.error.passwordNum,
+                  capital: strings.error.passwordCap
+                }}
+              />
+            )}
             <TextField
               margin="normal"
               fullWidth

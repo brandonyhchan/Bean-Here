@@ -1,28 +1,35 @@
-import React from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { ROUTES } from "../config/routes";
+import strings from "@/config/strings";
+import { useAuth } from "@/context/AuthContext";
+import mainTheme from "@/styles/mainTheme";
+import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
   Box,
-  Toolbar,
-  Typography,
+  Button,
   Drawer,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Button,
   Link as MuiLink,
+  Toolbar,
+  Typography,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import { NavbarItems } from "../config/NavbarItems";
-import { getNavbarIcons } from "./icons/NavbarIcons";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthenticatedNavbarItems, UnauthenticatedNavbarItems } from "../config/NavbarItems";
+import { ROUTES } from "../config/routes";
 import { ClickableIconButton } from "../styles/iconTheme";
-import { useAuth } from "@/context/AuthContext";
-import strings from "@/config/strings";
+import { getNavbarIcons } from "./icons/NavbarIcons";
+import Logo from "./Logo";
 
-const Navbar = () => {
+type NavbarPropsType = {
+  isAuthenticated: boolean; // If the user is authenticated
+};
+
+const Navbar = ({ isAuthenticated }: NavbarPropsType) => {
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -46,21 +53,33 @@ const Navbar = () => {
       onClick={handleDrawerToggle}
     >
       <List>
-        {NavbarItems.map(({ label, path }) => (
-          <ListItem key={label} disablePadding>
-            <ListItemButton onClick={() => handleNavigation(path)}>
-              <ListItemIcon>{getNavbarIcons(label)}</ListItemIcon>
-              <ListItemText primary={label} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {isAuthenticated
+          ? AuthenticatedNavbarItems.map(({ label, path }) => (
+            <ListItem key={label} disablePadding>
+              <ListItemButton onClick={() => handleNavigation(path)}>
+                <ListItemIcon>{getNavbarIcons(label)}</ListItemIcon>
+                <ListItemText primary={label} />
+              </ListItemButton>
+            </ListItem>
+          ))
+          : UnauthenticatedNavbarItems.map(({ label, path }) => (
+            <ListItem key={label} disablePadding>
+              <ListItemButton onClick={() => handleNavigation(path)}>
+                <ListItemText primary={label} />
+              </ListItemButton>
+            </ListItem>
+          ))}
       </List>
     </Box>
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" component="nav">
+    <Box>
+      <AppBar
+        position="static"
+        component="nav"
+        sx={{ backgroundColor: mainTheme.palette.secondary.main }}
+      >
         <Toolbar>
           <ClickableIconButton
             size="large"
@@ -70,7 +89,7 @@ const Navbar = () => {
             onClick={handleDrawerToggle}
             sx={{
               mr: 2,
-              display: { sm: "none" },
+              display: { xs: "block", sm: "block", md: "none" }, // Display on xs and sm, hide on md and above
               color: "white",
               "&:hover": {
                 color: "white",
@@ -79,34 +98,54 @@ const Navbar = () => {
           >
             <MenuIcon />
           </ClickableIconButton>
-          <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
-            <MuiLink
-              style={{ textDecoration: "none", color: "inherit" }}
-              component={Link}
-              to={ROUTES.ROOT}
-              variant="h3"
-            >
+          <Logo size="100px" type="" />
+          <MuiLink
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              marginLeft: "10px",
+            }}
+            component={Link}
+            to={ROUTES.ROOT}
+            variant="h3"
+          >
+            <Typography variant="h1" component="div" sx={{ flexGrow: 1 }}>
               {strings.general.title}
-            </MuiLink>
-          </Typography>
+            </Typography>
+          </MuiLink>
           <Box sx={{ flexGrow: 1 }} />
 
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {NavbarItems.map(({ label, path }) => (
-                <Button
-                  key={label}
-                  sx={{
-                    my: 2,
-                    color: "white",
-                    display: "block",
-                    textTransform: "none",
-                  }}
-                  onClick={() => handleNavigation(path)}
-                >
-                  {label}
-                </Button>
-              ))}
+          <Box sx={{ display: { xs: "none", sm: "none", md: "flex" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "none", md: "flex" } }}>
+              {isAuthenticated
+                ? AuthenticatedNavbarItems.map(({ label, path }) => (
+                  <Button
+                    key={label}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      textTransform: "none",
+                    }}
+                    onClick={() => handleNavigation(path)}
+                  >
+                    {label}
+                  </Button>
+                ))
+                : UnauthenticatedNavbarItems.map(({ label, path }) => (
+                  <Button
+                    key={label}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      textTransform: "none",
+                    }}
+                    onClick={() => handleNavigation(path)}
+                  >
+                    {label}
+                  </Button>
+                ))}
             </Box>
           </Box>
         </Toolbar>
@@ -121,7 +160,7 @@ const Navbar = () => {
             keepMounted: true, // for better open performance on mobile
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", sm: "block", md: "none" },
             "& .MuiDrawer-paper": { boxSizing: "border-box" },
           }}
         >
