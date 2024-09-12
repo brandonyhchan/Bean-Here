@@ -6,7 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
 import FavouriteIcon from "@mui/icons-material/Favorite";
-import CircularProgress from '@mui/material/CircularProgress';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 type ButtonPropsType = {
   onClick?: MouseEventHandler;
@@ -69,6 +69,23 @@ const CustomButton = ({
         );
       }
 
+      if (loading) { 
+        return (
+          <LoadingButton
+            className={classNames(styles[type], className)}
+            variant={variant}
+            onClick={onClick}
+            size={size}
+            disabled={disabled}
+            loading={loading}
+            color={color as ButtonProps["color"]}
+            {...rest}
+          >
+            {text}
+          </LoadingButton>
+        );
+      }
+
   return (
     <Button
       className={classNames(styles[type], className)}
@@ -79,7 +96,7 @@ const CustomButton = ({
       color={color as ButtonProps["color"]}
       {...rest}
     >
-      {loading ? <CircularProgress size={24} /> : text}
+      {text}
     </Button>
   )
 };
