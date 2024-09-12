@@ -1,6 +1,5 @@
 import React, { MouseEventHandler } from "react";
 import classNames from "classnames";
-import styles from "./customButton.module.scss";
 import { IconButton, Button, ButtonProps } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -12,10 +11,7 @@ type ButtonPropsType = {
   onClick?: MouseEventHandler;
   text?: string;
   variant?: "text" | "outlined" | "contained";
-  type?:  // can use this if we want to be more specific with styles, can edit classes as needed
-    | ""
-    | "mediumWidth"
-    | "largeWidth"
+  style?: React.CSSProperties;
   className?: string;
   to?: string;
   isIconButton?: boolean;
@@ -38,7 +34,7 @@ const CustomButton = ({
   onClick,
   text,
   variant = "contained",
-  type = "",
+  style,
   className,
   isIconButton = false,
   icon,
@@ -60,9 +56,10 @@ const CustomButton = ({
         return (
           <IconButton
             onClick={onClick}
-            className={classNames(styles[type], className)}
+            className={classNames(className)}
             size={size}
             disabled={disabled}
+            style={style}
             >
             <IconComponent />
           </IconButton>
@@ -72,13 +69,14 @@ const CustomButton = ({
       if (loading) { 
         return (
           <LoadingButton
-            className={classNames(styles[type], className)}
+            className={classNames(className)}
             variant={variant}
             onClick={onClick}
             size={size}
             disabled={disabled}
             loading={loading}
             color={color as ButtonProps["color"]}
+            style={style}
             {...rest}
           >
             {text}
@@ -88,12 +86,13 @@ const CustomButton = ({
 
   return (
     <Button
-      className={classNames(styles[type], className)}
+      className={classNames(className)}
       variant={variant}
       onClick={onClick}
       size={size}
       disabled={disabled}
       color={color as ButtonProps["color"]}
+      style={style}
       {...rest}
     >
       {text}
