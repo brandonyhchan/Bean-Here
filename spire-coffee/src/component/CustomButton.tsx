@@ -21,6 +21,8 @@ type ButtonPropsType = {
   disabled?: boolean;
   loading?: boolean;
   color?: "primary" | "secondary" | "primaryOpposite" | "warning";
+  fullWidth?: boolean;
+  type?: "button" | "submit" | "reset";
 };
 
 const iconMap = {
@@ -33,7 +35,7 @@ const iconMap = {
 const CustomButton = ({
   onClick,
   text,
-  variant = "contained",
+  variant = "text",
   style,
   className,
   isIconButton = false,
@@ -42,6 +44,8 @@ const CustomButton = ({
   disabled = false,
   loading = false,
   color = "primary",
+  fullWidth = false,
+  type = "button",
   ...rest
 }: ButtonPropsType) => {
     if (isIconButton && icon) {
@@ -77,6 +81,7 @@ const CustomButton = ({
             loading={loading}
             color={color as ButtonProps["color"]}
             style={style}
+            fullWidth={fullWidth}
             {...rest}
           >
             {text}
@@ -93,6 +98,8 @@ const CustomButton = ({
       disabled={disabled}
       color={color as ButtonProps["color"]}
       style={style}
+      fullWidth={fullWidth}
+      type={type}
       {...rest}
     >
       {text}

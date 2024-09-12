@@ -1,3 +1,4 @@
+import CustomButton from "@/component/CustomButton";
 import useFormErrors from "@/component/helpers/useFormErrors";
 import Logo from "@/component/Logo";
 import strings from "@/config/strings";
@@ -7,7 +8,6 @@ import { useLazyQuery } from "@apollo/client";
 import {
   Alert,
   Box,
-  Button,
   Container,
   CssBaseline,
   TextField,
@@ -283,15 +283,14 @@ const SignUp = () => {
               error={!!errors.password}
               helperText={errors.password}
             />
-            <Button
+            <CustomButton
               color="secondary"
-              type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              {strings.login.signUp}
-            </Button>
+              text={strings.login.signUp}
+              style={{ marginTop: "24px", marginBottom: "16px" }}
+              type="submit"
+            />
           </Box>
         </Box>
       </Container>

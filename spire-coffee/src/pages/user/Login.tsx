@@ -1,3 +1,4 @@
+import CustomButton from "@/component/CustomButton";
 import useFormErrors from "@/component/helpers/useFormErrors";
 import Logo from "@/component/Logo";
 import { ROUTES } from "@/config/routes";
@@ -8,7 +9,6 @@ import { useLazyQuery } from "@apollo/client";
 import {
   Alert,
   Box,
-  Button,
   Container,
   CssBaseline,
   Grid,
@@ -16,6 +16,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -137,16 +138,15 @@ const Login = () => {
               error={!!errors.password}
               helperText={errors.password}
             />
-            <Button
+            <CustomButton
               color="secondary"
-              type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              text={strings.login.signIn}
+              style={{ marginTop: '24px', marginBottom: '16px' }}
               onClick={handleLogin}
-            >
-              {strings.login.signIn}
-            </Button>
+              type="submit"
+            />
             <Grid container>
               <Grid item xs>
                 <Typography variant="body2">
