@@ -1,15 +1,18 @@
 import LoadingSpinner from "@/component/LoadingSpinner";
 import strings from "@/config/strings";
 import { useQuery } from "@apollo/client";
-import { Box, Container } from "@mui/material";
+import { Box, Card, CardContent, Container, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import {
+  renderPrice
+} from "../../component/icons/Icons";
 import { getCafeInfo } from "../../support/graphqlServerApi";
 import { Cafe } from "../../types/cafe";
 
 const CafeInfo = () => {
   const { cafeId } = useParams();
-  
+
   const [cafe, setCafe] = useState<Cafe>();
 
   const { loading, error, refetch } = useQuery(getCafeInfo, {
@@ -30,7 +33,7 @@ const CafeInfo = () => {
 
 
   return (
-    <React.Fragment>
+
     <Container>
       {loading ? (
         <Box>
@@ -41,17 +44,28 @@ const CafeInfo = () => {
           {cafe === null ? (
             <span>{strings.error.noCafe}</span>
           ) : (
-            <React.Fragment>
-              <div>
-                <h1>{cafe?.name}</h1>
-              </div>
+            <Box>
+              <Typography variant="h1">{cafe?.name}</Typography>
+
               {/* <div>
                 <ImageCarousel />
               </div> */}
+
+              <Card>
+                <CardContent
+                  sx={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  <Typography>{`${cafe?.street} ${cafe?.city}, ${cafe?.province}`}</Typography>
+                  <Typography>{renderPrice(cafe?.price)}</Typography>
+                </CardContent>
+              </Card>
+
               <div>
                 <div>
                   <div>
-                    <p>{cafe?.street}</p>
                     {/* <Label
                       text={`${cafe?.city}, ${cafe?.province} ${cafe?.postalCode}`}
                     /> */}
@@ -118,12 +132,11 @@ const CafeInfo = () => {
                   />
                 }
               </div>
-            </React.Fragment>
+            </Box>
           )}
         </React.Fragment>
       )}
     </Container>
-  </React.Fragment>
   );
 };
 
