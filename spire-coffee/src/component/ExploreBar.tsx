@@ -42,11 +42,10 @@ const SearchAndFilter = ({
         showCloseButton={showCloseButton}
         handleClick={handleCloseButton}
       />
-
       {isSmallScreen && (
         <Box sx={{ mt: 3 }}>
           <ClickableIconButton onClick={handleFilterButton}>
-            {showFilterSidebar ? <CloseRoundedIcon /> : <TuneRoundedIcon sx={{ ml: 0 }}/>}
+            {showFilterSidebar ? <CloseRoundedIcon /> : <TuneRoundedIcon sx={{ ml: 0 }} />}
           </ClickableIconButton>
         </Box>
       )}
