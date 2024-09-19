@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 interface FormErrors {
+  [key: string]: string;
   username: string;
   email: string;
   firstName: string;
