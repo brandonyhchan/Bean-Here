@@ -1,37 +1,41 @@
-import CustomButton from "@/component/CustomButton";
+import Form from "@/component/Form";
 import useFormErrors from "@/component/helpers/useFormErrors";
 import Logo from "@/component/Logo";
+import { SignUpFormItems } from "@/config/FormItems";
 import strings from "@/config/strings";
 import { useAuth } from "@/context/AuthContext";
 import { signUpMutation } from "@/support/graphqlServerApi";
 import { useLazyQuery } from "@apollo/client";
-import {
-  Alert,
-  Box,
-  Container,
-  CssBaseline,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Alert, Box, Container, CssBaseline, Typography } from "@mui/material";
 import EmailValidator from "email-validator";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import PasswordChecklist from "react-password-checklist";
 import { useNavigate } from "react-router-dom";
 
+interface SignUpFormValues {
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  confirmPassword: string;
+}
+
 const SignUp = () => {
   const { setAuthStatus } = useAuth();
   const navigate = useNavigate();
-
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordTyped, setPasswordTyped] = useState(false);
   const [signUpError, setSignUpError] = useState("");
   const [errors, setErrors, resetErrors] = useFormErrors();
+  const [passwordTyped, setPasswordTyped] = useState(false);
+  const [values, setValues] = useState<SignUpFormValues>({
+    username: "",
+    email: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   const [signUp] = useLazyQuery(signUpMutation, {
     onError: (error) => {
@@ -64,7 +68,7 @@ const SignUp = () => {
 
     let valid = true;
 
-    if (!username) {
+    if (!values.username) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         username: strings.error.requiredField,
@@ -72,13 +76,13 @@ const SignUp = () => {
       valid = false;
     }
 
-    if (!email) {
+    if (!values.email) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         email: strings.error.requiredField,
       }));
       valid = false;
-    } else if (!EmailValidator.validate(email)) {
+    } else if (!EmailValidator.validate(values.email)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         email: strings.error.emailInvalid,
@@ -86,7 +90,7 @@ const SignUp = () => {
       valid = false;
     }
 
-    if (!firstName) {
+    if (!values.firstName) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         firstName: strings.error.requiredField,
@@ -94,7 +98,7 @@ const SignUp = () => {
       valid = false;
     }
 
-    if (!lastName) {
+    if (!values.lastName) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         lastName: strings.error.requiredField,
@@ -102,16 +106,24 @@ const SignUp = () => {
       valid = false;
     }
 
-    if (!password) {
+    if (!values.password) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: strings.error.requiredField,
+        password: strings.error.requiredField
       }));
       valid = false;
-    } else if (password !== confirmPassword) {
+    } else if (values.password !== values.confirmPassword) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: strings.error.passwordMatch,
+        password: strings.error.passwordMatch
+      }));
+      valid = false;
+    }
+
+    if (!values.confirmPassword) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        confirmPassword: strings.error.requiredField
       }));
       valid = false;
     }
@@ -122,39 +134,60 @@ const SignUp = () => {
 
     signUp({
       variables: {
-        userName: username,
-        email,
-        firstName,
-        lastName,
-        password,
+        userName: values.username,
+        email: values.email,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        password: values.password,
       },
     });
   };
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-    setPasswordTyped(true); // Mark password as typed
-    if (event.target.value !== confirmPassword) {
+    setValues((prev) => ({
+      ...prev,
+      password: event.target.value
+    }));
+    setPasswordTyped(true);
+
+    if (event.target.value !== values.confirmPassword) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         password: strings.error.passwordMatch,
       }));
     } else {
-      setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
+      setErrors((prevErrors) => ({ ...prevErrors, password: "",  confirmPassword: "" }));
     }
   };
 
   const handleConfirmPasswordChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setConfirmPassword(event.target.value);
-    if (event.target.value !== password) {
+    setValues((prev) => ({
+      ...prev,
+      confirmPassword: event.target.value
+    }));
+    if (event.target.value !== values.password) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         password: strings.error.passwordMatch,
       }));
     } else {
-      setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
+      setErrors((prevErrors) => ({ ...prevErrors, password: "", confirmPassword: "" }));
+    }
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    if (name === "password") {
+      handlePasswordChange(event);
+    } else if (name === "confirmPassword") {
+      handleConfirmPasswordChange(event);
     }
   };
 
@@ -164,104 +197,22 @@ const SignUp = () => {
       <Container
         component="main"
         maxWidth="xs"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100%",
-        }}
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}
       >
         <CssBaseline />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-          style={{ paddingTop: "25px", paddingBottom: "25px" }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }} style={{ paddingTop: "25px", paddingBottom: "25px" }}>
           <Logo type="logo" />
-          <Typography component="h1" variant="h5">
-            {strings.login.signUp}
-          </Typography>
-          {signUpError && <Alert severity="error">{signUpError}</Alert>}
-          <Box component="form" sx={{ mt: 2 }} onSubmit={handleSignUp}>
-            <TextField
-              margin="normal"
-              fullWidth
-              id="username"
-              label={strings.general.username}
-              name="username"
-              autoComplete="username"
-              autoFocus
-              value={username}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setUsername(event.target.value);
-              }}
-              error={!!errors.username}
-              helperText={errors.username}
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              id="email"
-              label={strings.general.email}
-              name="email"
-              autoComplete="email"
-              value={email}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setEmail(event.target.value);
-              }}
-              error={!!errors.email}
-              helperText={errors.email}
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              id="firstName"
-              label={strings.general.firstName}
-              name="firstName"
-              autoComplete="firstName"
-              value={firstName}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setFirstName(event.target.value);
-              }}
-              error={!!errors.firstName}
-              helperText={errors.firstName}
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              id="lastName"
-              label={strings.general.lastName}
-              name="lastName"
-              autoComplete="lastName"
-              value={lastName}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setLastName(event.target.value);
-              }}
-              error={!!errors.lastName}
-              helperText={errors.lastName}
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              type="password"
-              id="password"
-              label={strings.general.password}
-              name="password"
-              autoComplete="password"
-              value={password}
-              onChange={handlePasswordChange}
-              error={!!errors.password}
-              helperText={errors.password}
-            />
-            {passwordTyped && (
+          <Typography component="h1" variant="h5">{strings.login.signUp}</Typography>
+          <Box sx={{ pt: 2 }}>
+            {signUpError && <Alert severity="error">{signUpError}</Alert>}
+          </Box>
+          {passwordTyped && (
+            <Box sx={{ pt: 2 }}>
               <PasswordChecklist
                 rules={["minLength", "specialChar", "number", "capital"]}
                 minLength={5}
-                value={password}
-                valueAgain={confirmPassword}
+                value={values.password}
+                valueAgain={values.confirmPassword}
                 messages={{
                   minLength: strings.error.passwordLength,
                   specialChar: strings.error.passwordSpecial,
@@ -269,29 +220,16 @@ const SignUp = () => {
                   capital: strings.error.passwordCap
                 }}
               />
-            )}
-            <TextField
-              margin="normal"
-              fullWidth
-              type="password"
-              id="confirmPassword"
-              label={strings.login.confirmPassword}
-              name="confirmPassword"
-              autoComplete="confirmPassword"
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-              error={!!errors.password}
-              helperText={errors.password}
-            />
-            <CustomButton
-              color="secondary"
-              fullWidth
-              variant="contained"
-              text={strings.login.signUp}
-              style={{ marginTop: "24px", marginBottom: "16px" }}
-              type="submit"
-            />
-          </Box>
+            </Box>
+          )}
+          <Form
+            fields={SignUpFormItems}
+            values={{ ...values }}
+            errors={errors}
+            onSubmit={handleSignUp}
+            onChange={handleChange}
+            buttonLabel={strings.login.signIn}
+          />
         </Box>
       </Container>
     </React.Fragment>
