@@ -29,22 +29,15 @@ model Cafe {
   phoneNumber     String?
   website         String?
   profilePhotoURL String?
-  location        Location?
   busyness        String?
   noisiness       String?
   price           String?
+  latitude        Float
+  longitude       Float
   provinceCode    ProvinceCode     @relation("CafesProvince", fields: [province], references: [code])
   busynessLevel   BusynessOption?  @relation("CafesBusyness", fields: [busyness], references: [level])
   noisinessLevel  NoisinessOption? @relation("CafesNoisiness", fields: [noisiness], references: [level])
   priceLevel      PriceOption?     @relation("CafesPrice", fields: [price], references: [level])
-}
-
-model Location {
-  id        Int   @id @default(autoincrement())
-  latitude  Float @unique
-  longitude Float @unique
-  cafeId    Int   @unique
-  Cafe      Cafe  @relation(fields: [cafeId], references: [id])
 }
 
 model ProvinceCode {
