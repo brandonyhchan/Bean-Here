@@ -26,7 +26,8 @@ const Explore = () => {
   } = useGlobalStateManager();
 
   const [cafes, setCafes] = useState<Cafe[]>([]);
-  // const [cafeCount, setCafeCount] = useState(0);
+  const [pageCount, setPageCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchCafeName, setSearchCafeName] = useState(
     searchParams.get("search") || ""
@@ -42,8 +43,8 @@ const Explore = () => {
     },
 
     onCompleted: (data) => {
-      setCafes(data?.returnAllCafes);
-      // setCafeCount(data?.getCafeCount);
+      setCafes(data?.returnAllCafes?.cafes);
+      setPageCount(data?.returnAllCafes?.pageCount);
     },
     // add back variables for filtering
     variables: {
@@ -53,6 +54,7 @@ const Explore = () => {
       priceFilters,
       userLocation,
       distanceFilter: distanceFilterValue,
+      page: currentPage,
     },
   });
 
@@ -174,6 +176,9 @@ const Explore = () => {
                   cafes={cafes}
                   isLoading={loading}
                   isSmallScreen={isSmallScreen}
+                  pageCount={pageCount}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
                 />
               </>
             )}
