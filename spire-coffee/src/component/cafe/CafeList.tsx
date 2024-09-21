@@ -112,6 +112,7 @@ const CafeList = ({
         sx={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
       >
         <Pagination
+          color="primary"
           count={pageCount}
           page={currentPage}
           onChange={handlePageChange}
