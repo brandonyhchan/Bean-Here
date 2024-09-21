@@ -7,6 +7,7 @@ import { ROUTES } from "./config/routes";
 import { AuthProvider } from "./context/AuthContext";
 import { StateProvider } from "./context/StateContext";
 import AddCafe from "./pages/cafe/AddCafe";
+import CafeInfo from "./pages/cafe/CafeInfo";
 import Explore from "./pages/cafe/Explore";
 import Favourites from "./pages/cafe/Favourites";
 import AboutUs from "./pages/info/AboutUs";
@@ -46,6 +47,10 @@ function App() {
               <Route
                 path={ROUTES.EXPLORE}
                 element={<ProtectedRoute element={<Explore />} />}
+              />
+              <Route
+                path={'/cafes/:cafeId'}
+                element={<ProtectedRoute element={<CafeInfo />} />}
               />
               <Route
                 path={ROUTES.FAVOURITES}

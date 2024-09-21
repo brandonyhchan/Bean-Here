@@ -66,3 +66,22 @@ export const returnAllCafeQuery = gql`
     }
   }
 `;
+
+export const getCafeInfo = gql`
+  query getCafeInfo($stringId: String!) {
+    getCafeInfo(stringId: $stringId) {
+      id
+      name
+      street
+      city
+      province
+      postalCode
+      phoneNumber
+      website
+      profilePhotoURL
+      busyness
+      noisiness
+      price
+    }
+  }
+`;
