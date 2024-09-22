@@ -23,25 +23,21 @@ const SortMenu = () => {
     );
   };
   return (
-    <div>
-      <FormControl sx={{ width: 200 }}>
+      <FormControl sx={{ width: 180 }}>
         <Select
-          multiple
           displayEmpty
           value={sortOption}
           onChange={handleChange}
           input={<OutlinedInput />}
           renderValue={(selected) => {
-            if (selected.length === 0) {
-              return <em>Placeholder</em>;
-            }
 
-            return selected.join(', ');
+              return <em>Sort by: {selected}</em>;
+       
           }}
-          inputProps={{ 'aria-label': 'Without label' }}
+          inputProps={{ "aria-label": "Without label" }}
         >
           <MenuItem disabled value="">
-            <em>Placeholder</em>
+            <em>Sort by: {sortOption}</em>
           </MenuItem>
           {sortOptions.map((name) => (
             <MenuItem
@@ -53,7 +49,6 @@ const SortMenu = () => {
           ))}
         </Select>
       </FormControl>
-    </div>
   );
 };
 

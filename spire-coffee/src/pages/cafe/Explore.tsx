@@ -171,9 +171,6 @@ const Explore = () => {
                   isSmallScreen={isSmallScreen}
                   showFilterSidebar={showFilterSidebar}
                 />
-                <Box sx={{ display: "flex", justifyContent: "flex-end", pr: 4 }}>
-                  <SortMenu />
-                </Box>
                 <CafeList
                   cafes={cafes}
                   isLoading={loading}

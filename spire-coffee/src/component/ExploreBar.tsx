@@ -4,6 +4,7 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
 import { Box } from "@mui/material";
 import React from "react";
+import SortMenu from "./sort/SortMenu";
 
 type SearchAndFilterPropsType = {
   searchCafeName: string;
@@ -47,6 +48,11 @@ const SearchAndFilter = ({
           <ClickableIconButton onClick={handleFilterButton}>
             {showFilterSidebar ? <CloseRoundedIcon /> : <TuneRoundedIcon sx={{ ml: 0 }} />}
           </ClickableIconButton>
+        </Box>
+      )}
+      {!(isSmallScreen && !showFilterSidebar) && (
+        <Box sx={{ display: "flex", alignItems: "center", pt: 1 }}>
+          <SortMenu />
         </Box>
       )}
     </Box>
