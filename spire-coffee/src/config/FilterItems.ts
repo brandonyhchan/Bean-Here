@@ -29,9 +29,9 @@ export enum RadioAttribute {
 }
 
 export enum SortOption {
-  ALPHABETICAL = "Alphabetical",
-  NOISE = "Noise",
-  CAPACITY = "Capacity",
+  ALPHABETICAL = "ALPHABETICAL",
+  NOISE = "NOISE",
+  CAPACITY = "CAPACITY",
 }
 
 export const marks = [
