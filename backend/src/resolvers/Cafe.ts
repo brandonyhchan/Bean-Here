@@ -22,7 +22,7 @@ export async function returnAllCafes(parent, args, context) {
   // Previously we used mode: "insensitive" but this is no longer supported
   const filterByName = args.filterByName ? args.filterByName.toLowerCase() : "";
 
-  const limit = 6;
+  const limit = 6; // this was changed to 6 as we currently only have 8 cafes seeded. Will be updated to 9 once more cafes are added.
   const page = args.page || 1;
   const skip = (page - 1) * limit; // calculate how many cafes to skip
 
@@ -63,7 +63,7 @@ export async function returnAllCafes(parent, args, context) {
       orderBy: {
         id: "asc",
       },
-      skip: skip,  // skip the results for pagination
+      skip: skip, // skip the results for pagination
       take: limit, // limit the number of results returned
     });
 
@@ -98,13 +98,11 @@ export async function returnAllCafes(parent, args, context) {
     } else {
       return { cafes: query, pageCount };
     }
-  
   } catch (error) {
     console.error("Error in returnAllCafes resolver:", error);
     throw new Error("Failed to fetch cafes");
   }
 }
-
 
 /**
  * @Query
