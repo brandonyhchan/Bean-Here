@@ -53,7 +53,7 @@ const CafeCard = ({
 
   return (
     <Card
-      sx={{ display: "flex", width: 377, height: 115, position: "relative" }}
+      sx={{ display: "flex", width: 377, height: 115 }}
     >
       <CardMedia
         component="img"
@@ -73,7 +73,6 @@ const CafeCard = ({
         sx={{
           display: "flex",
           flexDirection: "column",
-          flexGrow: 1,
           overflow: "hidden",
         }}
       >

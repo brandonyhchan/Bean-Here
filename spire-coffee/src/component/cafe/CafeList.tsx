@@ -44,7 +44,8 @@ const CafeList = ({
       sx={{
         maxWidth: isSmallScreen ? "380px" : "800px",
         height: "100%",
-        pr: { xs: "0", sm: "0", md: 4, lg: 4 },
+        pr: { xs: "0", sm: "0", md: 2, lg: 0 },
+        pl: { xs: "0", sm: "0", md: 2, lg: 0 },
         pb: 4,
       }}
     >
@@ -56,7 +57,7 @@ const CafeList = ({
             ? "center"
             : "flex-start"
         }
-        flexWrap="wrap"
+
       >
         {cafes.map((cafe) => (
           <Grid

@@ -1,7 +1,6 @@
 import ExploreBar from "@/component/ExploreBar";
 import FilterSidebar from "@/component/filter/FilterSidebar";
 import LoadingSpinner from "@/component/LoadingSpinner";
-import SortMenu from "@/component/sort/SortMenu";
 import strings from "@/config/strings";
 import { useGlobalStateManager } from "@/context/StateContext";
 import { returnAllCafeQuery } from "@/support/graphqlServerApi";
@@ -161,7 +160,7 @@ const Explore = () => {
                 isSmallScreen={isSmallScreen}
               />
             ) : (
-              <React.Fragment>
+              <Container>
                 <ExploreBar
                   searchCafeName={searchCafeName}
                   showCloseButton={showCloseButton}
@@ -176,7 +175,7 @@ const Explore = () => {
                   isLoading={loading}
                   isSmallScreen={isSmallScreen}
                 />
-              </React.Fragment>
+              </Container>
             )}
           </Container>
         </div>
