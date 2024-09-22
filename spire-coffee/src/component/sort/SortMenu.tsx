@@ -1,4 +1,4 @@
-import { SortOption } from '@/config/FilterItems';
+import { SortLabel, SortOption } from '@/config/FilterItems';
 import { useGlobalStateManager } from '@/context/StateContext';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
@@ -36,7 +36,7 @@ const SortMenu = () => {
         <MenuItem disabled value="">
           <em>Sort by: {sortOption}</em>
         </MenuItem>
-        {Object.values(SortOption).map((name) => (
+        {Object.values(SortLabel).map((name) => (
           <MenuItem
             key={name}
             value={name}
