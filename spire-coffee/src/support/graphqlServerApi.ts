@@ -44,6 +44,7 @@ export const returnAllCafeQuery = gql`
     $priceFilters: [String]
     $userLocation: locationInput
     $distanceFilter: Int
+    $page: Int
   ) {
     returnAllCafes(
       filterByName: $filterByName
@@ -52,8 +53,10 @@ export const returnAllCafeQuery = gql`
       priceFilters: $priceFilters
       userLocation: $userLocation
       distanceFilter: $distanceFilter
+      page: $page
     ) {
-      id
+      cafes {
+       id
       stringId
       name
       street
@@ -63,6 +66,8 @@ export const returnAllCafeQuery = gql`
       busyness
       noisiness
       price
+      }
+     pageCount
     }
   }
 `;

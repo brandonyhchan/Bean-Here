@@ -19,7 +19,8 @@ type Query {
     priceFilters: [String]
     userLocation: locationInput
     distanceFilter: Int
-  ): [Cafe]
+    page: Int
+  ): ExplorePageResponse
   getCafeCount: Int
   getCafeInfo(stringId: String!): Cafe
 }
@@ -36,4 +37,9 @@ type Location {
 input locationInput {
   latitude: Float
   longitude: Float
+}
+
+type ExplorePageResponse {
+  cafes: [Cafe]
+  pageCount: Int
 }

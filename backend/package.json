@@ -20,7 +20,7 @@
     "@types/node": "^18.14.0",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
-    "eslint": "^8.57.0",
+    "eslint": "^8.57.1",
     "prisma": "^5.16.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.16.2",
@@ -39,7 +39,8 @@
     "graphql-playground-middleware-express": "^1.7.23",
     "jsonwebtoken": "^9.0.0",
     "micromatch": "^4.0.8",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "typescript-eslint": "^8.6.0"
   },
   "@snaplet/seed": {
     "config": "prisma\\seed\\seed.config.ts"

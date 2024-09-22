@@ -2,20 +2,41 @@ import CafeCard from "@/component/cafe/CafeCard";
 import LoadingSpinner from "@/component/LoadingSpinner";
 import strings from "@/config/strings";
 import { Cafe } from "@/types/cafe";
-import { Box, Container, Grid, Link as MuiLink, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  Link as MuiLink,
+  Typography,
+  Pagination,
+} from "@mui/material";
+import React from "react";
 import { Link } from "react-router-dom";
 
 type CafeListPropsType = {
   cafes: Cafe[];
   isLoading: boolean;
   isSmallScreen: boolean;
+  pageCount: number;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const CafeList = ({
   cafes,
   isLoading,
   isSmallScreen,
+  pageCount,
+  currentPage,
+  setCurrentPage,
 }: CafeListPropsType) => {
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setCurrentPage(value);
+  };
+
   if (isLoading && cafes.length === 0) {
     return (
       <Box
@@ -52,11 +73,7 @@ const CafeList = ({
       <Grid
         container
         spacing={2}
-        justifyContent={
-          isSmallScreen
-            ? "center"
-            : "flex-start"
-        }
+        justifyContent={isSmallScreen ? "center" : "flex-start"}
         flexWrap="wrap"
       >
         {cafes.map((cafe: Cafe) => (
@@ -91,6 +108,16 @@ const CafeList = ({
           </Grid>
         ))}
       </Grid>
+      <Box
+        sx={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
+      >
+        <Pagination
+          color="primary"
+          count={pageCount}
+          page={currentPage}
+          onChange={handlePageChange}
+        />
+      </Box>
     </Container>
   );
 };
