@@ -8,7 +8,7 @@ import {
   Link as MuiLink,
   Typography,
   useMediaQuery,
-  useTheme,
+  useTheme
 } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -56,14 +56,23 @@ const CafeCard = ({
   };
 
   return (
-    <Card
-      sx={{ display: "flex", width: 377, height: 115, position: "relative" }}
+    <MuiLink
+      key={parseInt(stringId)}
+      component={Link}
+      to={`/cafes/${stringId}`}
+      variant="body2"
+      sx={{
+        display: "block",
+        width: "100%"
+      }}
     >
-      <MuiLink
-        key={parseInt(stringId)}
-        component={Link}
-        to={`/cafes/${stringId}`}
-        variant="body2"
+      <Card
+        sx={{
+          display: "flex",
+          width: "100%",
+          height: 115,
+          position: "relative",
+        }}
       >
         <CardMedia
           component="img"
@@ -79,31 +88,24 @@ const CafeCard = ({
           image={profilePhotoURL}
           alt={`${name} logo`}
         />
-      </MuiLink>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          flexGrow: 1,
-          overflow: "hidden",
-        }}
-      >
-        <CardContent
+        <Box
           sx={{
-            p: 0,
-            ml: 2,
-            mr: 2,
-            pr: 2,
-            pt: 1,
+            display: "flex",
+            flexDirection: "column",
+            flexGrow: 1,
             overflow: "hidden",
-            textOverflow: "ellipsis",
           }}
         >
-          <MuiLink
-            key={parseInt(stringId)}
-            component={Link}
-            to={`/cafes/${stringId}`}
-            variant="body2"
+          <CardContent
+            sx={{
+              p: 0,
+              ml: 2,
+              mr: 2,
+              pr: 2,
+              pt: 1,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
           >
             <Typography
               noWrap
@@ -116,60 +118,59 @@ const CafeCard = ({
             >
               {name}
             </Typography>
-          </MuiLink>
-          <Typography
-            variant={isSmallScreen ? "body1" : "body2"}
-            sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {street}
-          </Typography>
-          <Typography
-            variant={isSmallScreen ? "body1" : "body2"}
-            sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {city}, {province}
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing sx={{ p: 0 }}>
-          <Box display="flex" alignItems="center" sx={{ pl: 0.5 }}>
-            <NonClickableIconButton>
-              {renderBusyIcon(busyness)}
-            </NonClickableIconButton>
-            <Typography variant={isSmallScreen ? "body1" : "body2"}>
-              {strings.cafe.busynessLabel}
+            <Typography
+              variant={isSmallScreen ? "body1" : "body2"}
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {street}
             </Typography>
-          </Box>
-          <Box display="flex" alignItems="center">
-            <NonClickableIconButton>
-              {renderNoiseIcon(noisiness)}
-            </NonClickableIconButton>
-            <Typography variant={isSmallScreen ? "body1" : "body2"}>
-              {strings.cafe.noisinessLabel}
+            <Typography
+              variant={isSmallScreen ? "body1" : "body2"}
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {city}, {province}
             </Typography>
-          </Box>
-          <Box display="flex" alignItems="center">
-            <NonClickableIconButton>
-              {renderPrice(price)}
-            </NonClickableIconButton>
-          </Box>
-        </CardActions>
-      </Box>
-
-      <ClickableIconButton
-        sx={{ position: "absolute", top: 0, right: 0 }}
-        onClick={handleFavoriteClick}
-      >
-        {renderFavoriteIcon(isFavorite)}
-      </ClickableIconButton>
-    </Card >
+          </CardContent>
+          <CardActions disableSpacing sx={{ p: 0 }}>
+            <Box display="flex" alignItems="center" sx={{ pl: 0.5 }}>
+              <NonClickableIconButton>
+                {renderBusyIcon(busyness)}
+              </NonClickableIconButton>
+              <Typography variant={isSmallScreen ? "body1" : "body2"}>
+                {strings.cafe.busynessLabel}
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <NonClickableIconButton>
+                {renderNoiseIcon(noisiness)}
+              </NonClickableIconButton>
+              <Typography variant={isSmallScreen ? "body1" : "body2"}>
+                {strings.cafe.noisinessLabel}
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <NonClickableIconButton>
+                {renderPrice(price)}
+              </NonClickableIconButton>
+            </Box>
+          </CardActions>
+        </Box>
+        <ClickableIconButton
+          sx={{ position: "absolute", top: 0, right: 0 }}
+          onClick={handleFavoriteClick}
+        >
+          {renderFavoriteIcon(isFavorite)}
+        </ClickableIconButton>
+      </Card>
+    </MuiLink>
   );
 };
 
