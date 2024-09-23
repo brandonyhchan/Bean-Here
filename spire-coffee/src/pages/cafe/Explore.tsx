@@ -157,8 +157,10 @@ const Explore = () => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              padding: "0",
               paddingTop: "1rem",
+              paddingBottom: "1rem",
+              paddingRight: { xs: "0", sm: "0", md: 2, lg: 2 },
+              paddingLeft: { xs: "0", sm: "0", md: 2, lg: 2 },
               height: "100%",
             }}
           >

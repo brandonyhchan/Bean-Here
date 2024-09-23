@@ -5,10 +5,10 @@ import { ClickableIconButton } from "@/styles/iconTheme";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { Box, Typography } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
+import CustomButton from "../CustomButton";
 import FilterCheckbox from "./FilterCheckbox";
 import FilterRadio from "./FilterRadio";
 import FilterSlider from "./FilterSlider";
-import CustomButton from "../CustomButton";
 
 type FilterSidebarPropsType = {
   handleFilterButton: (event: React.MouseEvent<Element, MouseEvent>) => void;
@@ -106,8 +106,7 @@ const FilterSidebar = ({
           setValue={(value) => setSortOption(value as SortOption | undefined)}
         />
       )}
-
-      <Box sx={{ mt: 3, display: "flex", justifyContent: "center" }}>
+      <Box sx={{ pb: 2, display: "flex", justifyContent: "center" }}>
         <CustomButton
           color="primary"
           onClick={clearFilters}

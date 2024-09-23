@@ -48,7 +48,6 @@ const CafeList = ({
       disableGutters
       sx={{
         maxWidth: isSmallScreen ? "380px" : "800px",
-        paddingRight: { xs: "0", sm: "0", md: 4, lg: 4 }
       }}
     >
       <Grid
