@@ -73,6 +73,7 @@ const CafeCard = ({
         sx={{
           display: "flex",
           flexDirection: "column",
+          flexGrow: 1,
           overflow: "hidden",
         }}
       >
