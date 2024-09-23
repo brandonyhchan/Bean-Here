@@ -5,11 +5,13 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Link as MuiLink,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   ClickableIconButton,
   NonClickableIconButton,
@@ -23,6 +25,7 @@ import {
 
 type CafeCardPropsType = {
   id: number;
+  stringId: string;
   name: string;
   street: string;
   city: string;
@@ -34,6 +37,7 @@ type CafeCardPropsType = {
 };
 
 const CafeCard = ({
+  stringId,
   name,
   street,
   city,
@@ -55,20 +59,27 @@ const CafeCard = ({
     <Card
       sx={{ display: "flex", width: 377, height: 115, position: "relative" }}
     >
-      <CardMedia
-        component="img"
-        sx={{
-          width: {
-            xs: 70,
-            sm: 80,
-          },
-          height: "100%",
-          objectFit: "contain",
-          p: 0.5,
-        }}
-        image={profilePhotoURL}
-        alt={`${name} logo`}
-      />
+      <MuiLink
+        key={parseInt(stringId)}
+        component={Link}
+        to={`/cafes/${stringId}`}
+        variant="body2"
+      >
+        <CardMedia
+          component="img"
+          sx={{
+            width: {
+              xs: 70,
+              sm: 80,
+            },
+            height: "100%",
+            objectFit: "contain",
+            p: 0.5,
+          }}
+          image={profilePhotoURL}
+          alt={`${name} logo`}
+        />
+      </MuiLink>
       <Box
         sx={{
           display: "flex",
@@ -88,17 +99,24 @@ const CafeCard = ({
             textOverflow: "ellipsis",
           }}
         >
-          <Typography
-            noWrap
-            variant="h6"
-            sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
+          <MuiLink
+            key={parseInt(stringId)}
+            component={Link}
+            to={`/cafes/${stringId}`}
+            variant="body2"
           >
-            {name}
-          </Typography>
+            <Typography
+              noWrap
+              variant="h6"
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {name}
+            </Typography>
+          </MuiLink>
           <Typography
             variant={isSmallScreen ? "body1" : "body2"}
             sx={{
@@ -144,13 +162,14 @@ const CafeCard = ({
           </Box>
         </CardActions>
       </Box>
+
       <ClickableIconButton
         sx={{ position: "absolute", top: 0, right: 0 }}
         onClick={handleFavoriteClick}
       >
         {renderFavoriteIcon(isFavorite)}
       </ClickableIconButton>
-    </Card>
+    </Card >
   );
 };
 
