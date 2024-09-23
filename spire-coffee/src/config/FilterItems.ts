@@ -11,9 +11,12 @@ export enum LevelLabel {
 }
 
 export enum SortLabel {
-  ALPHABETICAL = "Alphabetical",
-  NOISE = "Noise",
-  CAPACITY = "Capacity",
+  NOISE_LOW = "Noise - Low to High",
+  NOISE_HIGH = "Noise - High to Low",
+  CAPACITY_LOW = "Capacity - Low to High",
+  CAPACITY_HIGH = "Capacity - High to Low",
+  PRICE_LOW = "Price - Low to High",
+  PRICE_HIGH = "Price - High to Low"
 }
 
 export enum Price {
@@ -29,9 +32,12 @@ export enum RadioAttribute {
 }
 
 export enum SortOption {
-  ALPHABETICAL = "ALPHABETICAL",
-  NOISE = "NOISE",
-  CAPACITY = "CAPACITY",
+  NOISE_LOW = "Noise - Low to High",
+  NOISE_HIGH = "Noise - High to Low",
+  CAPACITY_LOW = "Capacity - Low to High",
+  CAPACITY_HIGH = "Capacity - High to Low",
+  PRICE_LOW = "Price - Low to High",
+  PRICE_HIGH = "Price - High to Low"
 }
 
 export const marks = [

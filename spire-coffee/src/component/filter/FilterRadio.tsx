@@ -41,7 +41,7 @@ const FilterRadio = <T extends RadioAttribute>({
 
   useEffect(() => {
     const paramValue = searchParams.get(type);
-    
+
     if (paramValue) {
       // Set the value based on the type when reading from search params
       if (type === RadioAttribute.NOISE || type === RadioAttribute.CAPACITY) {
@@ -77,19 +77,34 @@ const FilterRadio = <T extends RadioAttribute>({
       return (
         <React.Fragment>
           <FormControlLabel
-            value={SortOption.ALPHABETICAL}
+            value={SortOption.NOISE_LOW}
             control={<Radio />}
-            label={SortLabel.ALPHABETICAL}
+            label={SortOption.NOISE_LOW}
           />
           <FormControlLabel
-            value={SortOption.NOISE}
+            value={SortOption.NOISE_HIGH}
             control={<Radio />}
-            label={SortLabel.NOISE}
+            label={SortOption.NOISE_HIGH}
           />
           <FormControlLabel
-            value={SortOption.CAPACITY}
+            value={SortOption.CAPACITY_LOW}
             control={<Radio />}
-            label={SortLabel.CAPACITY}
+            label={SortLabel.CAPACITY_LOW}
+          />
+          <FormControlLabel
+            value={SortOption.CAPACITY_HIGH}
+            control={<Radio />}
+            label={SortLabel.CAPACITY_HIGH}
+          />
+          <FormControlLabel
+            value={SortOption.PRICE_LOW}
+            control={<Radio />}
+            label={SortLabel.PRICE_LOW}
+          />
+          <FormControlLabel
+            value={SortOption.PRICE_HIGH}
+            control={<Radio />}
+            label={SortLabel.PRICE_HIGH}
           />
         </React.Fragment>
       );

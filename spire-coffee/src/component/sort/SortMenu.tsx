@@ -20,7 +20,7 @@ const SortMenu = () => {
     );
   };
   return (
-    <FormControl sx={{ width: 180 }}>
+    <FormControl sx={{ width: 245 }}>
       <Select
         displayEmpty
         value={sortOption}
