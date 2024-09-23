@@ -1,4 +1,15 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, PaletteColor, PaletteColorOptions } from "@mui/material/styles";
+
+import '@mui/material/styles';
+
+declare module '@mui/material/styles' {
+  interface Palette {
+    primaryOpposite: PaletteColor;
+  }
+  interface PaletteOptions {
+    primaryOpposite?: PaletteColorOptions;
+  }
+}
 
 const mainTheme = createTheme({
   palette: {
@@ -16,6 +27,9 @@ const mainTheme = createTheme({
     warning: {
       main: "rgb(255, 0, 0)",
     },
+    primaryOpposite: {
+      main: "rgba(255, 255, 255, 0.616)"
+    }
   },
   typography: {
     fontFamily: "Figtree-Regular",
@@ -58,6 +72,22 @@ const mainTheme = createTheme({
     },
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: "10px",
+        },
+        // we can also add widths here if we pick on a width for the button
+        sizeSmall: {
+          fontSize: "15px",
+        },
+        sizeMedium: {
+        },
+        sizeLarge: {
+          fontSize: "18px", // Override large size font
+        },
+      },
+    },
     MuiLink: {
       styleOverrides: {
         root: {

@@ -44,6 +44,7 @@ export const returnAllCafeQuery = gql`
     $priceFilters: [String]
     $userLocation: locationInput
     $distanceFilter: Int
+    $page: Int
   ) {
     returnAllCafes(
       filterByName: $filterByName
@@ -52,13 +53,36 @@ export const returnAllCafeQuery = gql`
       priceFilters: $priceFilters
       userLocation: $userLocation
       distanceFilter: $distanceFilter
+      page: $page
     ) {
-      id
+      cafes {
+       id
       stringId
       name
       street
       city
       province
+      profilePhotoURL
+      busyness
+      noisiness
+      price
+      }
+     pageCount
+    }
+  }
+`;
+
+export const getCafeInfo = gql`
+  query getCafeInfo($stringId: String!) {
+    getCafeInfo(stringId: $stringId) {
+      id
+      name
+      street
+      city
+      province
+      postalCode
+      phoneNumber
+      website
       profilePhotoURL
       busyness
       noisiness

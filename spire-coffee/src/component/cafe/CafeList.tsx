@@ -2,19 +2,41 @@ import CafeCard from "@/component/cafe/CafeCard";
 import LoadingSpinner from "@/component/LoadingSpinner";
 import strings from "@/config/strings";
 import { Cafe } from "@/types/cafe";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  Link as MuiLink,
+  Pagination,
+  Typography,
+} from "@mui/material";
+import React from "react";
+import { Link } from "react-router-dom";
 
 type CafeListPropsType = {
   cafes: Cafe[];
   isLoading: boolean;
   isSmallScreen: boolean;
+  pageCount: number;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const CafeList = ({
   cafes,
   isLoading,
   isSmallScreen,
+  pageCount,
+  currentPage,
+  setCurrentPage,
 }: CafeListPropsType) => {
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setCurrentPage(value);
+  };
+
   if (isLoading && cafes.length === 0) {
     return (
       <Box
@@ -40,7 +62,7 @@ const CafeList = ({
 
   return (
     <Container
-    disableGutters
+      disableGutters
       sx={{
         maxWidth: isSmallScreen ? "380px" : "800px",
         height: "100%",
@@ -59,7 +81,7 @@ const CafeList = ({
         }
 
       >
-        {cafes.map((cafe) => (
+        {cafes.map((cafe: Cafe) => (
           <Grid
             item
             key={cafe.stringId}
@@ -69,20 +91,38 @@ const CafeList = ({
             lg={4}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <CafeCard
-              id={parseInt(cafe.stringId)}
-              name={cafe.name}
-              street={cafe.street}
-              city={cafe.city}
-              province={cafe.province}
-              profilePhotoURL={cafe.profilePhotoURL}
-              busyness={cafe.busyness}
-              noisiness={cafe.noisiness}
-              price={cafe.price}
-            />
+            <MuiLink
+              reloadDocument
+              key={cafe.id}
+              component={Link}
+              to={`/cafes/${cafe.stringId}`}
+              variant="body2"
+            >
+              <CafeCard
+                id={parseInt(cafe.stringId)}
+                name={cafe.name}
+                street={cafe.street}
+                city={cafe.city}
+                province={cafe.province}
+                profilePhotoURL={cafe.profilePhotoURL}
+                busyness={cafe.busyness}
+                noisiness={cafe.noisiness}
+                price={cafe.price}
+              />
+            </MuiLink>
           </Grid>
         ))}
       </Grid>
+      <Box
+        sx={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
+      >
+        <Pagination
+          color="primary"
+          count={pageCount}
+          page={currentPage}
+          onChange={handlePageChange}
+        />
+      </Box>
     </Container>
   );
 };

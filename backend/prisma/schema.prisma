@@ -34,10 +34,10 @@ model Cafe {
   price           String?
   latitude        Float
   longitude       Float
-  provinceCode    ProvinceCode     @relation("CafesProvince", fields: [province], references: [code])
-  busynessLevel   BusynessOption?  @relation("CafesBusyness", fields: [busyness], references: [level])
-  noisinessLevel  NoisinessOption? @relation("CafesNoisiness", fields: [noisiness], references: [level])
   priceLevel      PriceOption?     @relation("CafesPrice", fields: [price], references: [level])
+  noisinessLevel  NoisinessOption? @relation("CafesNoisiness", fields: [noisiness], references: [level])
+  busynessLevel   BusynessOption?  @relation("CafesBusyness", fields: [busyness], references: [level])
+  provinceCode    ProvinceCode     @relation("CafesProvince", fields: [province], references: [code])
 }
 
 model ProvinceCode {

@@ -3,11 +3,12 @@ import strings from "@/config/strings";
 import { useGlobalStateManager } from "@/context/StateContext";
 import { ClickableIconButton } from "@/styles/iconTheme";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import FilterCheckbox from "./FilterCheckbox";
 import FilterRadio from "./FilterRadio";
 import FilterSlider from "./FilterSlider";
+import CustomButton from "../CustomButton";
 
 type FilterSidebarPropsType = {
   handleFilterButton: (event: React.MouseEvent<Element, MouseEvent>) => void;
@@ -107,9 +108,11 @@ const FilterSidebar = ({
       )}
 
       <Box sx={{ mt: 3, display: "flex", justifyContent: "center" }}>
-        <Button color="primary" onClick={clearFilters}>
-          {strings.filter.clearFilters}
-        </Button>
+        <CustomButton
+          color="primary"
+          onClick={clearFilters}
+          text={strings.filter.clearFilters}
+        />
       </Box>
     </form>
   );
