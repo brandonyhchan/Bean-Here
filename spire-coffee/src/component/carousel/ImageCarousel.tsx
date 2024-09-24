@@ -12,6 +12,7 @@ const ImageCarousel = () => {
       imagePath: Placeholder2,
     },
   ];
+
   return (
     <Box>
       <Carousel
@@ -23,22 +24,32 @@ const ImageCarousel = () => {
           style: {
             backgroundColor: "#f5f5f700",
             color: "white",
-            borderRadius: 0
+            borderRadius: 0,
           },
         }}
         indicatorContainerProps={{
           style: {
             marginTop: "1rem",
-            marginBottom: "1rem"
+            marginBottom: "1rem",
+            position: "relative", // Ensure the indicators are always visible
+            zIndex: 1, // Prevent flickering by controlling stacking order
+          },
+        }}
+        activeIndicatorIconButtonProps={{
+          style: {
+            color: "white", // Active dot color
           },
         }}
       >
         {items.map((item, index) => (
-          <Box key={index} sx={{
-            width: "100%",
-            height: "393px",
-            objectFit: 'cover',
-          }}>
+          <Box
+            key={index}
+            sx={{
+              width: "100%",
+              height: "393px",
+              objectFit: "cover",
+            }}
+          >
             <img src={item.imagePath} alt={item.imagePath} />
           </Box>
         ))}

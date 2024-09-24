@@ -37,8 +37,8 @@ const CafeInfo = () => {
           {cafe === null ? (
             <span>{strings.error.noCafe}</span>
           ) : (
-            <Container>
-              <Typography variant="h1">{cafe?.name}</Typography>
+            <Container sx={{ p: 4 }}>
+              <Typography sx={{ pb: 4 }} variant="h1">{cafe?.name}</Typography>
               <Grid container spacing={2}>
                 <Grid item xs={12} lg={6}>
                   <ImageCarousel />
