@@ -37,21 +37,16 @@ const CafeInfo = () => {
           {cafe === null ? (
             <span>{strings.error.noCafe}</span>
           ) : (
-            <Box>
+            <Container>
               <Typography variant="h1">{cafe?.name}</Typography>
               <Grid container spacing={2}>
-                <Grid
-                  xs={12}
-                  sm={12}
-                  md={6}
-                  lg={6}
-                >
+                <Grid item xs={12} lg={6}>
                   <ImageCarousel />
                 </Grid>
-                <Grid>
+                <Grid item xs={12} lg={6}>
                   <CafeInfoCard
                     street={cafe?.street}
-                    city={cafe?.street}
+                    city={cafe?.city}
                     province={cafe?.province}
                     postalCode={cafe?.postalCode}
                     phoneNumber={cafe?.phoneNumber}
@@ -62,7 +57,7 @@ const CafeInfo = () => {
                   />
                 </Grid>
               </Grid>
-            </Box>
+            </Container>
           )}
         </React.Fragment>
       )}

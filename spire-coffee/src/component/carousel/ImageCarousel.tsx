@@ -1,9 +1,7 @@
 import { Box } from "@mui/material";
-import classNames from "classnames";
 import Carousel from "react-material-ui-carousel";
 import Placeholder from "../../assets/images/placeholder.jpg";
 import Placeholder2 from "../../assets/images/placeholder2.jpg";
-import styles from "./ImageCarousel.module.scss";
 
 const ImageCarousel = () => {
   const items = [
@@ -15,7 +13,7 @@ const ImageCarousel = () => {
     },
   ];
   return (
-    <Box sx={{ mb: 1.5 }}>
+    <Box>
       <Carousel
         autoPlay={false}
         animation={"slide"}
@@ -25,12 +23,22 @@ const ImageCarousel = () => {
           style: {
             backgroundColor: "#f5f5f700",
             color: "white",
-            borderRadius: 0,
+            borderRadius: 0
+          },
+        }}
+        indicatorContainerProps={{
+          style: {
+            marginTop: "1rem",
+            marginBottom: "1rem"
           },
         }}
       >
         {items.map((item, index) => (
-          <Box key={index} className={classNames(styles.carouselWrapper)}>
+          <Box key={index} sx={{
+            width: "100%",
+            height: "393px",
+            objectFit: 'cover',
+          }}>
             <img src={item.imagePath} alt={item.imagePath} />
           </Box>
         ))}
