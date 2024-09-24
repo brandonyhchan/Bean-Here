@@ -1,7 +1,8 @@
+import ImageCarousel from "@/component/carousel/ImageCarousel";
 import LoadingSpinner from "@/component/LoadingSpinner";
 import strings from "@/config/strings";
 import { useQuery } from "@apollo/client";
-import { Box, Card, CardContent, Container, Typography } from "@mui/material";
+import { Box, Card, CardContent, Container, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -43,19 +44,31 @@ const CafeInfo = () => {
           ) : (
             <Box>
               <Typography variant="h1">{cafe?.name}</Typography>
-              <Card>
-                <CardContent
-                  sx={{
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
+              <Grid container spacing={2}>
+                <Grid
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  lg={6}
                 >
-                  <Typography>{`${cafe?.street} ${cafe?.city}, ${cafe?.province}`}</Typography>
-                  <Typography>{renderNoiseIcon(cafe?.noisiness)}</Typography>
-                  <Typography>{renderBusyIcon(cafe?.busyness)}</Typography>
-                  <Typography>{renderPrice(cafe?.price)}</Typography>
-                </CardContent>
-              </Card>
+                  <ImageCarousel />
+                </Grid>
+                <Grid>
+                  <Card>
+                    <CardContent
+                      sx={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      <Typography>{`${cafe?.street} ${cafe?.city}, ${cafe?.province}`}</Typography>
+                      <Typography>{renderNoiseIcon(cafe?.noisiness)}</Typography>
+                      <Typography>{renderBusyIcon(cafe?.busyness)}</Typography>
+                      <Typography>{renderPrice(cafe?.price)}</Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
             </Box>
           )}
         </React.Fragment>
