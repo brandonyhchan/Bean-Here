@@ -84,7 +84,7 @@ const strings = new LocalizedStrings({
       noWebsite: "Website unavailable",
       noPhoneNumber: "Phone number unavailable",
       getDirections: "Get Directions",
-      reportSubmitMessage: "Thank you! Your report has been submitted"
+      reportSubmitMessage: "Thank you! Your report has been submitted",
     },
     filter: {
       heading: "Filter",

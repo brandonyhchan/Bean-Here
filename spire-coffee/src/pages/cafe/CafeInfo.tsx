@@ -1,11 +1,14 @@
-import CafeInfoCard from "@/component/cafe/CafeInfoCard";
-import ImageCarousel from "@/component/carousel/ImageCarousel";
-import { default as LoadingSpinner } from "@/component/LoadingSpinner";
-import { default as strings } from "@/config/strings";
+import LoadingSpinner from "@/component/LoadingSpinner";
+import strings from "@/config/strings";
 import { useQuery } from "@apollo/client";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Card, CardContent, Container, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import {
+  renderBusyIcon,
+  renderNoiseIcon,
+  renderPrice
+} from "../../component/icons/Icons";
 import { getCafeInfo } from "../../support/graphqlServerApi";
 import { Cafe } from "../../types/cafe";
 
@@ -27,6 +30,7 @@ const CafeInfo = () => {
   });
 
   return (
+
     <Container>
       {loading ? (
         <Box>
@@ -37,27 +41,22 @@ const CafeInfo = () => {
           {cafe === null ? (
             <span>{strings.error.noCafe}</span>
           ) : (
-            <Container sx={{ p: 4 }}>
-              <Typography sx={{ pb: 4 }} variant="h1">{cafe?.name}</Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={12} lg={6}>
-                  <ImageCarousel />
-                </Grid>
-                <Grid item xs={12} lg={6}>
-                  <CafeInfoCard
-                    street={cafe?.street}
-                    city={cafe?.city}
-                    province={cafe?.province}
-                    postalCode={cafe?.postalCode}
-                    phoneNumber={cafe?.phoneNumber}
-                    website={cafe?.website}
-                    noisiness={cafe?.noisiness}
-                    busyness={cafe?.busyness}
-                    price={cafe?.price}
-                  />
-                </Grid>
-              </Grid>
-            </Container>
+            <Box>
+              <Typography variant="h1">{cafe?.name}</Typography>
+              <Card>
+                <CardContent
+                  sx={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  <Typography>{`${cafe?.street} ${cafe?.city}, ${cafe?.province}`}</Typography>
+                  <Typography>{renderNoiseIcon(cafe?.noisiness)}</Typography>
+                  <Typography>{renderBusyIcon(cafe?.busyness)}</Typography>
+                  <Typography>{renderPrice(cafe?.price)}</Typography>
+                </CardContent>
+              </Card>
+            </Box>
           )}
         </React.Fragment>
       )}
