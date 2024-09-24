@@ -1,14 +1,10 @@
+import CafeInfoCard from "@/component/cafe/CafeInfoCard";
 import LoadingSpinner from "@/component/LoadingSpinner";
 import strings from "@/config/strings";
 import { useQuery } from "@apollo/client";
-import { Box, Card, CardContent, Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  renderBusyIcon,
-  renderNoiseIcon,
-  renderPrice
-} from "../../component/icons/Icons";
 import { getCafeInfo } from "../../support/graphqlServerApi";
 import { Cafe } from "../../types/cafe";
 
@@ -30,7 +26,6 @@ const CafeInfo = () => {
   });
 
   return (
-
     <Container>
       {loading ? (
         <Box>
@@ -43,19 +38,17 @@ const CafeInfo = () => {
           ) : (
             <Box>
               <Typography variant="h1">{cafe?.name}</Typography>
-              <Card>
-                <CardContent
-                  sx={{
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  <Typography>{`${cafe?.street} ${cafe?.city}, ${cafe?.province}`}</Typography>
-                  <Typography>{renderNoiseIcon(cafe?.noisiness)}</Typography>
-                  <Typography>{renderBusyIcon(cafe?.busyness)}</Typography>
-                  <Typography>{renderPrice(cafe?.price)}</Typography>
-                </CardContent>
-              </Card>
+              <CafeInfoCard
+                street={cafe?.street}
+                city={cafe?.street}
+                province={cafe?.province}
+                postalCode={cafe?.postalCode}
+                phoneNumber={cafe?.phoneNumber}
+                website={cafe?.website}
+                noisiness={cafe?.noisiness}
+                busyness={cafe?.busyness}
+                price={cafe?.price}
+              />
             </Box>
           )}
         </React.Fragment>
