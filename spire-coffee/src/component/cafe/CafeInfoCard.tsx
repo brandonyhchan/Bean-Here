@@ -43,7 +43,7 @@ const CafeInfoCard = ({
     } else if (text === Level.MEDIUM) {
       return "Moderate";
     } else {
-      ("High");
+      return "High";
     }
   }
 
