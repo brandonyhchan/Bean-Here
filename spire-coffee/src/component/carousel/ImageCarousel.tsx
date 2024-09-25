@@ -47,7 +47,7 @@ const ImageCarousel = () => {
             sx={{
               width: "100%",
               height: "393px",
-              objectFit: "cover",
+              objectFit: "fit",
             }}
           >
             <img src={item.imagePath} alt={item.imagePath} />
