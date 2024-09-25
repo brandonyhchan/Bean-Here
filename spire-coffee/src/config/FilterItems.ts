@@ -10,6 +10,15 @@ export enum LevelLabel {
   HIGH = "High",
 }
 
+export enum SortLabel {
+  NOISE_LOW = "Noise - Low to High",
+  NOISE_HIGH = "Noise - High to Low",
+  CAPACITY_LOW = "Capacity - Low to High",
+  CAPACITY_HIGH = "Capacity - High to Low",
+  PRICE_LOW = "Price - Low to High",
+  PRICE_HIGH = "Price - High to Low"
+}
+
 export enum Price {
   LOW = "$",
   MEDIUM = "$$",
@@ -19,24 +28,34 @@ export enum Price {
 export enum RadioAttribute {
   NOISE = "noise",
   CAPACITY = "capacity",
+  SORT = "sort"
+}
+
+export enum SortOption {
+  NOISE_LOW = "Noise - Low to High",
+  NOISE_HIGH = "Noise - High to Low",
+  CAPACITY_LOW = "Capacity - Low to High",
+  CAPACITY_HIGH = "Capacity - High to Low",
+  PRICE_LOW = "Price - Low to High",
+  PRICE_HIGH = "Price - High to Low"
 }
 
 export const marks = [
   {
     value: 0,
-    label: "0 km",
+    label: "0",
   },
   {
     value: 10,
-    label: "10 km",
+    label: "10",
   },
   {
     value: 20,
-    label: "20 km",
+    label: "20",
   },
   {
     value: 30,
-    label: "30+ km",
+    label: "30+",
   },
 ];
 

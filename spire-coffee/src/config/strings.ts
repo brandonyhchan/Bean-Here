@@ -94,6 +94,9 @@ const strings = new LocalizedStrings({
       price: "Price",
       clearFilters: "Clear Filters",
     },
+    sort: {
+      heading: "Sort by",
+    },
   },
 });
 
