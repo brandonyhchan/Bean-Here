@@ -31,13 +31,13 @@ const ImageCarousel = () => {
           style: {
             marginTop: "1rem",
             marginBottom: "1rem",
-            position: "relative", // Ensure the indicators are always visible
-            zIndex: 1, // Prevent flickering by controlling stacking order
+            position: "relative",
+            zIndex: 1,
           },
         }}
         activeIndicatorIconButtonProps={{
           style: {
-            color: "white", // Active dot color
+            color: "white",
           },
         }}
       >
