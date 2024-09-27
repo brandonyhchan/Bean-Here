@@ -2,7 +2,12 @@ import CafeCard from "@/component/cafe/CafeCard";
 import LoadingSpinner from "@/component/LoadingSpinner";
 import strings from "@/config/strings";
 import { Cafe } from "@/types/cafe";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  Typography
+} from "@mui/material";
 
 type CafeListPropsType = {
   cafes: Cafe[];
@@ -13,7 +18,7 @@ type CafeListPropsType = {
 const CafeList = ({
   cafes,
   isLoading,
-  isSmallScreen,
+  isSmallScreen
 }: CafeListPropsType) => {
   if (isLoading && cafes.length === 0) {
     return (
@@ -40,12 +45,9 @@ const CafeList = ({
 
   return (
     <Container
-    disableGutters
+      disableGutters
       sx={{
         maxWidth: isSmallScreen ? "380px" : "800px",
-        height: "100%",
-        pr: { xs: "0", sm: "0", md: 4, lg: 4 },
-        pb: 4,
       }}
     >
       <Grid
@@ -58,7 +60,7 @@ const CafeList = ({
         }
         flexWrap="wrap"
       >
-        {cafes.map((cafe) => (
+        {cafes.map((cafe: Cafe) => (
           <Grid
             item
             key={cafe.stringId}
@@ -70,6 +72,7 @@ const CafeList = ({
           >
             <CafeCard
               id={parseInt(cafe.stringId)}
+              stringId={cafe.stringId}
               name={cafe.name}
               street={cafe.street}
               city={cafe.city}

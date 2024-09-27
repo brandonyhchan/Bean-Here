@@ -1,10 +1,11 @@
-import { RadioAttribute } from "@/config/FilterItems";
+import { Level, RadioAttribute, SortOption } from "@/config/FilterItems";
 import strings from "@/config/strings";
 import { useGlobalStateManager } from "@/context/StateContext";
 import { ClickableIconButton } from "@/styles/iconTheme";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
+import CustomButton from "../CustomButton";
 import FilterCheckbox from "./FilterCheckbox";
 import FilterRadio from "./FilterRadio";
 import FilterSlider from "./FilterSlider";
@@ -20,7 +21,6 @@ const FilterSidebar = ({
   showFilterSidebar,
   isSmallScreen,
 }: FilterSidebarPropsType) => {
-  // eslint-disable-next-line prefer-const
   let [searchParams, setSearchParams] = useSearchParams();
 
   const {
@@ -32,6 +32,8 @@ const FilterSidebar = ({
     setPriceFilters,
     distanceFilterValue,
     setDistanceFilterValue,
+    sortOption,
+    setSortOption
   } = useGlobalStateManager();
 
   const clearFilters = () => {
@@ -50,7 +52,6 @@ const FilterSidebar = ({
         overflowY: "auto",
       }}
     >
-      {/* this design might need to be changed */}
       <Box
         sx={{
           pl: 3.8,
@@ -82,14 +83,14 @@ const FilterSidebar = ({
         type={RadioAttribute.CAPACITY}
         title={strings.filter.capacity}
         value={busynessFilter}
-        setValue={setBusynessFilter}
+        setValue={(value) => setBusynessFilter(value as Level | undefined)}
       />
       {/* Noise level Radio buttons */}
       <FilterRadio
         type={RadioAttribute.NOISE}
         title={strings.filter.noise}
         value={noiseFilter}
-        setValue={setNoiseFilter}
+        setValue={(value) => setNoiseFilter(value as Level | undefined)}
       />
       {/* Checkboxes, multiple selection */}
       <FilterCheckbox
@@ -97,11 +98,20 @@ const FilterSidebar = ({
         value={priceFilters}
         setValue={setPriceFilters}
       />
-
-      <Box sx={{ mt: 3, display: "flex", justifyContent: "center" }}>
-        <Button color="primary" onClick={clearFilters}>
-          {strings.filter.clearFilters}
-        </Button>
+      {isSmallScreen && showFilterSidebar && (
+        <FilterRadio
+          type={RadioAttribute.SORT}
+          title={strings.sort.heading}
+          value={sortOption}
+          setValue={(value) => setSortOption(value as SortOption | undefined)}
+        />
+      )}
+      <Box sx={{ pb: 2, display: "flex", justifyContent: "center" }}>
+        <CustomButton
+          color="primary"
+          onClick={clearFilters}
+          text={strings.filter.clearFilters}
+        />
       </Box>
     </form>
   );

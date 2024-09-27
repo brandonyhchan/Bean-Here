@@ -22,10 +22,15 @@ export async function returnAllCafes(parent, args, context) {
   // Previously we used mode: "insensitive" but this is no longer supported
   const filterByName = args.filterByName ? args.filterByName.toLowerCase() : "";
 
+  const limit = 6; // this was changed to 6 as we currently only have 8 cafes seeded. Will be updated to 9 once more cafes are added.
+  const page = args.page || 1;
+  const skip = (page - 1) * limit; // calculate how many cafes to skip
+
   try {
     if (!context.userId) {
       throw new Error("Not authenticated");
     }
+
     const query = await context.prisma.cafe.findMany({
       select: {
         id: true,
@@ -58,7 +63,29 @@ export async function returnAllCafes(parent, args, context) {
       orderBy: {
         id: "asc",
       },
+      skip: skip, // skip the results for pagination
+      take: limit, // limit the number of results returned
     });
+
+    const totalCafes = await context.prisma.cafe.count({
+      where: {
+        name: { contains: filterByName },
+        busynessLevel: {
+          level: args.busynessFilter,
+        },
+        noisinessLevel: {
+          level: args.noiseFilter,
+        },
+        priceLevel: {
+          level: {
+            in: args.priceFilters.length ? args.priceFilters : undefined,
+          },
+        },
+      },
+    });
+
+    const pageCount = Math.ceil(totalCafes / limit); // Calculate total number of pages
+
     if (args.distanceFilter < 30) {
       const cafeDistances: Cafe[] = [];
       query.forEach(function (cafe) {
@@ -67,12 +94,11 @@ export async function returnAllCafes(parent, args, context) {
       const output = cafeDistances.filter(
         (cafe) => cafe.distance < args.distanceFilter
       );
-      return output;
+      return { cafes: output, pageCount };
     } else {
-      return query;
+      return { cafes: query, pageCount };
     }
-  
-    } catch (error) {
+  } catch (error) {
     console.error("Error in returnAllCafes resolver:", error);
     throw new Error("Failed to fetch cafes");
   }

@@ -22,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
     <Container 
     disableGutters
     sx={{
-      display: "flex", flexDirection: "row", mb: 3,
+      display: "flex", flexDirection: "row",
       width: {
         xs: '272px',
         sm: '335px',
