@@ -94,6 +94,11 @@ const strings = new LocalizedStrings({
       price: "Price",
       clearFilters: "Clear Filters",
     },
+    level: {
+      low: "Low",
+      medium: "Moderate",
+      high: "High"
+    }
   },
 });
 

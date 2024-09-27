@@ -39,11 +39,13 @@ const CafeInfoCard = ({
 }: CafeInfoCardTypeProps) => {
   function renderText(text?: string) {
     if (text === Level.LOW) {
-      return "Low";
+      return strings.level.low;
     } else if (text === Level.MEDIUM) {
-      return "Moderate";
+      return strings.level.medium;
+    } else if (text === Level.HIGH ) {
+      return strings.level.high;
     } else {
-      return "High";
+      return strings.level.low;
     }
   }
 
