@@ -6,7 +6,7 @@ import { useGlobalStateManager } from "@/context/StateContext";
 import { returnAllCafeQuery } from "@/support/graphqlServerApi";
 import { Cafe } from "@/types/cafe";
 import { useQuery } from "@apollo/client";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Pagination, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
@@ -97,6 +97,13 @@ const Explore = () => {
     getLocation();
   });
 
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setCurrentPage(value);
+  };
+
   return (
     <React.Fragment>
       <Helmet title={strings.navbar.explore} />
@@ -150,8 +157,10 @@ const Explore = () => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              padding: "0",
               paddingTop: "1rem",
+              paddingBottom: "1rem",
+              paddingRight: { xs: "0", sm: "0", md: 2, lg: 2 },
+              paddingLeft: { xs: "0", sm: "0", md: 2, lg: 2 },
               height: "100%",
             }}
           >
@@ -162,25 +171,54 @@ const Explore = () => {
                 isSmallScreen={isSmallScreen}
               />
             ) : (
-              <>
-                <ExploreBar
-                  searchCafeName={searchCafeName}
-                  showCloseButton={showCloseButton}
-                  handleSearchQuery={handleSearchQuery}
-                  handleCloseButton={handleCloseButton}
-                  handleFilterButton={handleFilterButton}
-                  isSmallScreen={isSmallScreen}
-                  showFilterSidebar={showFilterSidebar}
-                />
-                <CafeList
-                  cafes={cafes}
-                  isLoading={loading}
-                  isSmallScreen={isSmallScreen}
-                  pageCount={pageCount}
-                  currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
-                />
-              </>
+              <Container
+                disableGutters
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  height: "100%",
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    gap: 2
+                  }}
+                >
+                  <ExploreBar
+                    searchCafeName={searchCafeName}
+                    showCloseButton={showCloseButton}
+                    handleSearchQuery={handleSearchQuery}
+                    handleCloseButton={handleCloseButton}
+                    handleFilterButton={handleFilterButton}
+                    isSmallScreen={isSmallScreen}
+                    showFilterSidebar={showFilterSidebar}
+                  />
+                  <CafeList
+                    cafes={cafes}
+                    isLoading={loading}
+                    isSmallScreen={isSmallScreen}
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    mt: 3,
+                    mb: 3
+                  }}
+                >
+                  <Pagination
+                    color="primary"
+                    count={pageCount}
+                    page={currentPage}
+                    onChange={handlePageChange}
+                  />
+                </Box>
+              </Container>
             )}
           </Container>
         </div>

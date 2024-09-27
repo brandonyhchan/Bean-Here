@@ -1,9 +1,9 @@
-import { Level } from "@/config/FilterItems";
+import { Level, SortOption } from "@/config/FilterItems";
+import { userCoords } from "@/types/cafe";
 import { useMediaQuery, useTheme } from "@mui/material";
 import React, { createContext, ReactNode, useContext, useState } from "react";
 import Navbar from "../component/Navbar";
 import { useAuth } from "../context/AuthContext";
-import { userCoords } from "@/types/cafe";
 
 interface StateContextType {
   noiseFilter: Level | undefined;
@@ -19,9 +19,11 @@ interface StateContextType {
   userLocation: userCoords | undefined;
   setUserLocation: React.Dispatch<React.SetStateAction<userCoords | undefined>>;
   distanceFilterValue: number | undefined;
+  sortOption: SortOption | undefined;
   setDistanceFilterValue: React.Dispatch<
     React.SetStateAction<number | undefined>
   >;
+  setSortOption: React.Dispatch<React.SetStateAction<SortOption | undefined>>;
 }
 
 const StateContext = createContext<StateContextType | undefined>(undefined);
@@ -44,6 +46,7 @@ export const StateProvider: React.FC<{ children: ReactNode }> = ({
   const [distanceFilterValue, setDistanceFilterValue] = useState<
     number | undefined
   >(undefined);
+  const [sortOption, setSortOption] = useState<SortOption | undefined>();
 
   const contextValue: StateContextType = {
     noiseFilter,
@@ -60,6 +63,8 @@ export const StateProvider: React.FC<{ children: ReactNode }> = ({
     setUserLocation,
     distanceFilterValue,
     setDistanceFilterValue,
+    sortOption,
+    setSortOption,
   };
 
   return (

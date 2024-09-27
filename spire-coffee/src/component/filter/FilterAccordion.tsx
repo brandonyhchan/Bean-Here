@@ -20,7 +20,7 @@ const FilterAccordion: React.FC<FilterAccordionProps> = ({
       >
         {title}
       </AccordionSummary>
-      <AccordionDetails sx={{ pr: 5, pl: 5 }}>{children}</AccordionDetails>
+      <AccordionDetails sx={{ pr: 2, pl: 2 }}>{children}</AccordionDetails>
     </Accordion>
   );
 };

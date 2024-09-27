@@ -98,7 +98,10 @@ const strings = new LocalizedStrings({
       low: "Low",
       medium: "Moderate",
       high: "High"
-    }
+    },
+    sort: {
+      heading: "Sort by",
+    },
   },
 });
 
