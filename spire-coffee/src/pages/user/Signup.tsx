@@ -40,7 +40,7 @@ const SignUp = () => {
   const [signUp] = useLazyQuery(signUpMutation, {
     onError: (error) => {
       console.error("Signup error: ", error);
-      setSignUpError("Failed to signup. Please try again.");
+      setSignUpError(error.message);
     },
     onCompleted: async (data) => {
       try {
@@ -228,7 +228,7 @@ const SignUp = () => {
             errors={errors}
             onSubmit={handleSignUp}
             onChange={handleChange}
-            buttonLabel={strings.login.signIn}
+            buttonLabel={strings.login.signUp}
           />
         </Box>
       </Container>

@@ -19,17 +19,30 @@ import { createToken } from "../utils/jwt.js";
  */
 export async function signUp(parent, args, context) {
   try {
-    // Uses bcrypt to securely hash the user's password before storing it in the database
+    // Check if username or email already exists
+    const existingUser = await context.prisma.user.findFirst({
+      where: { userName: args.userName },
+    });
+
+    const existingEmail = await context.prisma.user.findFirst({
+      where: { email: args.email },
+    });
+
+    if (existingUser) {
+      throw new Error('Username already exists');
+    } else if (existingEmail) {
+      throw new Error('Email already exists');
+    }
+
+    // Hash the password
     const password = await bcrypt.hash(args.password, 10);
+
+    // Create the user
     const user = await context.prisma.user.create({
       data: { ...args, password },
     });
 
-    /**
-     * Uses JWT to generate a token containing the userId and userName and can be
-     * used for authentication in later requests without needing to access the database.
-     * The token is signed with a private key using RS256 algorithm.
-     */
+    // Generate token
     const token = createToken(user.id, user.userName);
 
     return {
@@ -37,7 +50,11 @@ export async function signUp(parent, args, context) {
       user,
     };
   } catch (error) {
-    throw new Error("User already exists");
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("An unknown error occurred");
+    }
   }
 }
 
