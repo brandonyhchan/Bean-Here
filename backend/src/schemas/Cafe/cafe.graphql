@@ -14,6 +14,7 @@ type Cafe {
   price: String
   location: Location
   distance: Int
+  BusinessHours: BusinessHours
 }
 
 type Location {
@@ -24,4 +25,13 @@ type Location {
 input locationInput {
   latitude: Float
   longitude: Float
+}
+
+type BusinessHours {
+  id      Int    @id @default(autoincrement())
+  weekday String
+  start   String // Store time as "HH:mm"
+  end     String // Store time as "HH:mm"
+  cafeId  Int
+  cafe    Cafe   @relation(fields: [cafeId], references: [id])
 }

@@ -13,7 +13,16 @@
     "price": "MEDIUM",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/breka.png",
     "latitude": 49.24395183887686,
-    "longitude": -123.10106046244594
+    "longitude": -123.10106046244594,
+    "businessHours": [
+      { "weekday": "Monday", "start": "00:00", "end": "00:00" },
+      { "weekday": "Tuesday", "start": "00:00", "end": "00:00" },
+      { "weekday": "Wednesday", "start": "00:00", "end": "00:00" },
+      { "weekday": "Thursday", "start": "00:00", "end": "00:00" },
+      { "weekday": "Friday", "start": "00:00", "end": "00:00" },
+      { "weekday": "Saturday", "start": "00:00", "end": "00:00" },
+      { "weekday": "Sunday", "start": "00:00", "end": "00:00" }
+    ]
   },
   {
     "stringId": "brekaFraser",
@@ -29,7 +38,16 @@
     "price": "MEDIUM",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/breka.png",
     "latitude": 49.22531283615734,
-    "longitude": -123.09110830477461
+    "longitude": -123.09110830477461,
+    "businessHours": [
+      { "weekday": "Monday", "start": "00:00", "end": "00:00" },
+      { "weekday": "Tuesday", "start": "00:00", "end": "00:00" },
+      { "weekday": "Wednesday", "start": "00:00", "end": "00:00" },
+      { "weekday": "Thursday", "start": "00:00", "end": "00:00" },
+      { "weekday": "Friday", "start": "00:00", "end": "00:00" },
+      { "weekday": "Saturday", "start": "00:00", "end": "00:00" },
+      { "weekday": "Sunday", "start": "00:00", "end": "00:00" }
+    ]
   },
   {
     "stringId": "nemesisGNW",
@@ -44,7 +62,16 @@
     "price": "MEDIUM",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/nemisis.png",
     "latitude": 49.267168988981176,
-    "longitude": -123.09263211826324
+    "longitude": -123.09263211826324,
+    "businessHours": [
+      { "weekday": "Monday", "start": "08:00", "end": "16:00" },
+      { "weekday": "Tuesday", "start": "08:00", "end": "16:00" },
+      { "weekday": "Wednesday", "start": "08:00", "end": "16:00" },
+      { "weekday": "Thursday", "start": "08:00", "end": "16:00" },
+      { "weekday": "Friday", "start": "08:00", "end": "16:00" },
+      { "weekday": "Saturday", "start": "09:00", "end": "17:00" },
+      { "weekday": "Sunday", "start": "09:00", "end": "17:00" }
+    ]
   },
   {
     "stringId": "nemesisPolygon",
@@ -59,7 +86,16 @@
     "price": "MEDIUM",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/nemisis.png",
     "latitude": 49.31067849315337,
-    "longitude": -123.08084128757065
+    "longitude": -123.08084128757065,
+    "businessHours": [
+      { "weekday": "Monday", "start": "08:00", "end": "16:00" },
+      { "weekday": "Tuesday", "start": "08:00", "end": "16:00" },
+      { "weekday": "Wednesday", "start": "08:00", "end": "16:00" },
+      { "weekday": "Thursday", "start": "08:00", "end": "16:00" },
+      { "weekday": "Friday", "start": "08:00", "end": "16:00" },
+      { "weekday": "Saturday", "start": "09:00", "end": "17:00" },
+      { "weekday": "Sunday", "start": "09:00", "end": "17:00" }
+    ]
   },
   {
     "stringId": "groundsForCoffee",
@@ -75,7 +111,16 @@
     "price": "HIGH",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/groundsForCoffee.png",
     "latitude": 49.266369106980484,
-    "longitude": -123.0694613740821
+    "longitude": -123.0694613740821,
+    "businessHours": [
+      { "weekday": "Monday", "start": "07:00", "end": "20:00" },
+      { "weekday": "Tuesday", "start": "07:00", "end": "20:00" },
+      { "weekday": "Wednesday", "start": "07:00", "end": "20:00" },
+      { "weekday": "Thursday", "start": "07:00", "end": "21:00" },
+      { "weekday": "Friday", "start": "07:00", "end": "21:00" },
+      { "weekday": "Saturday", "start": "07:00", "end": "21:00" },
+      { "weekday": "Sunday", "start": "07:00", "end": "20:00" }
+    ]
   },
   {
     "stringId": "flavorBalance",
@@ -90,7 +135,16 @@
     "price": "LOW",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/flavorbalance.jpg",
     "latitude": 49.21223000687766,
-    "longitude": -122.92051811641288
+    "longitude": -122.92051811641288,
+    "businessHours": [
+      { "weekday": "Monday", "start": "09:00", "end": "18:30" },
+      { "weekday": "Tuesday", "start": "09:00", "end": "18:30" },
+      { "weekday": "Wednesday", "start": "09:00", "end": "22:00" },
+      { "weekday": "Thursday", "start": "09:00", "end": "22:00" },
+      { "weekday": "Friday", "start": "09:00", "end": "22:00" },
+      { "weekday": "Saturday", "start": "09:00", "end": "22:00" },
+      { "weekday": "Sunday", "start": null, "end": null }
+    ]
   },
   {
     "stringId": "fiorDeLatte",
@@ -106,7 +160,16 @@
     "price": "LOW",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/fdlcafe.png",
     "latitude": 49.281329346514276,
-    "longitude": -123.0102098182624
+    "longitude": -123.0102098182624,
+    "businessHours": [
+      { "weekday": "Monday", "start": "07:00", "end": "21:00" },
+      { "weekday": "Tuesday", "start": "07:00", "end": "21:00" },
+      { "weekday": "Wednesday", "start": "07:00", "end": "21:00" },
+      { "weekday": "Thursday", "start": "07:00", "end": "21:00" },
+      { "weekday": "Friday", "start": "07:00", "end": "21:00" },
+      { "weekday": "Saturday", "start": "07:00", "end": "21:00" },
+      { "weekday": "Sunday", "start": "07:00", "end": "21:00" }
+    ]
   },
   {
     "stringId": "cMarketPoco",
@@ -122,6 +185,15 @@
     "price": "LOW",
     "profilePhotoURL": "https://spirecoffee.s3.us-west-2.amazonaws.com/cafeProfilePhoto/cMarket.png",
     "latitude": 49.25191163941184,
-    "longitude": -122.73605968942795
+    "longitude": -122.73605968942795,
+    "businessHours": [
+      { "weekday": "Monday", "start": "08:00", "end": "21:00" },
+      { "weekday": "Tuesday", "start": "08:00", "end": "21:00" },
+      { "weekday": "Wednesday", "start": "08:00", "end": "21:00" },
+      { "weekday": "Thursday", "start": "08:00", "end": "21:00" },
+      { "weekday": "Friday", "start": "08:00", "end": "21:00" },
+      { "weekday": "Saturday", "start": "08:00", "end": "21:00" },
+      { "weekday": "Sunday", "start": "08:00", "end": "21:00" }
+    ]
   }
 ]

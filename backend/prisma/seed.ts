@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
-import { SEEDER_ACCOUNT_PASSWORD } from "../src/utils/config";
 import fs from "fs/promises";
+import { SEEDER_ACCOUNT_PASSWORD } from "../src/utils/config";
 
 const prisma = new PrismaClient();
 
@@ -142,7 +142,16 @@ async function seedCafes() {
       await prisma.cafe.upsert({
         where: { stringId: cafe.stringId },
         update: {},
-        create: cafe,
+        create: {
+          ...cafe, // Spread the cafe object here
+          businessHours: {
+            create: cafe.businessHours.map((hours) => ({
+              weekday: hours.weekday,
+              start: hours.start,
+              end: hours.end,
+            })),
+          },
+        },
       });
     }
   } catch (error) {

@@ -38,6 +38,7 @@ model Cafe {
   noisinessLevel  NoisinessOption? @relation("CafesNoisiness", fields: [noisiness], references: [level])
   busynessLevel   BusynessOption?  @relation("CafesBusyness", fields: [busyness], references: [level])
   provinceCode    ProvinceCode     @relation("CafesProvince", fields: [province], references: [code])
+  businessHours   BusinessHours[]   // One-to-many relationship for business hours
 }
 
 model ProvinceCode {
@@ -59,4 +60,13 @@ model NoisinessOption {
 model PriceOption {
   level String @id
   cafes Cafe[] @relation("CafesPrice")
+}
+
+model BusinessHours {
+  id      Int    @id @default(autoincrement())
+  weekday String
+  start   String? // Store time as "HH:mm"
+  end     String? // Store time as "HH:mm"
+  cafeId  Int
+  cafe    Cafe   @relation(fields: [cafeId], references: [id])
 }

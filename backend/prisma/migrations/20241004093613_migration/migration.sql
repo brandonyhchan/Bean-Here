@@ -27,10 +27,10 @@ CREATE TABLE "Cafe" (
     "price" TEXT,
     "latitude" REAL NOT NULL,
     "longitude" REAL NOT NULL,
-    CONSTRAINT "Cafe_province_fkey" FOREIGN KEY ("province") REFERENCES "ProvinceCode" ("code") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "Cafe_busyness_fkey" FOREIGN KEY ("busyness") REFERENCES "BusynessOption" ("level") ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT "Cafe_price_fkey" FOREIGN KEY ("price") REFERENCES "PriceOption" ("level") ON DELETE SET NULL ON UPDATE CASCADE,
     CONSTRAINT "Cafe_noisiness_fkey" FOREIGN KEY ("noisiness") REFERENCES "NoisinessOption" ("level") ON DELETE SET NULL ON UPDATE CASCADE,
-    CONSTRAINT "Cafe_price_fkey" FOREIGN KEY ("price") REFERENCES "PriceOption" ("level") ON DELETE SET NULL ON UPDATE CASCADE
+    CONSTRAINT "Cafe_busyness_fkey" FOREIGN KEY ("busyness") REFERENCES "BusynessOption" ("level") ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT "Cafe_province_fkey" FOREIGN KEY ("province") REFERENCES "ProvinceCode" ("code") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -52,6 +52,16 @@ CREATE TABLE "NoisinessOption" (
 -- CreateTable
 CREATE TABLE "PriceOption" (
     "level" TEXT NOT NULL PRIMARY KEY
+);
+
+-- CreateTable
+CREATE TABLE "BusinessHours" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "weekday" TEXT NOT NULL,
+    "start" TEXT,
+    "end" TEXT,
+    "cafeId" INTEGER NOT NULL,
+    CONSTRAINT "BusinessHours_cafeId_fkey" FOREIGN KEY ("cafeId") REFERENCES "Cafe" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateIndex
