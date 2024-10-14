@@ -29,9 +29,10 @@ const ImageCarousel = () => {
         }}
         indicatorContainerProps={{
           style: {
-            marginTop: "1rem",
-            marginBottom: "1rem",
-            position: "relative",
+            position: "absolute",
+            bottom: "10px",
+            left: "50%",
+            transform: "translateX(-50%)",
             zIndex: 1,
           },
         }}
@@ -46,11 +47,25 @@ const ImageCarousel = () => {
             key={index}
             sx={{
               width: "100%",
-              height: "393px",
-              // objectFit: "cover",
+              height: {
+                xs: "275px",
+                sm: "550px",
+                md: "600px",
+                lg: "445px",
+              },
+              position: "relative", 
+              overflow: "hidden",
             }}
           >
-            <img src={item.imagePath} alt={item.imagePath} />
+            <img
+              src={item.imagePath}
+              alt={item.imagePath}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
           </Box>
         ))}
       </Carousel>
