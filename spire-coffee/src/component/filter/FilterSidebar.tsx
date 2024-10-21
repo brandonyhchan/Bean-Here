@@ -1,4 +1,4 @@
-import { Level, RadioAttribute, SortOption } from "@/config/FilterItems";
+import { ExploreSortOption, Level, RadioAttribute } from "@/config/FilterItems";
 import strings from "@/config/strings";
 import { useGlobalStateManager } from "@/context/StateContext";
 import { ClickableIconButton } from "@/styles/iconTheme";
@@ -32,8 +32,8 @@ const FilterSidebar = ({
     setPriceFilters,
     distanceFilterValue,
     setDistanceFilterValue,
-    sortOption,
-    setSortOption
+    exploreSortOption,
+    setExploreSortOption,
   } = useGlobalStateManager();
 
   const clearFilters = () => {
@@ -102,8 +102,10 @@ const FilterSidebar = ({
         <FilterRadio
           type={RadioAttribute.SORT}
           title={strings.sort.heading}
-          value={sortOption}
-          setValue={(value) => setSortOption(value as SortOption | undefined)}
+          value={exploreSortOption}
+          setValue={(value) =>
+            setExploreSortOption(value as ExploreSortOption | undefined)
+          }
         />
       )}
       <Box sx={{ pb: 2, display: "flex", justifyContent: "center" }}>

@@ -1,46 +1,42 @@
-import { SortLabel, SortOption } from '@/config/FilterItems';
-import { useGlobalStateManager } from '@/context/StateContext';
-import FormControl from '@mui/material/FormControl';
-import MenuItem from '@mui/material/MenuItem';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { ExploreSortOption } from "@/config/FilterItems";
+import { useGlobalStateManager } from "@/context/StateContext";
+import FormControl from "@mui/material/FormControl";
+import MenuItem from "@mui/material/MenuItem";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const SortMenu = () => {
-  const {
-    sortOption,
-    setSortOption
-  } = useGlobalStateManager();
+  const { exploreSortOption = "", setExploreSortOption } =
+    useGlobalStateManager();
 
-  const handleChange = (event: SelectChangeEvent<typeof sortOption>) => {
+  const handleChange = (event: SelectChangeEvent<typeof exploreSortOption>) => {
     const {
       target: { value },
     } = event;
-    setSortOption(
-      value as SortOption
-    );
+    setExploreSortOption(value as ExploreSortOption);
   };
+
   return (
     <FormControl sx={{ width: 245 }}>
       <Select
         displayEmpty
-        value={sortOption}
+        value={exploreSortOption}
         onChange={handleChange}
         input={<OutlinedInput />}
         renderValue={(selected) => {
-
-          return <em>Sort by: {selected}</em>;
-
+          return selected ? (
+            <em>Sort by: {selected}</em>
+          ) : (
+            <em>Sort by: None</em>
+          );
         }}
         inputProps={{ "aria-label": "Without label" }}
       >
         <MenuItem disabled value="">
-          <em>Sort by: {sortOption}</em>
+          <em>Sort by...</em>
         </MenuItem>
-        {Object.values(SortLabel).map((name) => (
-          <MenuItem
-            key={name}
-            value={name}
-          >
+        {Object.values(ExploreSortOption).map((name) => (
+          <MenuItem key={name} value={name}>
             {name}
           </MenuItem>
         ))}

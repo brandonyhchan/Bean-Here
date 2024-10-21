@@ -1,22 +1,27 @@
-import { Level, LevelLabel, RadioAttribute, SortLabel, SortOption } from "@/config/FilterItems";
-import { FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import {
+  ExploreSortOption,
+  Level,
+  LevelLabel,
+  RadioAttribute,
+} from "@/config/FilterItems";
+import {
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import FilterAccordion from "./FilterAccordion";
 
-type FilterRadioProps<T> = {
+type FilterRadioProps = {
   type: RadioAttribute;
   title: string;
-  value: Level | SortOption | undefined;
-  setValue: (value: Level | SortOption | undefined) => void;
+  value: Level | ExploreSortOption | undefined;
+  setValue: (value: Level | ExploreSortOption | undefined) => void;
 };
 
-const FilterRadio = <T extends RadioAttribute>({
-  type,
-  title,
-  value,
-  setValue,
-}: FilterRadioProps<T>) => {
+const FilterRadio = ({ type, title, value, setValue }: FilterRadioProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +31,7 @@ const FilterRadio = <T extends RadioAttribute>({
     if (type === RadioAttribute.NOISE || type === RadioAttribute.CAPACITY) {
       setValue(selectedValue as Level);
     } else {
-      setValue(selectedValue as SortOption);
+      setValue(selectedValue as ExploreSortOption);
     }
 
     // Update search params
@@ -47,7 +52,7 @@ const FilterRadio = <T extends RadioAttribute>({
       if (type === RadioAttribute.NOISE || type === RadioAttribute.CAPACITY) {
         setValue(paramValue as Level | undefined);
       } else {
-        setValue(paramValue as SortOption);
+        setValue(paramValue as ExploreSortOption);
       }
     }
   }, [searchParams, type, setValue]);
@@ -77,34 +82,34 @@ const FilterRadio = <T extends RadioAttribute>({
       return (
         <React.Fragment>
           <FormControlLabel
-            value={SortOption.NOISE_LOW}
+            value={ExploreSortOption.NOISE_LOW}
             control={<Radio />}
-            label={SortOption.NOISE_LOW}
+            label={ExploreSortOption.NOISE_LOW}
           />
           <FormControlLabel
-            value={SortOption.NOISE_HIGH}
+            value={ExploreSortOption.NOISE_HIGH}
             control={<Radio />}
-            label={SortOption.NOISE_HIGH}
+            label={ExploreSortOption.NOISE_HIGH}
           />
           <FormControlLabel
-            value={SortOption.CAPACITY_LOW}
+            value={ExploreSortOption.CAPACITY_LOW}
             control={<Radio />}
-            label={SortLabel.CAPACITY_LOW}
+            label={ExploreSortOption.CAPACITY_LOW}
           />
           <FormControlLabel
-            value={SortOption.CAPACITY_HIGH}
+            value={ExploreSortOption.CAPACITY_HIGH}
             control={<Radio />}
-            label={SortLabel.CAPACITY_HIGH}
+            label={ExploreSortOption.CAPACITY_HIGH}
           />
           <FormControlLabel
-            value={SortOption.PRICE_LOW}
+            value={ExploreSortOption.PRICE_LOW}
             control={<Radio />}
-            label={SortLabel.PRICE_LOW}
+            label={ExploreSortOption.PRICE_LOW}
           />
           <FormControlLabel
-            value={SortOption.PRICE_HIGH}
+            value={ExploreSortOption.PRICE_HIGH}
             control={<Radio />}
-            label={SortLabel.PRICE_HIGH}
+            label={ExploreSortOption.PRICE_HIGH}
           />
         </React.Fragment>
       );
